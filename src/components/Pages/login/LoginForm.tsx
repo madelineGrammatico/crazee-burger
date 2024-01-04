@@ -1,6 +1,7 @@
+import React from 'react'
 import { useState } from "react"
 
-export function LoginPage() {
+export default function LoginForm() {
     const [inputValue, setInputValue] = useState("")
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -11,14 +12,18 @@ export function LoginPage() {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value)
     }
-    return (
-        <div>
+  return (
+    <form onSubmit={handleSubmit}>
             <h1>Bienvenue chez nous</h1>
             <h2>Connectez vous</h2>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Entrez votre prénom" onChange={handleChange} value={inputValue} required></input>
-                <button>Accédez à votre espace</button>
-            </form>
-        </div>
-    )
+            <input
+                type="text" 
+                placeholder="Entrez votre prénom" 
+                onChange={handleChange} 
+                value={inputValue} 
+                required
+            />
+            <button>Accédez à votre espace</button>
+        </form>
+  )
 }
