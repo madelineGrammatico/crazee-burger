@@ -12,6 +12,7 @@ export default function LoginForm() {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value)
     }
+    
   return (
     <form onSubmit={handleSubmit}>
             <h1>Bienvenue chez nous !</h1>
