@@ -2,7 +2,7 @@ import React from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
 export default function OrderPage() {
-    const { name } = useParams()
+    const { userName } = useParams()
     const navigate = useNavigate()
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
@@ -10,8 +10,8 @@ export default function OrderPage() {
     }
   return (
     <main>
-        <h1>{`Bonjour ${name}`}</h1>  
-        <button onClick={handleClick}>Déconnection</button>
+        <h1>Bonjour { userName }</h1>  
+        <button onClick={ handleClick }>Déconnection</button>
     </main>  
   )
 }

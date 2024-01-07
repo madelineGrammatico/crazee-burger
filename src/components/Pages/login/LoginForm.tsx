@@ -8,9 +8,9 @@ export default function LoginForm() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // alert(`Bonjour ${inputValue}`)
+        setInputValue('')
         navigate(`/order/${inputValue}`)
-        // setInputValue('')
+        
     }
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value)
