@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
+// import styled from "styled-components"
 
 export default function LoginForm() {
     const navigate = useNavigate()
@@ -27,7 +28,7 @@ export default function LoginForm() {
                 value={inputValue} 
                 required
             />
-            <button>Accédez à votre espace</button>
+            <button>Accédez à mon espace</button>
         </form>
   )
 }
