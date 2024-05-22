@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import LoginForm from "./LoginForm"
 import Logo from '../../reusables-ui/Logo';
+import image from "../../../assets/lumière.jpg"
 
 export function LoginPage() {
     
@@ -17,5 +18,10 @@ const LoginPageStyled = styled.div`
    flex-direction: column;
    justify-content: center;
    align-content: center;
-   flex-wrap: wrap
+   flex-wrap: wrap;
+
+   ::before {
+    content: "avant";
+    background: ${image};
+   }
 `;
