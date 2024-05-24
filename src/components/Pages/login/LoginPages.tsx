@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import LoginForm from "./LoginForm"
 import Logo from '../../reusables-ui/Logo';
-import image from "../../../assets/lumière.jpg"
+import image from "../../../assets/F03burger-background.jpg"
 
 export function LoginPage() {
     
-    return <LoginPageStyled>
-        <Logo/>
-        <LoginForm/>
-    </LoginPageStyled>
-    
+    return (
+        <LoginPageStyled>
+            <Logo/>
+            <LoginForm/>
+        </LoginPageStyled>
+    )
 }
 const LoginPageStyled = styled.div`
-   background-color: hotpink;
    height: 100vh;
    display: flex;
    flex-direction: column;
@@ -20,8 +20,18 @@ const LoginPageStyled = styled.div`
    align-content: center;
    flex-wrap: wrap;
 
-   ::before {
-    content: "avant";
-    background: ${image};
-   }
+    &::before {
+        content: "";
+        background: url(${image}) rgba(0, 0, 0, 0.7);
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: darken;
+
+        position: absolute;
+        top: 0;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index: -1;
+    }
 `;
