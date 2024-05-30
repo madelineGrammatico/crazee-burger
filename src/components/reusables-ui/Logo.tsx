@@ -11,7 +11,7 @@ export default function Logo() {
 const LogoStyled = styled.div`
     display: flex;
     align-items: center;
-
+    justify-content: center;
     transform: scale(2.5);
     padding: 0 20px;
   header {
