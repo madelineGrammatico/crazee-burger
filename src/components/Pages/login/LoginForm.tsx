@@ -22,13 +22,15 @@ export default function LoginForm() {
         <h1>Bienvenue chez nous !</h1>
         <hr/>
         <h2>Connectez vous</h2>
-        <input
-            type="text" 
-            placeholder="Entrez votre prénom" 
-            onChange={handleChange} 
-            value={inputValue} 
-            required
-        />
+        <div className='input-container'>
+            <input
+                type="text" 
+                placeholder="Entrez votre prénom" 
+                onChange={handleChange} 
+                value={inputValue} 
+                required
+            />
+        </div>
         <button>Accéder à mon espace</button>
     </LoginFormStyled>
   )
@@ -59,4 +61,27 @@ const LoginFormStyled = styled.form`
     margin: 20px 10px 10px;
     font-size: 36px;
   }
+
+
+  .input-container {
+      background-color: white;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      padding: 18px 24px;
+      margin: 18px 0;
+
+      input {
+        border: none;
+        font-size: 15px;
+        color: #17161a;
+        width: 100%;
+      }
+
+      &::placeholder {
+        background: white;
+        color: lightgrey;
+        border: none;
+      }
+    }
 `;
