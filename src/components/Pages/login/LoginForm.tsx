@@ -31,13 +31,16 @@ export default function LoginForm() {
                 required
             />
         </div>
-        <button>Accéder à mon espace</button>
+        <button className='button-with-icon'>
+          <span>Accéder à mon espace</span>
+        </button>
+        
     </LoginFormStyled>
   )
 }
 
 const LoginFormStyled = styled.form`
-  /* background-color: #7cd7d8; */
+  background-color: #7cd7d8;
   text-align: center;
   max-width: 550px;
   min-width: 400px;
@@ -62,7 +65,6 @@ const LoginFormStyled = styled.form`
     font-size: 36px;
   }
 
-
   .input-container {
       background-color: white;
       border-radius: 5px;
@@ -84,4 +86,47 @@ const LoginFormStyled = styled.form`
         border: none;
       }
     }
+
+  .button-with-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1;
+    width: 100%;
+
+    padding: 18px 24px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #f56a2c;
+    border: 1px solid #f56a2c;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: white;
+      color: #f56a2c;
+      border: 1px solid #f56a2c;
+      transition: all 200ms ease-out;
+    }
+    &:active{
+      color: white;
+      background-color: #f56a2c;
+      border: 1px solid #f56a2c;
+    }
+    &:disabled{
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      margin-left: 10px;
+    }
+  }
 `;
