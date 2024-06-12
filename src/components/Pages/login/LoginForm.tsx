@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import styled from "styled-components"
+import Input from './Input'
 
 export default function LoginForm() {
     const navigate = useNavigate()
@@ -22,15 +23,12 @@ export default function LoginForm() {
         <h1>Bienvenue chez nous !</h1>
         <hr/>
         <h2>Connectez vous</h2>
-        <div className='input-container'>
-            <input
-                type="text" 
-                placeholder="Entrez votre prénom" 
-                onChange={handleChange} 
-                value={inputValue} 
-                required
-            />
-        </div>
+        <Input 
+          value={inputValue} 
+          onChange={handleChange} 
+          placeholder="Entrez votre prénom"
+          required
+        />
         <button className='button-with-icon'>
           <span>Accéder à mon espace</span>
         </button>
@@ -40,7 +38,6 @@ export default function LoginForm() {
 }
 
 const LoginFormStyled = styled.form`
-  background-color: #7cd7d8;
   text-align: center;
   max-width: 550px;
   min-width: 400px;
@@ -65,27 +62,27 @@ const LoginFormStyled = styled.form`
     font-size: 36px;
   }
 
-  .input-container {
-      background-color: white;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      padding: 18px 24px;
-      margin: 18px 0;
+  .input-Container {
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 18px 24px;
+    margin: 18px 0;
 
-      input {
-        border: none;
-        font-size: 15px;
-        color: #17161a;
-        width: 100%;
-      }
-
-      &::placeholder {
-        background: white;
-        color: lightgrey;
-        border: none;
-      }
+    input {
+      border: none;
+      font-size: 15px;
+      color: #17161a;
+      width: 100%;
     }
+
+    &::placeholder {
+      background: white;
+      color: lightgrey;
+      border: none;
+    }
+  }
 
   .button-with-icon {
     display: inline-flex;
