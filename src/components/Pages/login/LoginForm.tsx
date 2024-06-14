@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import styled from "styled-components"
 import TextInput from '../../reusables-ui/TextInput'
+import PrimaryButton from '../../reusables-ui/PrimaryButton'
 
 export default function LoginForm() {
     const navigate = useNavigate()
@@ -30,9 +31,10 @@ export default function LoginForm() {
           Icon={""}
           required
         />
-        <button className='button-with-icon'>
-          <span>Accéder à mon espace</span>
-        </button>
+        <PrimaryButton
+          label="Accéder à mon espace"
+          Icon = ""
+        />
         
     </LoginFormStyled>
   )
@@ -61,50 +63,5 @@ const LoginFormStyled = styled.form`
     color: white;
     margin: 20px 10px 10px;
     font-size: 36px;
-  }
-
- 
-
-  .button-with-icon {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    white-space: nowrap;
-    text-decoration: none;
-    line-height: 1;
-    width: 100%;
-
-    padding: 18px 24px;
-    border-radius: 5px;
-    font-size: 15px;
-    font-weight: 800;
-    background-color: #f56a2c;
-    border: 1px solid #f56a2c;
-    color: white;
-
-    &:hover:not(:disabled) {
-      background-color: white;
-      color: #f56a2c;
-      border: 1px solid #f56a2c;
-      transition: all 200ms ease-out;
-    }
-    &:active{
-      color: white;
-      background-color: #f56a2c;
-      border: 1px solid #f56a2c;
-    }
-    &:disabled{
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 15px;
-      margin-left: 10px;
-    }
   }
 `;
