@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import styled from "styled-components"
-import Input from './Input'
+import TextInput from '../../reusables-ui/TextInput'
 
 export default function LoginForm() {
     const navigate = useNavigate()
@@ -23,10 +23,11 @@ export default function LoginForm() {
         <h1>Bienvenue chez nous !</h1>
         <hr/>
         <h2>Connectez vous</h2>
-        <Input 
+        <TextInput 
           value={inputValue} 
           onChange={handleChange} 
           placeholder="Entrez votre prénom"
+          Icon={""}
           required
         />
         <button className='button-with-icon'>
@@ -62,27 +63,7 @@ const LoginFormStyled = styled.form`
     font-size: 36px;
   }
 
-  .input-Container {
-    background-color: white;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    padding: 18px 24px;
-    margin: 18px 0;
-
-    input {
-      border: none;
-      font-size: 15px;
-      color: #17161a;
-      width: 100%;
-    }
-
-    &::placeholder {
-      background: white;
-      color: lightgrey;
-      border: none;
-    }
-  }
+ 
 
   .button-with-icon {
     display: inline-flex;
