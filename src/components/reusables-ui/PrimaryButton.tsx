@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 
-export default function PrimaryButton({label, Icon} : {label: string, Icon: any}) {
+export default function PrimaryButton({ label, Icon } : { label: string, Icon: any }) {
   return (
-    <Button >
-        <span>{label}</span>
-        {Icon&& Icon}
-    </Button>
+    <PrimaryButtonStyled>
+        <span>{label }</span>
+        { Icon && Icon }
+    </PrimaryButtonStyled>
   )
 }
-const Button = styled.button`
+const PrimaryButtonStyled = styled.button`
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -42,12 +42,4 @@ const Button = styled.button`
       cursor: not-allowed;
     }
 
-    .icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 15px;
-      margin-left: 10px;
-    }
-  
 `

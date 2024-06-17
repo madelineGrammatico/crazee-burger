@@ -64,4 +64,12 @@ const LoginFormStyled = styled.form`
     margin: 20px 10px 10px;
     font-size: 36px;
   }
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  
 `;
