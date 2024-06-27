@@ -28,7 +28,7 @@ const InputContainer  = styled.div`
 
     &::placeholder {
       background: ${ theme.colors.white };
-      color: ${ theme.colors.greyLight };
+      color: ${theme.colors.greyMedium};
       border: none;
     }
   }
