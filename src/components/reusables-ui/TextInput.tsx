@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
-export default function TextInput({value, onChange, Icon, ...restProps}) {
+import { ComponentPropsWithoutRef } from "react";
+
+type PropsTextInput = {
+  value: string,
+  onChange : (e: React.ChangeEvent<HTMLInputElement>) => void,
+  Icon: string
+} & ComponentPropsWithoutRef<"input">
+
+export default function TextInput({value, onChange, Icon, ...restProps}: PropsTextInput) {
   return (
     <InputContainer>
       {Icon && Icon}
