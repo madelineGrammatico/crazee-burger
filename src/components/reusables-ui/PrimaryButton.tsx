@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import { theme } from '../../theme'
+import { IconType } from 'react-icons'
 
-export default function PrimaryButton({ label, Icon } : { label: string, Icon: any }) {
+export default function PrimaryButton({ label, Icon } : { label: string, Icon?: IconType}) {
   return (
     <PrimaryButtonStyled>
         <span>{label }</span>
-        { Icon && Icon }
+        { Icon && Icon}
     </PrimaryButtonStyled>
   )
 }

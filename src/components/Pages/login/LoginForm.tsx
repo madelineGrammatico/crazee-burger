@@ -5,6 +5,8 @@ import styled from "styled-components"
 import TextInput from '../../reusables-ui/TextInput'
 import PrimaryButton from '../../reusables-ui/PrimaryButton'
 import { theme } from '../../../theme'
+import { BsPersonCircle } from 'react-icons/bs'
+import { IoChevronForward } from 'react-icons/io5'
 
 export default function LoginForm() {
     const navigate = useNavigate()
@@ -29,12 +31,12 @@ export default function LoginForm() {
           value={inputValue} 
           onChange={handleChange} 
           placeholder="Entrez votre prénom"
-          Icon={""}
+          Icon={<BsPersonCircle className='icon'/>}
           required
         />
         <PrimaryButton
           label="Accéder à mon espace"
-          Icon = ""
+          Icon = {<IoChevronForward />}
         />
         
     </LoginFormStyled>
