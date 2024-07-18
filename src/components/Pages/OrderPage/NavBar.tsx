@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import RightSideNav from './RightSideNav'
 import Logo from '../../reusables-ui/Logo';
 import { theme } from '../../../theme';
+import { refreshPage } from '../../../utils/windows';
 
-export default function NavBar({userName}: {userName: string}) {
+export default function NavBar({userName, onClick}: {userName: string}) {
    
     return (
     <NavBarStyled>
-        <Logo/>
+        <Logo className="logo-order-page" onClick={() => refreshPage()}/>
         <RightSideNav userName= {userName}/>
         
     </NavBarStyled>
@@ -27,4 +28,7 @@ const NavBarStyled = styled.nav`
                     ${theme.borderRadius.extraRound} 
                     0 0 ;
     
+    .logo-order-page{
+        cursor: pointer;
+    }
 `
