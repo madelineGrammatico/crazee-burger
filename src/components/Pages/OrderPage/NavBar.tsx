@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
 import RightSideNav from './RightSideNav'
+import Logo from '../../reusables-ui/Logo';
 
 export default function NavBar({userName}: {userName: string}) {
    
     return (
     <NavBarStyled>
-        <div className="left-Side">left</div>
+        <Logo/>
         <RightSideNav userName= {userName}/>
         
     </NavBarStyled>
@@ -19,9 +20,6 @@ const NavBarStyled = styled.nav`
     background-color: blue;
     display: flex;
     justify-content: space-between;
-
-    .left-Side{
-        background-color: purple;
-    }
+    padding: 0 20px;
     
 `;

@@ -2,9 +2,9 @@ import styled from "styled-components";
 import burgerLogo from "/images/logo-orange.png"
 import {theme} from "../../theme/index.ts"
 
-export default function Logo() {
+export default function Logo({className}: {className?: string}) {
   return (
-    <LogoStyled>
+    <LogoStyled className={className}>
       <header>CRAZY <img src={burgerLogo}></img> BURGER</header>
     </LogoStyled>
   )
@@ -14,8 +14,7 @@ const LogoStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: scale(2.5);
-    padding: 0 20px;
+    /* padding: 0 20px; */
 
   header {
     display: flex;
