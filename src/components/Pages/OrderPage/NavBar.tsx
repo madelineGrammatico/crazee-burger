@@ -1,20 +1,13 @@
-import React from 'react'
-import { useNavigate} from "react-router-dom"
 import styled from 'styled-components'
 
+import RightSideNav from './RightSideNav'
+
 export default function NavBar({userName}: {userName: string}) {
-    const navigate = useNavigate()
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        navigate("/")
-    }
+   
     return (
     <NavBarStyled>
         <div className="left-Side">left</div>
-        <div className='Right-side'>
-        <h1>Bonjour { userName }</h1>  
-        <button onClick={ handleClick }>Déconnection</button>
-        </div>
+        <RightSideNav userName= {userName}/>
         
     </NavBarStyled>
   )
@@ -30,7 +23,5 @@ const NavBarStyled = styled.nav`
     .left-Side{
         background-color: purple;
     }
-    .Right-side{
-        background-color: purple;
-    }
+    
 `;
