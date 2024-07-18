@@ -1,12 +1,15 @@
 import styled from 'styled-components'
 import { theme } from '../../theme'
-import { IconType } from 'react-icons'
 
-export default function PrimaryButton({ label, Icon } : { label: string, Icon?: IconType}) {
+type PrimaryButtonType = {
+    label: string,
+     Icon?: React.SVGProps<SVGSVGElement>
+}
+export default function PrimaryButton({ label, Icon } : PrimaryButtonType ) {
   return (
     <PrimaryButtonStyled>
         <span>{label }</span>
-        { Icon && Icon}
+        { Icon && Icon }
     </PrimaryButtonStyled>
   )
 }

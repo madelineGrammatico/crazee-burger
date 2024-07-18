@@ -1,19 +1,21 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 import { ComponentPropsWithoutRef } from "react";
-import { IconType } from "react-icons";
 
 type PropsTextInput = {
   value: string,
   onChange : (e: React.ChangeEvent<HTMLInputElement>) => void,
-  Icon?: IconType
+  Icon?: React.SVGProps<SVGSVGElement>
 } & ComponentPropsWithoutRef<"input">
 
 export default function TextInput({value, onChange, Icon, ...restProps}: PropsTextInput) {
   return (
     <InputContainer>
-      {Icon}
-      <input value= { value } onChange= { onChange }
+      {Icon ? Icon : null}
+      <input 
+        value= { value } 
+        onChange= { onChange }
+        type= "text"
         {...restProps}
       />
     </InputContainer>
