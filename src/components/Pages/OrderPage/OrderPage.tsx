@@ -1,51 +1,37 @@
-import React from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import { theme } from "../../../theme"
+import NavBar from "./NavBar"
+import Main from "./main"
 
 export default function OrderPage() {
     const { userName } = useParams()
-    const navigate = useNavigate()
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        navigate("/")
-    }
   return (
     <OrderPageStyled>
       <div className="container">
-        <nav>
-          <h1>Bonjour { userName }</h1>  
-          <button onClick={ handleClick }>Déconnection</button>
-        </nav>
-        <main></main>
+        <NavBar userName= {userName}/>
+        <Main/>
       </div>
       
     </OrderPageStyled>  
   )
 }
 const OrderPageStyled = styled.div`
-  background-color: ${theme.colors.primary};
   height:100vh;
+
+  background-color: ${theme.colors.primary};
   display: flex;
   align-items: center;
   justify-content: center;
 
   .container{
+    width: 1400px;
+    height: 95vh;
+
     background-color: red;
     display: flex;
-    height: 95vh;
     flex-direction: column;
     align-items: center;
-    width: 1400px;
-    nav{
-    background-color: blue;
-    }
-    main{
-      background-color: green;
-      width:100%;
-      flex: 1;
-      
-    }
   }
   
 `;
