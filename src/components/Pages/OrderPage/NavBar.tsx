@@ -5,7 +5,7 @@ import Logo from '../../reusables-ui/Logo';
 import { theme } from '../../../theme';
 import { refreshPage } from '../../../utils/windows';
 
-export default function NavBar({userName, onClick}: {userName: string}) {
+export default function NavBar({userName}: {userName: string}) {
    
     return (
     <NavBarStyled>

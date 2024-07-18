@@ -2,7 +2,7 @@ import styled from "styled-components";
 import burgerLogo from "/images/logo-orange.png"
 import {theme} from "../../theme/index.ts"
 
-export default function Logo({className, onClick}: {className: string, onClick}) {
+export default function Logo({className, onClick}: {className: string, onClick?: () => void}) {
   return (
     <LogoStyled className={className} onClick={onClick}>
       <header>CRAZY <img src={burgerLogo}></img> BURGER</header>
