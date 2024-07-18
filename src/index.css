@@ -1,6 +1,7 @@
 body {
     margin: 0; 
     /* display: block; */
+    font-family: "Open Sans", sans-serif;
 }
 
 :root {
