@@ -14,8 +14,8 @@ export default function NavBar({userName}: {userName: string}) {
   )
 }
 const NavBarStyled = styled.nav`
-    width:100%;
     height: 10vh;
+    align-self: stretch;
 
     background-color: blue;
     display: flex;
