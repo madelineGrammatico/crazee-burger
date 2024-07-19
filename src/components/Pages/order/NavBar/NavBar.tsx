@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 import RightSideNav from './RightSideNav'
-import Logo from '../../reusables-ui/Logo';
-import { theme } from '../../../theme';
-import { refreshPage } from '../../../utils/windows';
+import Logo from '../../../reusables-ui/Logo';
+import { theme } from '../../../../theme';
+import { refreshPage } from '../../../../utils/windows';
 
 export default function NavBar({userName}: {userName: string | undefined}) {
    
