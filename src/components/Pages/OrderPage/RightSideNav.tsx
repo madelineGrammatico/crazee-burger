@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Profile from './Profile'
 
-export default function RightSideNav({userName} : {userName : string}) {
+export default function RightSideNav({userName} : {userName : string | undefined}) {
     
     return (
     <RightSideNavStyled>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { theme } from "../../../theme"
 
-export default function Profile({ userName }: {userName : string}) {
+export default function Profile({ userName }: {userName : string | undefined}) {
   return (
     <ProfileStyled>
       <div className="info">
