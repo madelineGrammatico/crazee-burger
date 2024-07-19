@@ -1,17 +1,20 @@
 import styled from 'styled-components'
 import { theme } from '../../theme'
 import { IconType } from 'react-icons'
+import { ComponentPropsWithoutRef } from "react";
 
 type PrimaryButtonType = {
   label: string,
   Icon?: IconType
   // Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
-}
-export default function PrimaryButton({ label, Icon } : PrimaryButtonType ) {
+} & ComponentPropsWithoutRef<"button">
+
+export default function PrimaryButton({ label, Icon, ...restProps} : PrimaryButtonType ) {
   return (
-    <PrimaryButtonStyled>
+    <PrimaryButtonStyled {...restProps}>
       <span>{label }</span>
       {Icon && <Icon />}
+      
     </PrimaryButtonStyled>
   )
 }
