@@ -27,7 +27,7 @@ const NavBarStyled = styled.nav`
     border-radius:  ${theme.borderRadius.extraRound} 
                     ${theme.borderRadius.extraRound} 
                     0 0 ;
-    
+    border-bottom: 1px solid ${theme.colors.greyLight};
     .logo-order-page{
         cursor: pointer;
     }
