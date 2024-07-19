@@ -10,11 +10,12 @@ export default function Menu() {
     const menu = fakeMenu2
   return (
     <MenuStyled>
-        {menu.map((produit) => { 
-            return <Card
-                imageSource={produit.imageSource}
-                title={produit.title }
-                leftDescription={formatPrice(produit.price)}
+        {menu.map(({id, imageSource, title, price}) => { 
+            return <Card 
+                key={id}
+                imageSource={imageSource}
+                title={title }
+                leftDescription={formatPrice(price)}
             />
         })}
     </MenuStyled>
