@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { LoginPage } from './components/Pages/login/LoginPages'
 import ErrorPage from './components/Pages/ErrorPage/ErrorPage'
-import OrderPage from './components/Pages/OrderPage/OrderPage'
+import OrderPage from './components/Pages/order/OrderPage'
 import './index.css'
 const router = createBrowserRouter([
   {
