@@ -8,7 +8,7 @@ import { IoMdInformationCircle } from "react-icons/io";
 import ToastAdmin from './ToastAdmin';
 import OrderContext from '../../../../context/OrderContext';
 
-export default function RightSideNav({userName} : {userName : string | undefined}) {
+export default function RightSideNav() {
     const {isAdmin, setIsAdmin} =useContext(OrderContext)
 
     const notify = () => {
@@ -34,7 +34,7 @@ export default function RightSideNav({userName} : {userName : string | undefined
             labelIfUnchecked = "ACTIVER LE MODE ADMIN"
         />
       <ToastAdmin />
-      <Profile userName= {userName}/>
+      <Profile/>
     </RightSideNavStyled>
       
         

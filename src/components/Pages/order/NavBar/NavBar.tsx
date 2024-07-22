@@ -5,12 +5,12 @@ import Logo from '../../../reusables-ui/Logo';
 import { theme } from '../../../../theme';
 import { refreshPage } from '../../../../utils/windows';
 
-export default function NavBar({userName}: {userName: string | undefined}) {
+export default function NavBar() {
    
     return (
     <NavBarStyled>
         <Logo className="logo-order-page" onClick={() => refreshPage()}/>
-        <RightSideNav userName= {userName}/>
+        <RightSideNav/>
         
     </NavBarStyled>
   )
