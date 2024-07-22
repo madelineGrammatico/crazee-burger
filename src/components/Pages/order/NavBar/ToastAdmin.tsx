@@ -1,19 +1,13 @@
 import styled from 'styled-components'
-
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
 import { theme } from '../../../../theme';
 
 export default function ToastAdmin() {
-    
-  return (
-    <ToastAdminStyled>
-        
-        <ToastContainer/>
-    </ToastAdminStyled>
-  )
+  return <ToastContainerStyled className={"toaster"} bodyClassName={"body-toast"}/>
 }
-const ToastAdminStyled = styled.div`
+
+const ToastContainerStyled = styled(ToastContainer)`
   .toaster {
     max-width: 300px;
   }
