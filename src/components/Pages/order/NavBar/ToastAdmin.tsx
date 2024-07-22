@@ -20,6 +20,7 @@ const ToastContainerStyled = styled(ToastContainer)`
     .Toastify__toast-icon.Toastify--animate-icon.Toastify__zoom-enter {
       margin-right: 20px;
       margin-left: 5px;
+      color: ${theme.colors.blue};
     }
     div {
       line-height: 1.3em;
