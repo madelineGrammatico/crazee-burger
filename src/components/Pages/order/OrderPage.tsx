@@ -3,17 +3,25 @@ import styled from "styled-components"
 import { theme } from "../../../theme"
 import NavBar from "./NavBar/NavBar"
 import Main from "./Main/Main"
+import { useState } from "react"
+import OrderContext from "../../../context/OrderContext"
 
 export default function OrderPage() {
     const { userName } = useParams()
+    const [isAdmin, setIsAdmin] = useState(false)
+
+    const orderContextValue = {isAdmin, setIsAdmin}
   return (
-    <OrderPageStyled>
+    <OrderContext.Provider value={orderContextValue}>
+      <OrderPageStyled>
       <div className="container">
         <NavBar userName= {userName}/>
         <Main/>
       </div>
       
-    </OrderPageStyled>  
+      </OrderPageStyled> 
+    </OrderContext.Provider>
+     
   )
 }
 const OrderPageStyled = styled.div`
