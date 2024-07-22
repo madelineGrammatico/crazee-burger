@@ -4,14 +4,14 @@ import { useState } from 'react';
 import ToggleButton from '../../../reusables-ui/ToggleButton';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
-import { FaUserSecret } from 'react-icons/fa';
+import { IoMdInformationCircle } from "react-icons/io";
 import ToastAdmin from './ToastAdmin';
 
 export default function RightSideNav({userName} : {userName : string | undefined}) {
     const [isAdmin, setIsAdmin] = useState(false)
     const notify = () => {
       !isAdmin ? toast.info("Mode admin activé", {
-        icon: <FaUserSecret size={30} />,
+        icon: <IoMdInformationCircle size={30} />,
         theme: "dark",
         position: "bottom-right",
         autoClose: 5000,
