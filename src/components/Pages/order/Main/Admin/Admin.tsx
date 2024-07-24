@@ -1,13 +1,17 @@
 import styled from "styled-components"
 import { theme } from "../../../../../theme";
 import AdminTabs from "./AdminTabs";
-
+import { useState } from 'react'
 
 export default function Admin() {
+  const [isCollapsed, setIsCollapsed] = useState(false)
   return (
     <AdminStyled>
-        <AdminTabs/>
-        <div className="PanelAdmin">panel admin</div>
+        <AdminTabs 
+          isCollapsed={isCollapsed} 
+          setIsCollapsed={setIsCollapsed}
+        />
+        { isCollapsed && <div className="PanelAdmin">panel admin</div> }
     </AdminStyled>
   )
 }
@@ -20,6 +24,7 @@ const AdminStyled = styled.section`
     right:0;
     display: flex;
     flex-direction: column;
+    justify-content: end;
     
     .PanelAdmin{
         flex: 1;

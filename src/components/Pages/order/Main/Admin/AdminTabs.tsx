@@ -1,6 +1,4 @@
-import React
-//  ,{ useState }
-from 'react'
+import React from 'react'
 import styled from "styled-components"
 import { theme } from "../../../../../theme";
 import Tab from '../../../../reusables-ui/Tab';
@@ -8,17 +6,20 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MdModeEditOutline } from 'react-icons/md';
 
+type AdminTabs= {
+  isCollapsed: boolean, 
+  setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-export default function AdminTabs() {
-    // const [activeTab, setActiveTab] = useState("addProduit")
+export default function AdminTabs({isCollapsed, setIsCollapsed}: AdminTabs) {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       console.log(e.target)
     }
   return (
     <AdminTabStyled className="TabsAdmin"> 
         <Tab 
-          onClick={()=> console.log("close soon")} 
-          Icon={FiChevronDown}
+          onClick={()=> setIsCollapsed(!isCollapsed)} 
+          Icon={isCollapsed ? FiChevronDown : FiChevronUp}
         />
         <Tab 
           onClick={handleClick} 
