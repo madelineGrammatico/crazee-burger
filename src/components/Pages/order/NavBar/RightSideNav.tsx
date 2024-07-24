@@ -1,14 +1,16 @@
 import styled from 'styled-components'
 import Profile from './Profile'
-import { useState } from 'react';
+import { useContext } from 'react';
 import ToggleButton from '../../../reusables-ui/ToggleButton';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
 import { IoMdInformationCircle } from "react-icons/io";
 import ToastAdmin from './ToastAdmin';
+import OrderContext from '../../../../context/OrderContext';
 
-export default function RightSideNav({userName} : {userName : string | undefined}) {
-    const [isAdmin, setIsAdmin] = useState(false)
+export default function RightSideNav() {
+    const {isAdmin, setIsAdmin} =useContext(OrderContext)
+
     const notify = () => {
       !isAdmin ? toast.info("Mode admin activé", {
         icon: <IoMdInformationCircle size={30} />,
@@ -32,7 +34,7 @@ export default function RightSideNav({userName} : {userName : string | undefined
             labelIfUnchecked = "ACTIVER LE MODE ADMIN"
         />
       <ToastAdmin />
-      <Profile userName= {userName}/>
+      <Profile/>
     </RightSideNavStyled>
       
         
