@@ -1,17 +1,18 @@
 import styled from "styled-components"
-import { theme } from "../../../../../theme";
 import AdminTabs from "./AdminTabs";
-import { useState } from 'react'
+import { useContext } from 'react'
+import AdminPanel from "./AdminPanel";
+import OrderContext from "../../../../../context/OrderContext";
 
 export default function Admin() {
-  const [isCollapsed, setIsCollapsed] = useState(false)
+  const {
+    isCollapsed,
+    } = useContext(OrderContext)
+
   return (
     <AdminStyled>
-      <AdminTabs 
-        isCollapsed={isCollapsed} 
-        setIsCollapsed={setIsCollapsed}
-      />
-      { !isCollapsed && <div className="PanelAdmin">panel admin</div> }
+      <AdminTabs />
+      { !isCollapsed && <AdminPanel/> }
     </AdminStyled>
   )
 }
@@ -25,17 +26,4 @@ const AdminStyled = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: end;
-  
-  .PanelAdmin{
-    flex: 1;
-
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 31px;
-
-    background: ${theme.colors.white};
-    border-top: 1px solid ${theme.colors.greyLight};
-    box-shadow: ${theme.shadows.subtle};
-  }
 `;

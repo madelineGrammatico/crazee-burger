@@ -1,20 +1,27 @@
-import React, { useState } from 'react'
+import React, { useContext} from 'react'
 import styled from "styled-components"
 import { theme } from "../../../../../theme";
 import Tab from '../../../../reusables-ui/Tab';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MdModeEditOutline } from 'react-icons/md';
+import OrderContext from '../../../../../context/OrderContext';
 
-type AdminTabs= {
-  isCollapsed: boolean, 
-  setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-}
+// type AdminTabs= {
+//   isCollapsed: boolean, 
+//   setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
+// }
 
-export default function AdminTabs({isCollapsed, setIsCollapsed}: AdminTabs) {
-
-  const [isAddSelective, setIsAddSelective] = useState(true)
-  const [isEditSelective, setIsEditSelective] = useState(false)
+export default function AdminTabs() {
+  const {
+    isCollapsed,
+    setIsCollapsed, 
+    isAddSelective, 
+    setIsAddSelective, 
+    isEditSelective, 
+    setIsEditSelective
+    } = useContext(OrderContext)
+  
 
   const selectEditTab = () =>{
     setIsCollapsed(false)

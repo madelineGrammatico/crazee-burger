@@ -8,8 +8,16 @@ import OrderContext from "../../../context/OrderContext"
 export default function OrderPage() {
     
     const [isAdmin, setIsAdmin] = useState(false)
+    const [isCollapsed, setIsCollapsed] = useState(false)
+    const [isAddSelective, setIsAddSelective] = useState(true)
+    const [isEditSelective, setIsEditSelective] = useState(false)
 
-    const orderContextValue = {isAdmin, setIsAdmin}
+    const orderContextValue = {
+      isAdmin, setIsAdmin,
+      isCollapsed, setIsCollapsed,
+      isAddSelective, setIsAddSelective,
+      isEditSelective, setIsEditSelective,
+    }
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
