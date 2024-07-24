@@ -11,16 +11,13 @@ export type tabType = {
   onClick?: void,
   label: string,
   Icon: IconType,
-  className: string
+  className?: string
 }
 type getTabsType = tabType []
 
-type getTabsConfigType = (
-  isCollapsed: boolean, 
-  tabSelected: tabSelectedType
-) => getTabsType
+type getTabsConfigType = (isCollapsed: boolean) => getTabsType
 
-export const getTabsConfig : getTabsConfigType = (isCollapsed, tabSelected) => [
+export const getTabsConfig : getTabsConfigType = (isCollapsed) => [
     {
       index: "chevron",
       label: "",
@@ -30,16 +27,20 @@ export const getTabsConfig : getTabsConfigType = (isCollapsed, tabSelected) => [
     {
       index: "add",
       label: "Ajouter un produit",
-      Icon: AiOutlinePlus,
-      className: tabSelected === "add" ? "active": ""
+      Icon: AiOutlinePlus
     },
     {
       index: "edit",
       label: "Modifier un produit",
-      Icon: MdModeEditOutline,
-      className: tabSelected === "edit"? "active" : ""
+      Icon: MdModeEditOutline
     },
   ]
   
   export const getTabSelected : (tabs: getTabsType, tabSelected: tabSelectedType ) => tabType | undefined
     = (tabs, tabSelected) => tabs.find((tab)=> tab.index ===tabSelected)
+
+  export const getClassName : (tab: tabType, tabSelected: tabSelectedType)=> string 
+    = (tab, tabSelected) => tab.className ? 
+        tab.className 
+      : 
+        tabSelected === tab.index ? "active" : ""

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { theme } from "../../../../../theme";
 import Tab from '../../../../reusables-ui/Tab';
 import OrderContext from '../../../../../context/OrderContext';
-import { tabType, getTabsConfig, indexTabsConfig } from './getTabsConfig';
+import { tabType, getTabsConfig, indexTabsConfig, getClassName } from './getTabsConfig';
 
 export default function AdminTabs() {
   const {
@@ -19,17 +19,17 @@ export default function AdminTabs() {
     setTabSelected(handleTabSelected)
   }
 
-  const tabs= getTabsConfig(  isCollapsed, tabSelected)
+  const tabs= getTabsConfig(isCollapsed)
 
   return (
     <AdminTabStyled className="TabsAdmin"> 
       { tabs.map((tab: tabType) =>
         <Tab 
-          key={tab.index}
-          label={tab.label}
-          Icon={tab.Icon}
+          key= {tab.index}
+          label= {tab.label}
+          Icon= {tab.Icon}
           onClick= {() => handleSelectTab(tab.index)} 
-          className={tab.className}>
+          className= {getClassName(tab, tabSelected)}>
         </Tab>
       )}
     </AdminTabStyled>
