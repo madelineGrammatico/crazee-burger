@@ -2,16 +2,16 @@ import { useContext } from 'react'
 import OrderContext from '../../../../../context/OrderContext'
 import styled from "styled-components"
 import { theme } from "../../../../../theme";
+import { getTabsConfig, getTabSelected } from './getTabsConfig';
 
 export default function AdminPanel() {
-    const {
-        tabSelected,
-        } = useContext(OrderContext)
-
+  const { isCollapsed, tabSelected} = useContext(OrderContext)
+  
+  const tabs = getTabsConfig( isCollapsed,tabSelected)
+  const tabSelectedGetted = getTabSelected(tabs, tabSelected )
   return (
     <AdminPanelStyled>
-        {tabSelected==="add" && <div className="PanelAdmin">ajouter un produit</div>}
-        {tabSelected==="edit" && <div className="PanelAdmin">modifier un produit</div>}
+      <div>{tabSelectedGetted?.label}</div>
     </AdminPanelStyled>
   )
 }
