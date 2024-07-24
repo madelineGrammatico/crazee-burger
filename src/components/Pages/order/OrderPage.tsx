@@ -6,18 +6,16 @@ import { useState } from "react"
 import OrderContext from "../../../context/OrderContext"
 
 export default function OrderPage() {
-    
     const [isAdmin, setIsAdmin] = useState(false)
     const [isCollapsed, setIsCollapsed] = useState(false)
-    const [isAddSelective, setIsAddSelective] = useState(true)
-    const [isEditSelective, setIsEditSelective] = useState(false)
-
+    const [selectTab, setSelectTab] = useState<"add" | "edit">("add")
+    
     const orderContextValue = {
       isAdmin, setIsAdmin,
       isCollapsed, setIsCollapsed,
-      isAddSelective, setIsAddSelective,
-      isEditSelective, setIsEditSelective,
+      selectTab, setSelectTab
     }
+
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>

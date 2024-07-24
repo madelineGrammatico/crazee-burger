@@ -5,10 +5,8 @@ type OrderContextType = {
     setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
     isCollapsed: boolean;
     setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-    isAddSelective: boolean;
-    setIsAddSelective: React.Dispatch<React.SetStateAction<boolean>>
-    isEditSelective: boolean;
-    setIsEditSelective: React.Dispatch<React.SetStateAction<boolean>>
+    selectTab: "add" | "edit";
+    setSelectTab: React.Dispatch<React.SetStateAction<"add" | "edit">>
   }
 
 const OrderContext = createContext<OrderContextType>({
@@ -16,10 +14,8 @@ const OrderContext = createContext<OrderContextType>({
     setIsAdmin: ()=> {},
     isCollapsed: false,
     setIsCollapsed: ()=> {},
-    isAddSelective: false,
-    setIsAddSelective: ()=> {},
-    isEditSelective: false,
-    setIsEditSelective: ()=> {},
+    selectTab: "add",
+    setSelectTab: ()=> {},
 })
 
 export default OrderContext;

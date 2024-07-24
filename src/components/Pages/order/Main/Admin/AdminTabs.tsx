@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import { useContext} from 'react'
 import styled from "styled-components"
 import { theme } from "../../../../../theme";
 import Tab from '../../../../reusables-ui/Tab';
@@ -7,41 +7,26 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { MdModeEditOutline } from 'react-icons/md';
 import OrderContext from '../../../../../context/OrderContext';
 
-// type AdminTabs= {
-//   isCollapsed: boolean, 
-//   setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-// }
-
 export default function AdminTabs() {
   const {
-    isCollapsed,
-    setIsCollapsed, 
-    isAddSelective, 
-    setIsAddSelective, 
-    isEditSelective, 
-    setIsEditSelective
-    } = useContext(OrderContext)
+    isCollapsed, setIsCollapsed, 
+    selectTab, setSelectTab
+  } = useContext(OrderContext)
   
+  const selectAddTab = () =>{
+    setIsCollapsed(false)
+    setSelectTab("add")
+  }
 
   const selectEditTab = () =>{
     setIsCollapsed(false)
-    setIsEditSelective(true)
-    setIsAddSelective(false)
+    setSelectTab("edit")
   }
 
-  const selectAddTab = () =>{
-    setIsCollapsed(false)
-    setIsAddSelective(true)
-    setIsEditSelective(false)
-  }
-
-  const selectCollapseTab = () => {
-    setIsCollapsed(!isCollapsed)
-  }
   return (
     <AdminTabStyled className="TabsAdmin"> 
       <Tab 
-        onClick={selectCollapseTab} 
+        onClick={() => setIsCollapsed(!isCollapsed)} 
         Icon={!isCollapsed ? FiChevronDown : FiChevronUp}
         className={isCollapsed ? "active" : ""}
       />
@@ -50,14 +35,14 @@ export default function AdminTabs() {
         Icon={AiOutlinePlus}
         label="Ajouter un produit"
         value="addProduit"
-        className={isAddSelective ? "active": ""}
+        className={selectTab==="add" ? "active": ""}
       />
       <Tab 
         onClick={selectEditTab} 
         Icon={MdModeEditOutline}
         label="Modifier un produit"
         value="updateProduit"
-        className={isEditSelective ? "active" : ""}
+        className={selectTab==="edit"? "active" : ""}
       />
     </AdminTabStyled>
   )

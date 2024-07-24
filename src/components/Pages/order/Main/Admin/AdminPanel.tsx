@@ -5,14 +5,13 @@ import { theme } from "../../../../../theme";
 
 export default function AdminPanel() {
     const {
-        isAddSelective, 
-        isEditSelective,
+        selectTab,
         } = useContext(OrderContext)
-        
+
   return (
     <AdminPanelStyled>
-        {isAddSelective && <div className="PanelAdmin">ajouter un produit</div>}
-        {isEditSelective && <div className="PanelAdmin">modifier un produit</div>}
+        {selectTab==="add" && <div className="PanelAdmin">ajouter un produit</div>}
+        {selectTab==="edit" && <div className="PanelAdmin">modifier un produit</div>}
     </AdminPanelStyled>
   )
 }
