@@ -20,6 +20,7 @@ export default function AdminTabs({isCollapsed, setIsCollapsed}: AdminTabs) {
         <Tab 
           onClick={()=> setIsCollapsed(!isCollapsed)} 
           Icon={isCollapsed ? FiChevronDown : FiChevronUp}
+          className={!isCollapsed ? "collapsed-active" : ""}
         />
         <Tab 
           onClick={handleClick} 
@@ -42,8 +43,8 @@ const AdminTabStyled = styled.div`
   height: 44px;
   display: flex;
   width: fit-content;
-
-  .active{
+ 
+  .active, .collapsed-active{
       background-color: ${ theme.colors.background_dark };
       border: 1px solid ${ theme.colors.background_dark };
       color: ${ theme.colors.white};
