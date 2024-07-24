@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components"
 import { theme } from "../../../../../theme";
 import Tab from '../../../../reusables-ui/Tab';
@@ -12,29 +12,46 @@ type AdminTabs= {
 }
 
 export default function AdminTabs({isCollapsed, setIsCollapsed}: AdminTabs) {
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      console.log(e.target)
-    }
+
+  const [isAddSelective, setIsAddSelective] = useState(true)
+  const [isEditSelective, setIsEditSelective] = useState(false)
+
+  const selectEditTab = () =>{
+    setIsCollapsed(false)
+    setIsEditSelective(true)
+    setIsAddSelective(false)
+  }
+
+  const selectAddTab = () =>{
+    setIsCollapsed(false)
+    setIsAddSelective(true)
+    setIsEditSelective(false)
+  }
+
+  const selectCollapseTab = () => {
+    setIsCollapsed(!isCollapsed)
+  }
   return (
     <AdminTabStyled className="TabsAdmin"> 
-        <Tab 
-          onClick={()=> setIsCollapsed(!isCollapsed)} 
-          Icon={isCollapsed ? FiChevronDown : FiChevronUp}
-          className={!isCollapsed ? "collapsed-active" : ""}
-        />
-        <Tab 
-          onClick={handleClick} 
-          Icon={AiOutlinePlus}
-          label="Ajouter un produit"
-          value="addProduit"
-          className={"active"}
-        />
-        <Tab 
-          onClick={handleClick} 
-          Icon={MdModeEditOutline}
-          label="Modifier un produit"
-          value="updateProduit"
-        />
+      <Tab 
+        onClick={selectCollapseTab} 
+        Icon={!isCollapsed ? FiChevronDown : FiChevronUp}
+        className={isCollapsed ? "active" : ""}
+      />
+      <Tab 
+        onClick={selectAddTab} 
+        Icon={AiOutlinePlus}
+        label="Ajouter un produit"
+        value="addProduit"
+        className={isAddSelective ? "active": ""}
+      />
+      <Tab 
+        onClick={selectEditTab} 
+        Icon={MdModeEditOutline}
+        label="Modifier un produit"
+        value="updateProduit"
+        className={isEditSelective ? "active" : ""}
+      />
     </AdminTabStyled>
   )
 }
@@ -43,8 +60,9 @@ const AdminTabStyled = styled.div`
   height: 44px;
   display: flex;
   width: fit-content;
+  gap: 1px;
  
-  .active, .collapsed-active{
+  .active {
       background-color: ${ theme.colors.background_dark };
       border: 1px solid ${ theme.colors.background_dark };
       color: ${ theme.colors.white};

@@ -28,7 +28,7 @@ const Tabstyled = styled.button`
     align-items: center;
 
     padding: 8px 22px; 
-    gap: 17px;
+    gap: 13px;
     cursor: pointer;
 
     position: relative;
