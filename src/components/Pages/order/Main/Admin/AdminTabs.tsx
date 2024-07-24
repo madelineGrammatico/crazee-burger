@@ -10,17 +10,12 @@ import OrderContext from '../../../../../context/OrderContext';
 export default function AdminTabs() {
   const {
     isCollapsed, setIsCollapsed, 
-    selectTab, setSelectTab
+    tabSelected, setTabSelected
   } = useContext(OrderContext)
   
-  const selectAddTab = () =>{
+  const handleSelectTab = (handleTabSelected: "add" | "edit") =>{
     setIsCollapsed(false)
-    setSelectTab("add")
-  }
-
-  const selectEditTab = () =>{
-    setIsCollapsed(false)
-    setSelectTab("edit")
+    setTabSelected(handleTabSelected)
   }
 
   return (
@@ -31,18 +26,16 @@ export default function AdminTabs() {
         className={isCollapsed ? "active" : ""}
       />
       <Tab 
-        onClick={selectAddTab} 
+        onClick={()=> handleSelectTab("add")} 
         Icon={AiOutlinePlus}
         label="Ajouter un produit"
-        value="addProduit"
-        className={selectTab==="add" ? "active": ""}
+        className={tabSelected==="add" ? "active": ""}
       />
       <Tab 
-        onClick={selectEditTab} 
+        onClick={()=> handleSelectTab("edit")} 
         Icon={MdModeEditOutline}
         label="Modifier un produit"
-        value="updateProduit"
-        className={selectTab==="edit"? "active" : ""}
+        className={tabSelected==="edit"? "active" : ""}
       />
     </AdminTabStyled>
   )
