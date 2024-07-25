@@ -2,7 +2,7 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MdModeEditOutline } from 'react-icons/md';
 import { IconType } from 'react-icons';
-import AddPanel  from './panels/AddPanel.tsx'
+import AddForm  from './panels/AddForm.tsx'
 import EditPanel from './panels/EditPanel.tsx';
 
 export type tabSelectedType = "add" | "edit"
@@ -14,7 +14,7 @@ export type tabType = {
   label: string,
   Icon: IconType,
   className?: string,
-  content?: React.ComponentType
+  Content?: React.ComponentType
 }
 type getTabsType = tabType []
 
@@ -32,13 +32,13 @@ export const getTabsConfig : getTabsConfigType = (isCollapsed) => [
       index: "add",
       label: "Ajouter un produit",
       Icon: AiOutlinePlus,
-      content: AddPanel
+      Content: AddForm
     },
     {
       index: "edit",
       label: "Modifier un produit",
       Icon: MdModeEditOutline,
-      content: EditPanel
+      Content: EditPanel
     },
   ]
   

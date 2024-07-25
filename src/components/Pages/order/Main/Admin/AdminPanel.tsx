@@ -11,7 +11,7 @@ export default function AdminPanel() {
   const tabSelectedGetted = getTabSelected(tabs, tabSelected )
   return (
     <AdminPanelStyled>
-      {tabSelectedGetted?.content && <tabSelectedGetted.content/> }
+      {tabSelectedGetted?.Content && <tabSelectedGetted.Content/> }
     </AdminPanelStyled>
   )
 }

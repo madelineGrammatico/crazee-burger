@@ -4,16 +4,19 @@ import NavBar from "./NavBar/NavBar"
 import Main from "./Main/Main"
 import { useState } from "react"
 import OrderContext from "../../../context/OrderContext"
+import { fakeMenu } from "../../../fakeData/fakeMenu"
 
 export default function OrderPage() {
-    const [isAdmin, setIsAdmin] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(true)
     const [isCollapsed, setIsCollapsed] = useState(false)
     const [tabSelected, setTabSelected] = useState<"add" | "edit">("add")
+    const [menu, setMenu] = useState( fakeMenu.SMALL)
     
     const orderContextValue = {
       isAdmin, setIsAdmin,
       isCollapsed, setIsCollapsed,
-      tabSelected, setTabSelected
+      tabSelected, setTabSelected,
+      menu, setMenu
     }
 
   return (
