@@ -1,4 +1,3 @@
-// import React from 'react'
 import { theme } from "../../../../../../theme";
 import styled from "styled-components"
 import TextInput from '../../../../../reusables-ui/TextInput';
@@ -8,62 +7,53 @@ import { MdOutlineEuro } from 'react-icons/md';
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import comingSoon from "../../../../../../../public/images/coming-soon.png"
-// import { formatPrice } from "../../../../../../utils/maths";
 
-type ProductType = {
-  id: number,
-  imageSource: string,
-  title: string,
-  price: number,
-  quantity: number,
-  isAvailable: boolean,
-  isAdvertised: boolean,
+
+const EMPTY_PRODUCT= {
+  title:"",
+  // imageSource:"https://upload.wikimedia.org/wikipedia/commons/c/cd/Burger_in_black_background.png",
+  imageSource:"",
+  price: 0
 }
 
 export default function AddForm() {
   const { menu, setMenu } = useContext(OrderContext)
+  const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT)
 
-  const [productName, setproductName] = useState("")
-  const [productImg, setProductImg] = useState("")
-  const [productPrice, setProductPrice] = useState("")
-
-  const handleChangeName =(e: React.ChangeEvent<HTMLInputElement>) => {
-    setproductName(e.target.value)
-  }
-  const handleChangeImg =(e: React.ChangeEvent<HTMLInputElement>) => {
-    setProductImg(e.target.value)
-  }
-  const handleChangePrice =(e: React.ChangeEvent<HTMLInputElement>) => {
-    setProductPrice(e.target.value)
-  }
   const buildId = () => {
    return menu.map((produit) => produit.id)
     .reduce((acc, cur)=> cur > acc ? cur : acc) +1
-   
   }
-  const buildNewProduct =() => {
-    return {
+  
+  const handleSubmit= (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    
+    const newProductToAdd = {
       id: buildId(),
-      imageSource: productImg ? productImg : comingSoon ,
-      title: productName,
-      price: parseInt(productPrice),
+      title: newProduct.title,
+      imageSource: newProduct.imageSource? newProduct.imageSource : comingSoon,
+      price: newProduct.price ? newProduct.price  : 0,
       quantity: 1,
       isAvailable: true,
       isAdvertised: true,
     }
+    const menuUpdated = [ newProductToAdd,...menu, ]
+    console.log(menuUpdated )
+    setMenu(menuUpdated)
   }
-
-  const handleAddProduct = (e : React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const newProduct: ProductType = buildNewProduct()
-    const menuUpdate = [ ...menu, newProduct]
-    setMenu(menuUpdate)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
+    console.log(e.target.value)
+    const newValue = e.target.value
+    const nameInput = e.target.name
+    nameInput === "price" ? parseFloat(newValue) : newValue 
+    setNewProduct({...newProduct, [nameInput]: newValue})
   }
   return (
-    <AddFormStyled onSubmit={handleAddProduct}>
+    <AddFormStyled onSubmit={handleSubmit}>
       <div className="imagePreview">
-      { productImg ? 
-        <img src={productImg} alt={productName ? productName : productImg}/> 
+      { newProduct.imageSource ? 
+        <img src={newProduct.imageSource} 
+          alt={newProduct.title ? newProduct.title : newProduct.imageSource}/> 
       : 
         <div className="imagePreview-fail">
             <span>aucune image</span>
@@ -72,22 +62,25 @@ export default function AddForm() {
      </div>
       <div className="input-fields">
         <TextInput
-            placeholder="Nom du produit (ex: Super Burger)"
-            value={productName}
-            onChange={handleChangeName}
-            Icon={FaHamburger}
+          name="title"
+          placeholder="Nom du produit (ex: Super Burger)"
+          value={newProduct.title}
+          onChange={handleChange}
+          Icon={FaHamburger}
         /> 
         <TextInput
-            placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-            value={productImg}
-            onChange={handleChangeImg}
-            Icon={BsFillCameraFill}
+          name="imageSource"
+          placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
+          value={newProduct.imageSource}
+          onChange={handleChange}
+          Icon={BsFillCameraFill}
         /> 
         <TextInput
-            placeholder="Prix"
-            value={productPrice}
-            onChange={handleChangePrice}
-            Icon={MdOutlineEuro}
+          name="price"
+          placeholder="Prix"
+          value={newProduct.price.toString()}
+          onChange={handleChange}
+          Icon={MdOutlineEuro}
         /> 
       </div>
       <div className="submitButton">
