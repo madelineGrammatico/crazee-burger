@@ -10,7 +10,7 @@ export default function OrderPage() {
     const [isAdmin, setIsAdmin] = useState(true)
     const [isCollapsed, setIsCollapsed] = useState(false)
     const [tabSelected, setTabSelected] = useState<"add" | "edit">("add")
-    const [menu, setMenu] = useState( fakeMenu.SMALL)
+    const [menu, setMenu] = useState( fakeMenu.LARGE)
     
     const orderContextValue = {
       isAdmin, setIsAdmin,

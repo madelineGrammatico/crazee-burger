@@ -10,12 +10,13 @@ export default function Menu() {
     const { menu } = useContext(OrderContext)
   return (
     <MenuStyled>
-        {menu.map(({id, imageSource, title, price}) => { 
+        {menu.map(({id, imageSource, title, price,}) => { 
             return <Card 
                 key={id}
                 imageSource={imageSource}
                 title={title }
                 leftDescription={formatPrice(price)}
+                id={id}
             />
         })}
     </MenuStyled>

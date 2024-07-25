@@ -56,10 +56,7 @@ export default function AddForm() {
   const handleAddProduct = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const newProduct: ProductType = buildNewProduct()
-    
-    const menuCopy = [... menu]
-    const menuUpdate = [ ...menuCopy, newProduct]
-    console.log(menuUpdate)
+    const menuUpdate = [ ...menu, newProduct]
     setMenu(menuUpdate)
   }
   return (
@@ -145,7 +142,7 @@ const AddFormStyled = styled.form`
       height:35px;
       padding: 0 16px 0 24px;
       margin:0;
-      
+
       input{
         background-color: ${theme.colors.background_white};
         color:  ${theme.colors.greyMedium};

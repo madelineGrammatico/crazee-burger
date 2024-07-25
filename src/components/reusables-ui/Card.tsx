@@ -1,15 +1,27 @@
 import styled from "styled-components"
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
+import { TiDelete } from "react-icons/ti";
+import { useContext } from "react";
+import OrderContext from "../../context/OrderContext";
 
 type ProduitType = {
     imageSource: string,
     title: string,
-    leftDescription: number | string
+    leftDescription: number | string,
+    id: number,
 }
-export default function Card({ title, imageSource, leftDescription }: ProduitType) {
+export default function Card({ title, imageSource, leftDescription, id}: ProduitType) {
+  const {menu, setMenu} = useContext(OrderContext)
+
+  const handleDelete =(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault()
+    setMenu(menu.filter((product) => product.id !== id))
+  }
+  
     return (
       <CardStyled className="produit">
+        <button className="close" onClick={handleDelete}><TiDelete/></button>
         <div className="image">
           <img src={imageSource} alt={title} />
         </div>
@@ -31,16 +43,31 @@ const CardStyled = styled.div`
   width: 200px;
   height: 300px;
   display: grid;
-  grid-template-rows: 65% 1fr;
-  padding: 20px;
+  grid-template-rows: 30px 50% 1fr;
+  padding: 15px;
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
 
+   .close {
+      justify-self: end;
+      padding: 0;
+      background-color: transparent;
+      border: none;
+
+      svg {
+      width: 30px;
+      height:30px;
+      color: ${theme.colors.primary};
+   }
+   :hover{
+      color: ${theme.colors.red};
+    }
+  }
   .image {
     width: 100%;
     height: auto;
-    margin-top: 30px;
+    margin-top: 5px;
     margin-bottom: 20px;
 
     img {
@@ -53,10 +80,9 @@ const CardStyled = styled.div`
   .text-info {
     display: grid;
     grid-template-rows: 30% 70%;
-    padding: 5px;
 
     .title {
-      margin: auto 0;
+      margin: auto 5px;
       font-size: ${theme.fonts.size.P4};
       position: relative;
       bottom: 10px;
@@ -73,6 +99,7 @@ const CardStyled = styled.div`
     .description {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      padding: 10px;
       
       .left-description {
         display: flex;
