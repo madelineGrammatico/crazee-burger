@@ -31,9 +31,8 @@ const Tabstyled = styled.button`
     gap: 13px;
     cursor: pointer;
 
-    position: relative;
-    /* top:1px; */
-    left: 52px;
+    /* position: relative;
+    left: 52px; */
 
     font-size: ${theme.fonts.size.P0};
     color: ${ theme.colors.greySemiDark};

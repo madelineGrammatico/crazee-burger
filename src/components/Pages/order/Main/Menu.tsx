@@ -1,13 +1,13 @@
 // import { useState } from "react";
 import styled from "styled-components"
 import { theme } from "../../../../theme";
-import { fakeMenu2 } from "../../../../fakeData/fakeMenu.ts"
+import { fakeMenu } from "../../../../fakeData/fakeMenu.ts"
 import Card from "../../../reusables-ui/Card.tsx";
 import { formatPrice } from "../../../../utils/maths.ts";
 
 export default function Menu() {
     // const [menu, setmenu] = useState(fakeMenu2)
-    const menu = fakeMenu2
+    const menu = fakeMenu.LARGE
   return (
     <MenuStyled>
         {menu.map(({id, imageSource, title, price}) => { 

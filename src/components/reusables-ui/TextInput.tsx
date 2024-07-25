@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef } from "react";
 import { IconType } from "react-icons";
 
 type PropsTextInput = {
-  value: string,
+  value?: string,
   onChange : (e: React.ChangeEvent<HTMLInputElement>) => void,
   Icon?: IconType
   // Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>

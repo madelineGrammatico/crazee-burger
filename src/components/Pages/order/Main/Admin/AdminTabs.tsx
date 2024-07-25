@@ -41,6 +41,8 @@ const AdminTabStyled = styled.div`
   display: flex;
   width: fit-content;
   gap: 1px;
+  position: relative;
+    left: 52px;
  
   .active {
       background-color: ${ theme.colors.background_dark };
