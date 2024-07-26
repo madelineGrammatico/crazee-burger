@@ -9,23 +9,22 @@ import EmptyMenuClient from "./EmptyMenuClient.tsx";
 
 export default function Menu() {
     const { menu, isAdmin, handleDelete } = useContext(OrderContext)
+    
+    if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
+    if(menu.length === 0) return <EmptyMenuAdmin/> 
 
   return (
     <MenuStyled>
-        {menu.length === 0 ?
-            isAdmin? <EmptyMenuAdmin/>: <EmptyMenuClient/>
-        :
-            menu.map(({ imageSource, title, price, id}) => { 
-                return <Card 
-                    key={id}
-                    imageSource={imageSource}
-                    title={title }
-                    leftDescription={formatPrice(price)}
-                    isButtonDelete={true}
-                    onDelete={()=> handleDelete(id)}
-                />
-            })
-        }
+        { menu.map(({ imageSource, title, price, id}) => { 
+            return <Card 
+                key={id}
+                imageSource={imageSource}
+                title={title }
+                leftDescription={formatPrice(price)}
+                isButtonDelete={true}
+                onDelete={()=> handleDelete(id)}
+            />
+        })}
     </MenuStyled>
   )
 }
