@@ -11,13 +11,12 @@ import { FiCheckCircle } from "react-icons/fi";
 
 const EMPTY_PRODUCT= {
   title:"",
-  // imageSource:"https://upload.wikimedia.org/wikipedia/commons/c/cd/Burger_in_black_background.png",
   imageSource:"",
   price: 0
 }
 
 export default function AddForm() {
-  const { menu, setMenu } = useContext(OrderContext)
+  const { menu, handleAdd } = useContext(OrderContext)
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT)
   const [isSubmited, setIsSubmited] = useState(false)
 
@@ -32,11 +31,8 @@ export default function AddForm() {
       setIsSubmited(false)
     }, 2000)
   }
-
-  const handleSubmit= (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    
-    const newProductToAdd = {
+  const buildProduct = () => {
+    return {
       id: buildId(),
       ...newProduct,
       price: newProduct.price ? newProduct.price : 0,
@@ -44,9 +40,11 @@ export default function AddForm() {
       isAvailable: true,
       isAdvertised: true,
     }
-    const menuUpdated = [ newProductToAdd,...menu, ]
-    console.log(newProductToAdd)
-    setMenu(menuUpdated)
+  }
+  const handleSubmit= (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const newProductToAdd = buildProduct()
+    handleAdd(newProductToAdd)
     setNewProduct(EMPTY_PRODUCT)
     displaySuccesMessage()
   }

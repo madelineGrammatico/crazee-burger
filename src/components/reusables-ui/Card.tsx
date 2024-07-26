@@ -2,10 +2,7 @@ import styled from "styled-components"
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
-// import { useContext } from "react";
-// import OrderContext from "../../context/OrderContext";
 import comingSoon from "../../../public/images/coming-soon.png"
-// import { useNavigate } from "react-router-dom";
 
 
 type ProduitType = {

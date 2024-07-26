@@ -7,11 +7,27 @@ import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { useNavigate } from "react-router-dom";
 
+type ProductType = {
+  id: number,
+  imageSource: string,
+  title: string,
+  price: number,
+  quantity: number,
+  isAvailable: boolean,
+  isAdvertised: boolean,
+}
+
 export default function OrderPage() {
     const [isAdmin, setIsAdmin] = useState(true)
     const [isCollapsed, setIsCollapsed] = useState(false)
     const [tabSelected, setTabSelected] = useState<"add" | "edit">("add")
     const [menu, setMenu] = useState( fakeMenu.SMALL)
+
+    const handleAdd = (newProduct: ProductType) => {
+      const menuUpdated = [ newProduct,...menu, ]
+      setMenu(menuUpdated)
+    }
+    
     const handleDelete =(productId: number) => {
       !isAdmin ? navigate("/*") : null
       const menuCopy = [...menu]
@@ -22,7 +38,8 @@ export default function OrderPage() {
       isAdmin, setIsAdmin,
       isCollapsed, setIsCollapsed,
       tabSelected, setTabSelected,
-      menu, setMenu,
+      menu,
+      handleAdd,
       handleDelete
     }
 

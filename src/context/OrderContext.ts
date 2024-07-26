@@ -9,6 +9,15 @@ type ProductsType = {
   isAvailable: boolean,
   isAdvertised: boolean,
 }[]
+type ProductType = {
+  id: number,
+  imageSource: string,
+  title: string,
+  price: number,
+  quantity: number,
+  isAvailable: boolean,
+  isAdvertised: boolean,
+}
 
 type OrderContextType = {
     isAdmin: boolean;
@@ -18,7 +27,7 @@ type OrderContextType = {
     tabSelected: "add" | "edit";
     setTabSelected: React.Dispatch<React.SetStateAction<"add" | "edit">>
     menu: ProductsType,
-    setMenu: React.Dispatch<React.SetStateAction<ProductsType>>
+    handleAdd: (newProduct: ProductType) => void
     handleDelete: (productId: number) => void
   }
 
@@ -37,8 +46,8 @@ const OrderContext = createContext<OrderContextType>({
       quantity: 0,
       isAvailable: true,
       isAdvertised: false,
-    }], 
-    setMenu: () => {},
+    }],
+    handleAdd: () => {},
     handleDelete: () => {},
 })
 
