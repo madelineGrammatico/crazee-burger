@@ -19,6 +19,7 @@ type OrderContextType = {
     setTabSelected: React.Dispatch<React.SetStateAction<"add" | "edit">>
     menu: ProductsType,
     setMenu: React.Dispatch<React.SetStateAction<ProductsType>>
+    handleDelete: (productId: number) => void
   }
 
 const OrderContext = createContext<OrderContextType>({
@@ -37,7 +38,8 @@ const OrderContext = createContext<OrderContextType>({
       isAvailable: true,
       isAdvertised: false,
     }], 
-    setMenu: () => {}
+    setMenu: () => {},
+    handleDelete: () => {},
 })
 
 export default OrderContext;

@@ -7,16 +7,18 @@ import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext.ts";
 
 export default function Menu() {
-    const { menu } = useContext(OrderContext)
+    const { menu, handleDelete } = useContext(OrderContext)
+
   return (
     <MenuStyled>
-        {menu.map(({id, imageSource, title, price,}) => { 
+        {menu.map(({ imageSource, title, price, id}) => { 
             return <Card 
                 key={id}
                 imageSource={imageSource}
                 title={title }
                 leftDescription={formatPrice(price)}
-                id={id}
+                isButtonDelete={true}
+                onDelete={()=> handleDelete(id)}
             />
         })}
     </MenuStyled>

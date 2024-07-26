@@ -2,35 +2,27 @@ import styled from "styled-components"
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
-import { useContext } from "react";
-import OrderContext from "../../context/OrderContext";
+// import { useContext } from "react";
+// import OrderContext from "../../context/OrderContext";
 import comingSoon from "../../../public/images/coming-soon.png"
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 type ProduitType = {
     imageSource: string,
     title: string,
     leftDescription: number | string,
-    id: number,
+    isButtonDelete: boolean,
+    onDelete: () => void
 }
 const DEFAULT_IMAGE = comingSoon
 
-export default function Card({ title, imageSource, leftDescription, id } : ProduitType) {
-  const { menu, setMenu, isAdmin } = useContext(OrderContext)
-  const navigate = useNavigate()
-
-  const handleDelete =(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault()
-    !isAdmin ? navigate("/*") : null
-    setMenu(menu.filter((product) => product.id !== id))
-  }
-
+export default function Card({ title, imageSource, leftDescription, isButtonDelete, onDelete} : ProduitType) {
   const image = imageSource ? imageSource : DEFAULT_IMAGE
 
   return (
     <CardStyled className="produit">
-      {isAdmin && <button className="close" onClick={handleDelete}><TiDelete/></button>}
+      {isButtonDelete && <button className="close" onClick={onDelete} aria-label="delete-button"><TiDelete/></button>}
       <div className="image">
         <img src={image} alt={title} />
       </div>
@@ -59,11 +51,12 @@ const CardStyled = styled.div`
   border-radius: ${theme.borderRadius.extraRound};
 
    .close {
+      grid-area: 1 / 1 / 2 / 2;
       justify-self: end;
       padding: 0;
-      background-color: transparent;
+      background: none;
       border: none;
-      grid-area: 1 / 1 / 2 / 2;
+      cursor: pointer;
 
       svg {
       width: 30px;
