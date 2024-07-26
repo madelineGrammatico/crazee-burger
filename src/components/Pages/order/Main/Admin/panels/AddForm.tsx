@@ -6,6 +6,7 @@ import { BsFillCameraFill } from 'react-icons/bs';
 import { MdOutlineEuro } from 'react-icons/md';
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
+import { FiCheckCircle } from "react-icons/fi";
 
 
 const EMPTY_PRODUCT= {
@@ -18,12 +19,20 @@ const EMPTY_PRODUCT= {
 export default function AddForm() {
   const { menu, setMenu } = useContext(OrderContext)
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT)
+  const [isSubmited, setIsSubmited] = useState(false)
 
   const buildId = () => {
    return menu.map((produit) => produit.id)
     .reduce((acc, cur)=> cur > acc ? cur : acc) +1
   }
-  
+
+  const displaySuccesMessage = () => {
+    setIsSubmited(true)
+    setTimeout(()=>{
+      setIsSubmited(false)
+    }, 2000)
+  }
+
   const handleSubmit= (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
@@ -39,7 +48,9 @@ export default function AddForm() {
     console.log(newProductToAdd)
     setMenu(menuUpdated)
     setNewProduct(EMPTY_PRODUCT)
+    displaySuccesMessage()
   }
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const {value, name} = e.target
     name === "price" ? parseFloat(value) : value 
@@ -82,6 +93,7 @@ export default function AddForm() {
       </div>
       <div className="submitButton">
           <button>Ajouter un nouveau produit au menu</button>
+          {isSubmited && <span className="succes-message"><FiCheckCircle/>Ajouté avec succès !</span>}
       </div>
     </AddFormStyled>
   )
@@ -144,7 +156,12 @@ const AddFormStyled = styled.form`
     }
   }
   .submitButton{
-    grid-area: 2/ 2 / 3 / 3;
+    grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    flex-flow: nowrap;
+    align-items: center;
+    gap: 15px;
+
       button {
         color: ${theme.colors.white};
         background-color: ${theme.colors.success};
@@ -152,6 +169,18 @@ const AddFormStyled = styled.form`
         border-radius: ${theme.borderRadius.round};
         width: fit-content;
         padding:  10px 29px;
+      &:hover {
+        color: ${theme.colors.success};
+        background-color: ${theme.colors.white};
+      }
+    }
+    .succes-message {
+      color: ${theme.colors.success};
+      display: flex;
+      flex-flow: nowrap;
+      justify-content:center;
+      align-items: center;
+      gap: 4px;
     }
     }
 `;
