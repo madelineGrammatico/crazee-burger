@@ -18,33 +18,37 @@ type ProductType = {
 }
 
 export default function OrderPage() {
-    const [isAdmin, setIsAdmin] = useState(true)
-    const [isCollapsed, setIsCollapsed] = useState(false)
-    const [tabSelected, setTabSelected] = useState<"add" | "edit">("add")
-    const [menu, setMenu] = useState( fakeMenu.SMALL)
+  const menuSelected = fakeMenu.LARGE
+  const navigate = useNavigate()
 
-    const handleAdd = (newProduct: ProductType) => {
-      const menuUpdated = [ newProduct,...menu, ]
-      setMenu(menuUpdated)
-    }
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [tabSelected, setTabSelected] = useState<"add" | "edit">("add")
+  const [menu, setMenu] = useState( menuSelected)
     
-    const handleDelete =(productId: number) => {
-      !isAdmin ? navigate("/*") : null
-      const menuCopy = [...menu]
-      setMenu(menuCopy.filter((product) => product.id !== productId))
-    }
+  const resetMenu = () => {
+    setMenu(menuSelected)
+  }
+  const handleAdd = (newProduct: ProductType) => {
+    const menuUpdated = [ newProduct,...menu, ]
+    setMenu(menuUpdated)
+  }
 
-    const orderContextValue = {
-      isAdmin, setIsAdmin,
-      isCollapsed, setIsCollapsed,
-      tabSelected, setTabSelected,
-      menu,
-      handleAdd,
-      handleDelete
-    }
+  const handleDelete =(productId: number) => {
+    !isAdmin ? navigate("/*") : null
+    const menuCopy = [...menu]
+    setMenu(menuCopy.filter((product) => product.id !== productId))
+  }
 
-    const navigate = useNavigate()
-    
+  const orderContextValue = {
+    isAdmin, setIsAdmin,
+    isCollapsed, setIsCollapsed,
+    tabSelected, setTabSelected,
+    menu,
+    resetMenu,
+    handleAdd,
+    handleDelete
+  }
 
   return (
     <OrderContext.Provider value={orderContextValue}>

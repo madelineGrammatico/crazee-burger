@@ -1,4 +1,6 @@
-const EMPTY : [] = []
+import { ProductsType } from "../context/OrderContext"
+
+const EMPTY : ProductsType = []
 
 const SMALL = [
   {

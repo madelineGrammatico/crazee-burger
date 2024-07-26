@@ -1,6 +1,6 @@
 import { createContext } from "react"
 
-type ProductsType = {
+export type ProductsType = {
   id: number,
   imageSource: string,
   title: string,
@@ -26,8 +26,9 @@ type OrderContextType = {
     setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
     tabSelected: "add" | "edit";
     setTabSelected: React.Dispatch<React.SetStateAction<"add" | "edit">>
-    menu: ProductsType,
-    handleAdd: (newProduct: ProductType) => void
+    menu: ProductsType | [],
+    resetMenu: () => void
+    handleAdd: (newProduct: ProductType) => void,
     handleDelete: (productId: number) => void
   }
 
@@ -47,6 +48,7 @@ const OrderContext = createContext<OrderContextType>({
       isAvailable: true,
       isAdvertised: false,
     }],
+    resetMenu: () => {},
     handleAdd: () => {},
     handleDelete: () => {},
 })
