@@ -6,7 +6,6 @@ import { BsFillCameraFill } from 'react-icons/bs';
 import { MdOutlineEuro } from 'react-icons/md';
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
-import comingSoon from "../../../../../../../public/images/coming-soon.png"
 
 
 const EMPTY_PRODUCT= {
@@ -30,23 +29,20 @@ export default function AddForm() {
     
     const newProductToAdd = {
       id: buildId(),
-      title: newProduct.title,
-      imageSource: newProduct.imageSource? newProduct.imageSource : comingSoon,
-      price: newProduct.price ? newProduct.price  : 0,
+      ...newProduct,
+      price: newProduct.price ? newProduct.price : 0,
       quantity: 1,
       isAvailable: true,
       isAdvertised: true,
     }
     const menuUpdated = [ newProductToAdd,...menu, ]
-    console.log(menuUpdated )
+    console.log(newProductToAdd)
     setMenu(menuUpdated)
   }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
-    console.log(e.target.value)
-    const newValue = e.target.value
-    const nameInput = e.target.name
-    nameInput === "price" ? parseFloat(newValue) : newValue 
-    setNewProduct({...newProduct, [nameInput]: newValue})
+    const {value, name} = e.target
+    name === "price" ? parseFloat(value) : value 
+    setNewProduct({...newProduct, [name]: value})
   }
   return (
     <AddFormStyled onSubmit={handleSubmit}>
@@ -78,7 +74,7 @@ export default function AddForm() {
         <TextInput
           name="price"
           placeholder="Prix"
-          value={newProduct.price.toString()}
+          value={newProduct.price ? newProduct.price.toString() : ""}
           onChange={handleChange}
           Icon={MdOutlineEuro}
         /> 

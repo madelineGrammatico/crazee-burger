@@ -4,6 +4,9 @@ import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
 import { useContext } from "react";
 import OrderContext from "../../context/OrderContext";
+import comingSoon from "../../../public/images/coming-soon.png"
+import { useNavigate } from "react-router-dom";
+
 
 type ProduitType = {
     imageSource: string,
@@ -11,32 +14,38 @@ type ProduitType = {
     leftDescription: number | string,
     id: number,
 }
-export default function Card({ title, imageSource, leftDescription, id}: ProduitType) {
-  const {menu, setMenu} = useContext(OrderContext)
+const DEFAULT_IMAGE = comingSoon
+
+export default function Card({ title, imageSource, leftDescription, id } : ProduitType) {
+  const { menu, setMenu, isAdmin } = useContext(OrderContext)
+  const navigate = useNavigate()
 
   const handleDelete =(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
+    !isAdmin ? navigate("/*") : null
     setMenu(menu.filter((product) => product.id !== id))
   }
-  
-    return (
-      <CardStyled className="produit">
-        <button className="close" onClick={handleDelete}><TiDelete/></button>
-        <div className="image">
-          <img src={imageSource} alt={title} />
-        </div>
-        <div className="text-info">
-          <div className="title">{title}</div>
-          <div className="description">
-            <div className="left-description">{leftDescription}</div>
-            <div className="right-description">
-              <PrimaryButton className="primary-button" label={"Ajouter"} />
-            </div>
+
+  const image = imageSource ? imageSource : DEFAULT_IMAGE
+
+  return (
+    <CardStyled className="produit">
+      {isAdmin && <button className="close" onClick={handleDelete}><TiDelete/></button>}
+      <div className="image">
+        <img src={image} alt={title} />
+      </div>
+      <div className="text-info">
+        <div className="title">{title}</div>
+        <div className="description">
+          <div className="left-description">{leftDescription}</div>
+          <div className="right-description">
+            <PrimaryButton className="primary-button" label={"Ajouter"} />
           </div>
         </div>
-      </CardStyled>
-    )
-  }
+      </div>
+    </CardStyled>
+  )
+}
 
 const CardStyled = styled.div`
   background: ${theme.colors.white};
@@ -54,6 +63,7 @@ const CardStyled = styled.div`
       padding: 0;
       background-color: transparent;
       border: none;
+      grid-area: 1 / 1 / 2 / 2;
 
       svg {
       width: 30px;
@@ -69,6 +79,7 @@ const CardStyled = styled.div`
     height: auto;
     margin-top: 5px;
     margin-bottom: 20px;
+    grid-area: 2/ 1 / 3/ 2;
 
     img {
       width: 100%;
@@ -80,7 +91,7 @@ const CardStyled = styled.div`
   .text-info {
     display: grid;
     grid-template-rows: 30% 70%;
-
+    grid-area: 3 / 1 / 4 / 2;
     .title {
       margin: auto 5px;
       font-size: ${theme.fonts.size.P4};
@@ -94,13 +105,14 @@ const CardStyled = styled.div`
       width: 100%;
       text-overflow: ellipsis;
       font-family: "Amatic SC", cursive;
+      grid-area: 1 / 1 / 2 / 2;
     }
 
     .description {
       display: grid;
       grid-template-columns: 1fr 1fr;
       padding: 10px;
-      
+      grid-area: 2 / 1 / 3 / 2;
       .left-description {
         display: flex;
         justify-content: flex-start;
@@ -111,6 +123,7 @@ const CardStyled = styled.div`
         text-overflow: ellipsis;
         font-weight: ${theme.fonts.weights.medium};
         color: ${theme.colors.primary};
+        grid-area: 1 / 1 / 2 / 2;
       }
 
       .right-description {
@@ -118,7 +131,8 @@ const CardStyled = styled.div`
         justify-content: flex-end;
         align-items: center;
         font-size: ${theme.fonts.size.P1};
-
+        grid-area: 1 / 2 / 2 / 3;
+        
         .primary-button {
           font-size: ${theme.fonts.size.XS};
           cursor: pointer;
