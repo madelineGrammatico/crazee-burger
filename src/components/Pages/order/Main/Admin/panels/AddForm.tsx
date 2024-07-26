@@ -38,6 +38,7 @@ export default function AddForm() {
     const menuUpdated = [ newProductToAdd,...menu, ]
     console.log(newProductToAdd)
     setMenu(menuUpdated)
+    setNewProduct(EMPTY_PRODUCT)
   }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const {value, name} = e.target
