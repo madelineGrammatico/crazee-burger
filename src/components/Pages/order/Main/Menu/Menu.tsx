@@ -21,7 +21,7 @@ export default function Menu() {
                 imageSource={imageSource}
                 title={title }
                 leftDescription={formatPrice(price)}
-                isButtonDelete={true}
+                isButtonDelete={isAdmin}
                 onDelete={()=> handleDelete(id)}
             />
         })}
