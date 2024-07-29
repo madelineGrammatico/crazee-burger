@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import styled from "styled-components"
 import TextInput from '../../reusables-ui/TextInput'
-import PrimaryButton from '../../reusables-ui/PrimaryButton'
+import Button from '../../reusables-ui/Button'
 import { theme } from '../../../theme'
 import { BsPersonCircle } from 'react-icons/bs'
 import { IoChevronForward } from 'react-icons/io5'
@@ -32,11 +32,12 @@ export default function LoginForm() {
           onChange={handleChange} 
           placeholder="Entrez votre prénom"
           Icon={BsPersonCircle}
-          version="normal"
           required
         />
-        <PrimaryButton
+        <Button
+          className="login-button"
           label="Accéder à mon espace"
+          size="big"
           Icon = {IoChevronForward}
         />
         
@@ -67,5 +68,8 @@ const LoginFormStyled = styled.form`
     color: ${ theme.colors.white };
     margin: 20px 10px 10px;
     font-size: ${ theme.fonts.size.P4};
+  }
+  button{
+    width:100%;
   }
 `;

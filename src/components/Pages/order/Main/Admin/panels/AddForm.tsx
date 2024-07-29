@@ -7,6 +7,7 @@ import { MdOutlineEuro } from 'react-icons/md';
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import { FiCheckCircle } from "react-icons/fi";
+import Button from "../../../../../reusables-ui/Button";
 
 
 const EMPTY_PRODUCT= {
@@ -93,7 +94,11 @@ export default function AddForm() {
         /> 
       </div>
       <div className="submitButton">
-          <button>Ajouter un nouveau produit au menu</button>
+          <Button 
+          label="Ajouter un nouveau produit au menu"
+          version="success"
+          size="slim"
+          ></Button>
           {isSubmited && <span className="succes-message"><FiCheckCircle/>Ajouté avec succès !</span>}
       </div>
     </AddFormStyled>
@@ -148,18 +153,6 @@ const AddFormStyled = styled.form`
     align-items: center;
     gap: 15px;
 
-      button {
-        color: ${theme.colors.white};
-        background-color: ${theme.colors.success};
-        border: 1px solid ${theme.colors.success};
-        border-radius: ${theme.borderRadius.round};
-        width: fit-content;
-        padding:  10px 29px;
-      &:hover {
-        color: ${theme.colors.success};
-        background-color: ${theme.colors.white};
-      }
-    }
     .succes-message {
       color: ${theme.colors.success};
       display: flex;

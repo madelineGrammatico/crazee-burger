@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { theme } from "../../theme";
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 import { TiDelete } from "react-icons/ti";
 import comingSoon from "../../../public/images/coming-soon.png"
 
@@ -28,7 +28,7 @@ export default function Card({ title, imageSource, leftDescription, isButtonDele
         <div className="description">
           <div className="left-description">{leftDescription}</div>
           <div className="right-description">
-            <PrimaryButton className="primary-button" label={"Ajouter"} />
+            <Button label={"Ajouter"} />
           </div>
         </div>
       </div>
@@ -82,6 +82,7 @@ const CardStyled = styled.div`
     display: grid;
     grid-template-rows: 30% 70%;
     grid-area: 3 / 1 / 4 / 2;
+    
     .title {
       margin: auto 5px;
       font-size: ${theme.fonts.size.P4};
@@ -103,6 +104,7 @@ const CardStyled = styled.div`
       grid-template-columns: 1fr 1fr;
       padding: 10px;
       grid-area: 2 / 1 / 3 / 2;
+
       .left-description {
         display: flex;
         justify-content: flex-start;
@@ -122,12 +124,6 @@ const CardStyled = styled.div`
         align-items: center;
         font-size: ${theme.fonts.size.P1};
         grid-area: 1 / 2 / 2 / 3;
-        
-        .primary-button {
-          font-size: ${theme.fonts.size.XS};
-          cursor: pointer;
-          padding: 12px;
-        }
       }
     }
   }
