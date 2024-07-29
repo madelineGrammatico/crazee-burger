@@ -10,15 +10,15 @@ import { FiCheckCircle } from "react-icons/fi";
 import Button from "../../../../../reusables-ui/Button";
 
 
-const EMPTY_PRODUCT= {
+export const EMPTY_PRODUCT= {
   title:"",
   imageSource:"",
   price: 0
 }
 
 export default function AddForm() {
-  const { menu, handleAdd } = useContext(OrderContext)
-  const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT)
+  const { menu, handleAdd, newProduct , setNewProduct } = useContext(OrderContext)
+  
   const [isSubmited, setIsSubmited] = useState(false)
 
   const buildId = () => {

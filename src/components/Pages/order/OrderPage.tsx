@@ -6,6 +6,7 @@ import { useState } from "react"
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { useNavigate } from "react-router-dom";
+import { EMPTY_PRODUCT } from "./Main/Admin/panels/AddForm"
 
 type ProductType = {
   id: number,
@@ -25,6 +26,7 @@ export default function OrderPage() {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [tabSelected, setTabSelected] = useState<"add" | "edit">("add")
   const [menu, setMenu] = useState( menuSelected)
+  const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT)
     
   const resetMenu = () => {
     setMenu(menuSelected)
@@ -44,6 +46,7 @@ export default function OrderPage() {
     isAdmin, setIsAdmin,
     isCollapsed, setIsCollapsed,
     tabSelected, setTabSelected,
+    newProduct , setNewProduct,
     menu,
     resetMenu,
     handleAdd,
