@@ -3,7 +3,7 @@ import { theme } from '../../theme'
 import { ButtonType } from '../../lib/Types'
 import { ButtonStyledType } from '../../lib/interfaces'
 
-export default function Button({ label, Icon,version="primary", size="normal", ...restProps} : ButtonType ) {
+export default function Button({ label, Icon, version="primary", size="regular", ...restProps} : ButtonType ) {
   return (
     <ButtonStyled version={version} size={size} {...restProps}>
       <span>{label }</span>
@@ -42,19 +42,19 @@ const extraSuccessStyle = css`
   }
 
 `
-const extraBigStyle = css`
+const sizeLarge = css`
   height: 53px;
   padding:  0 26px;
   font-size: ${ theme.fonts.size.SM};
 `
 
-const extrAmormalStyle = css`
+const sizeRegular = css`
   height: 34px;
   padding: 0 26px;
   font-size: ${ theme.fonts.size.XS};
 `
 
-const extraSlimlStyle = css`
+const sizeSlim = css`
   height: 34px;
   padding:  0 29px;
   font-size: ${ theme.fonts.size.XS};
@@ -63,14 +63,15 @@ const extraSlimlStyle = css`
 const extraStyle = {
   primary: extraPrimaryStyle,
   success: extraSuccessStyle,
-  big: extraBigStyle,
-  normal: extrAmormalStyle,
-  slim: extraSlimlStyle
 }
-
+const sizes = {
+  large: sizeLarge,
+  regular: sizeRegular,
+  slim: sizeSlim
+}
 const ButtonStyled = styled.button<ButtonStyledType>`
   ${({version}) => extraStyle[version]}
-  ${({size}) => extraStyle[size]}
+  ${({size}) => sizes[size]}
 
   width: fit-content;
   position: relative;

@@ -37,7 +37,7 @@ export default function LoginForm() {
         <Button
           className="login-button"
           label="Accéder à mon espace"
-          size="big"
+          size="large"
           Icon = {IoChevronForward}
         />
         

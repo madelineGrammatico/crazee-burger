@@ -57,7 +57,7 @@ export type ButtonType = {
     label: string,
     Icon?: IconType,
     version?: "primary" | "success",
-    size?: "big" | "normal" | "slim"
+    size?: "large" | "regular" | "slim"
     // Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
   } & ComponentPropsWithoutRef<"button">
   
