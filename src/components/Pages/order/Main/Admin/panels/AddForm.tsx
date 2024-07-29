@@ -73,7 +73,7 @@ export default function AddForm() {
           value={newProduct.title}
           onChange={handleChange}
           Icon={FaHamburger}
-          version="extraSlimGreyStyle"
+          version="slim"
         /> 
         <TextInput
           name="imageSource"
@@ -81,7 +81,7 @@ export default function AddForm() {
           value={newProduct.imageSource}
           onChange={handleChange}
           Icon={BsFillCameraFill}
-          version="extraSlimGreyStyle"
+          version="slim"
         /> 
         <TextInput
           name="price"
@@ -89,7 +89,7 @@ export default function AddForm() {
           value={newProduct.price ? newProduct.price.toString() : ""}
           onChange={handleChange}
           Icon={MdOutlineEuro}
-          version="extraSlimGreyStyle"
+          version="slim"
         /> 
       </div>
       <div className="submitButton">

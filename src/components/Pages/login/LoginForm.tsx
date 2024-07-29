@@ -32,7 +32,7 @@ export default function LoginForm() {
           onChange={handleChange} 
           placeholder="Entrez votre prénom"
           Icon={BsPersonCircle}
-          version="extraNormalWhiteStyle"
+          version="normal"
           required
         />
         <PrimaryButton

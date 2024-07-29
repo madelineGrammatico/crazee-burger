@@ -8,13 +8,14 @@ type PropsTextInput = {
   onChange : (e: React.ChangeEvent<HTMLInputElement>) => void,
   Icon?: IconType | React.ComponentType<React.SVGProps<SVGSVGElement>>, 
   className?: string,
-  version?: string,
+  version?: "normal" | "slim",
 } & ComponentPropsWithoutRef<"input">
 
 interface TextInputStyledProps {
-  version?: string;
+  version: "normal" | "slim";
 }
-export default function TextInput({value, onChange, Icon, className, version="extraNormalWhiteStyle", ...restProps}: PropsTextInput) {
+
+export default function TextInput({value, onChange, Icon, className, version="normal", ...restProps}: PropsTextInput) {
   return (
     <TextInputStyled version={version}>
       {Icon && <div className="icon"><Icon /></div>}
@@ -30,9 +31,42 @@ export default function TextInput({value, onChange, Icon, className, version="ex
 
 }
 
+const extraNormalWhiteStyle = css`
+  margin: 18px 0;
+  padding: 18px 24px;
+  background-color: ${ theme.colors.white };
+
+  input{
+    background-color: ${theme.colors.white};
+    
+    &::placeholder{
+      background-color: ${theme.colors.white};
+    }
+  }
+`
+
+const extraSlimGreyStyle= css`
+  height: 35px;
+  padding: 0 16px 0 24px;
+  margin:0;
+  background-color: ${theme.colors.background_white};
+
+  input{
+    background-color: ${theme.colors.background_white};
+
+    &::placeholder{
+      background-color: ${theme.colors.background_white};
+    }
+  }
+  
+`
+const extraStyle = {
+  normal: extraNormalWhiteStyle,
+  slim: extraSlimGreyStyle,
+}
+
 const TextInputStyled  = styled.div<TextInputStyledProps>` 
-  ${(props) => props.version === "extraNormalWhiteStyle" && extraNormalWhiteStyle};
-  ${(props) => props.version === "extraSlimGreyStyle" && extraSlimGreyStyle};
+  ${({version}) => extraStyle[version]};
 
   display: flex;
   justify-content: start;
@@ -59,35 +93,6 @@ const TextInputStyled  = styled.div<TextInputStyledProps>`
 
     &::placeholder {
       color: ${theme.colors.greyMedium};
-    }
-  }
-  
-`
-const extraNormalWhiteStyle = css`
-  margin: 18px 0;
-  padding: 18px 24px;
-  background-color: ${ theme.colors.white };
-
-  input{
-    background-color: ${theme.colors.white};
-    
-    &::placeholder{
-      background-color: ${theme.colors.white};
-    }
-  }
-`
-
-const extraSlimGreyStyle= css`
-  height: 35px;
-  padding: 0 16px 0 24px;
-  margin:0;
-  background-color: ${theme.colors.background_white};
-
-  input{
-    background-color: ${theme.colors.background_white};
-
-    &::placeholder{
-      background-color: ${theme.colors.background_white};
     }
   }
   
