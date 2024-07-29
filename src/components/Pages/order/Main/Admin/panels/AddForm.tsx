@@ -1,4 +1,3 @@
-import { theme } from "../../../../../../theme";
 import styled from "styled-components"
 import TextInput from '../../../../../reusables-ui/TextInput';
 import { FaHamburger } from 'react-icons/fa';
@@ -6,10 +5,10 @@ import { BsFillCameraFill } from 'react-icons/bs';
 import { MdOutlineEuro } from 'react-icons/md';
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
-import { FiCheckCircle } from "react-icons/fi";
 import Button from "../../../../../reusables-ui/Button";
 import { EMPTY_PRODUCT } from "../../../../../../lib/constants";
 import ImagePreview from "./ImagePreview";
+import SuccessMessage from "./SuccessMessage";
 
 
 export default function AddForm() {
@@ -87,8 +86,8 @@ export default function AddForm() {
           label="Ajouter un nouveau produit au menu"
           version="success"
           size="slim"
-          ></Button>
-          {isSubmited && <span className="succes-message"><FiCheckCircle/>Ajouté avec succès !</span>}
+          />
+          { isSubmited && <SuccessMessage/> }
       </div>
     </AddFormStyled>
   )
@@ -114,14 +113,5 @@ const AddFormStyled = styled.form`
     flex-flow: nowrap;
     align-items: center;
     gap: 15px;
-
-    .succes-message {
-      color: ${theme.colors.success};
-      display: flex;
-      flex-flow: nowrap;
-      justify-content:center;
-      align-items: center;
-      gap: 4px;
-    }
     }
 `;

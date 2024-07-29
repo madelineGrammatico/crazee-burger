@@ -1,9 +1,8 @@
+import { PropsImagePreviewType } from "../../../../../../lib/Types";
 import { theme } from "../../../../../../theme";
 import styled from "styled-components"
 
-type PropsImagePreviewType= {
-    title: string, imageSource: string
-}
+
 export default function ImagePreview({title, imageSource}: PropsImagePreviewType) {
   return (
     <ImagePreviewStyled>
@@ -34,7 +33,7 @@ const  ImagePreviewStyled= styled.div`
         height: 100%;
         object-fit: contain;
     }
-    
+
     .imagePreview-fail{
         width: 100%;
         height: 100%;

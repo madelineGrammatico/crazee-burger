@@ -87,7 +87,9 @@ export type ToggleButtonType = {
   }
 
 
- 
+export type PropsImagePreviewType= {
+    title: string, imageSource: string
+}
 
  
  //context
