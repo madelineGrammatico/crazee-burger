@@ -9,6 +9,7 @@ import OrderContext from "../../../../../../context/OrderContext";
 import { FiCheckCircle } from "react-icons/fi";
 import Button from "../../../../../reusables-ui/Button";
 import { EMPTY_PRODUCT } from "../../../../../../lib/constants";
+import ImagePreview from "./ImagePreview";
 
 
 export default function AddForm() {
@@ -52,16 +53,9 @@ export default function AddForm() {
   }
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <div className="imagePreview">
-      { newProduct.imageSource ? 
-        <img src={newProduct.imageSource} 
-          alt={newProduct.title ? newProduct.title : newProduct.imageSource}/> 
-      : 
-        <div className="imagePreview-fail">
-            <span>aucune image</span>
-          </div>
-      }
-     </div>
+      <ImagePreview 
+        imageSource={newProduct.imageSource} 
+        title={newProduct.title}/>
       <div className="input-fields">
         <TextInput
           name="title"
@@ -105,33 +99,6 @@ const AddFormStyled = styled.form`
   grid-template-columns: 215px 1fr;
   align-items: start;
   gap: 8px 20px;
-  
-  .imagePreview{
-    width: 215px;
-    height: 120px;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    grid-area: 1 / 1 / 1 / 2;
-    
-    img{
-      display: flex;
-      justify-content: end;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    .imagePreview-fail{
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: ${theme.colors.greyLight};
-      border: 1px solid ${theme.colors.greyLight};
-    }
-  }
   
   .input-fields {
     display: flex;
