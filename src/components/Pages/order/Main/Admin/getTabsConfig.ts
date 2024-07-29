@@ -4,7 +4,7 @@ import { MdModeEditOutline } from 'react-icons/md';
 
 import AddForm  from './panels/AddForm.tsx'
 import EditPanel from './panels/EditPanel.tsx';
-import { getTabsConfigType, getTabsType, tabSelectedType, tabType } from '../../../../../lib/Types.ts';
+import { getTabsConfigType, getTabsType, tabSelectedType, tabConfigType } from '../../../../../lib/Types.ts';
 
 
 
@@ -30,10 +30,10 @@ export const getTabsConfig : getTabsConfigType = (isCollapsed) => [
     },
   ]
   
-  export const getTabSelected : (tabs: getTabsType, tabSelected: tabSelectedType ) => tabType | undefined
+  export const getTabSelected : (tabs: getTabsType, tabSelected: tabSelectedType ) => tabConfigType | undefined
     = (tabs, tabSelected) => tabs.find((tab)=> tab.index ===tabSelected)
 
-  export const getClassName : (tab: tabType, tabSelected: tabSelectedType)=> string 
+  export const getClassName : (tab: tabConfigType, tabSelected: tabSelectedType)=> string 
     = (tab, tabSelected) => tab.className ? 
         tab.className 
       : 
