@@ -27,11 +27,12 @@ export default function LoginForm() {
         <h1>Bienvenue chez nous !</h1>
         <hr/>
         <h2>Connectez vous</h2>
-        <TextInput 
+        <TextInput
           value={inputValue} 
           onChange={handleChange} 
           placeholder="Entrez votre prénom"
           Icon={BsPersonCircle}
+          version="extraNormalWhiteStyle"
           required
         />
         <PrimaryButton
@@ -67,12 +68,4 @@ const LoginFormStyled = styled.form`
     margin: 20px 10px 10px;
     font-size: ${ theme.fonts.size.P4};
   }
-  svg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size:${ theme.fonts.size.SM};
-    margin-left: 10px;
-  }
-  
 `;

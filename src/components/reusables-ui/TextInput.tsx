@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import { ComponentPropsWithoutRef } from "react";
 import { IconType } from "react-icons";
@@ -6,50 +6,89 @@ import { IconType } from "react-icons";
 type PropsTextInput = {
   value?: string,
   onChange : (e: React.ChangeEvent<HTMLInputElement>) => void,
-  Icon?: IconType
-  // Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  Icon?: IconType | React.ComponentType<React.SVGProps<SVGSVGElement>>, 
+  className?: string,
+  version?: string,
 } & ComponentPropsWithoutRef<"input">
 
-export default function TextInput({value, onChange, Icon, ...restProps}: PropsTextInput) {
+interface TextInputStyledProps {
+  version?: string;
+}
+export default function TextInput({value, onChange, Icon, className, version="extraNormalWhiteStyle", ...restProps}: PropsTextInput) {
   return (
-    <InputContainer>
-      {Icon && <Icon />}
-      <input 
+    <TextInputStyled version={version}>
+      {Icon && <div className="icon"><Icon /></div>}
+      <input  
         value= { value } 
         onChange= { onChange }
+        className={className}
         type= "text"
         {...restProps}
       />
-    </InputContainer>
+    </TextInputStyled>
   )
 
 }
 
-const InputContainer  = styled.div` 
-  background-color: ${ theme.colors.white };
-  border-radius: ${ theme.borderRadius.round };
-  display: flex;
-  align-items: center;
-  padding: 18px 24px;
-  margin: 18px 0;
+const TextInputStyled  = styled.div<TextInputStyledProps>` 
+  ${(props) => props.version === "extraNormalWhiteStyle" && extraNormalWhiteStyle};
+  ${(props) => props.version === "extraSlimGreyStyle" && extraSlimGreyStyle};
 
-  svg {
-    font-size: ${theme.fonts.size.SM};
-    margin-right: 8px;
-    color: ${theme.colors.greySemiDark};
-    min-width: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+
+  border-radius: ${ theme.borderRadius.round };
+  
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    
+    color: ${theme.colors.greyBlue};
   }
 
   input {
+    width: 100%;
     border: none;
+
     font-size: ${ theme.fonts.size.SM};
     color: ${ theme.colors.dark };
-    width: 100%;
 
     &::placeholder {
-      background: ${ theme.colors.white };
       color: ${theme.colors.greyMedium};
-      border: none;
     }
   }
+  
+`
+const extraNormalWhiteStyle = css`
+  margin: 18px 0;
+  padding: 18px 24px;
+  background-color: ${ theme.colors.white };
+
+  input{
+    background-color: ${theme.colors.white};
+    
+    &::placeholder{
+      background-color: ${theme.colors.white};
+    }
+  }
+`
+
+const extraSlimGreyStyle= css`
+  height: 35px;
+  padding: 0 16px 0 24px;
+  margin:0;
+  background-color: ${theme.colors.background_white};
+
+  input{
+    background-color: ${theme.colors.background_white};
+
+    &::placeholder{
+      background-color: ${theme.colors.background_white};
+    }
+  }
+  
 `

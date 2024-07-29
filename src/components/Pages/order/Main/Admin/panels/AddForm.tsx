@@ -73,6 +73,7 @@ export default function AddForm() {
           value={newProduct.title}
           onChange={handleChange}
           Icon={FaHamburger}
+          version="extraSlimGreyStyle"
         /> 
         <TextInput
           name="imageSource"
@@ -80,6 +81,7 @@ export default function AddForm() {
           value={newProduct.imageSource}
           onChange={handleChange}
           Icon={BsFillCameraFill}
+          version="extraSlimGreyStyle"
         /> 
         <TextInput
           name="price"
@@ -87,6 +89,7 @@ export default function AddForm() {
           value={newProduct.price ? newProduct.price.toString() : ""}
           onChange={handleChange}
           Icon={MdOutlineEuro}
+          version="extraSlimGreyStyle"
         /> 
       </div>
       <div className="submitButton">
@@ -127,7 +130,7 @@ const AddFormStyled = styled.form`
       align-items: center;
       color: ${theme.colors.greyLight};
       border: 1px solid ${theme.colors.greyLight};
-  }
+    }
   }
   
   .input-fields {
@@ -136,23 +139,8 @@ const AddFormStyled = styled.form`
     justify-content: space-between;
     gap: 8px;
     grid-area: 1/ 2 / 1 / 3;
-
-    div {
-      background-color: ${theme.colors.background_white};
-      height:35px;
-      padding: 0 16px 0 24px;
-      margin:0;
-
-      input{
-        background-color: ${theme.colors.background_white};
-        color:  ${theme.colors.greyMedium};
-
-        &::placeholder {
-          background:${theme.colors.background_white};
-        }
-      }
-    }
   }
+
   .submitButton{
     grid-area: 2 / 2 / 3 / 3;
     display: flex;
