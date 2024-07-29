@@ -1,13 +1,6 @@
 import { createContext } from "react"
+import { OrderContextType } from "../lib/Types";
 
-type OrderContextType = {
-    isAdmin: boolean;
-    setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
-    isCollapsed: boolean;
-    setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-    tabSelected: "add" | "edit";
-    setTabSelected: React.Dispatch<React.SetStateAction<"add" | "edit">>
-  }
 
 const OrderContext = createContext<OrderContextType>({
     isAdmin: false,
@@ -16,6 +9,25 @@ const OrderContext = createContext<OrderContextType>({
     setIsCollapsed: ()=> {},
     tabSelected: "add",
     setTabSelected: ()=> {},
+    menu: [{
+      id: 9,
+      imageSource: "/images/wedges1.png",
+      title: "Crispy Potatoes",
+      price: 3.7,
+      quantity: 0,
+      isAvailable: true,
+      isAdvertised: false,
+    }],
+    newProduct:{
+      title:"",
+      imageSource:"",
+      price: 0
+    }, 
+    setNewProduct:() => {},
+    resetMenu: () => {},
+    handleAdd: () => {},
+    handleDelete: () => {},
+    
 })
 
 export default OrderContext;

@@ -3,7 +3,8 @@ import styled from "styled-components"
 import { theme } from "../../../../../theme";
 import Tab from '../../../../reusables-ui/Tab';
 import OrderContext from '../../../../../context/OrderContext';
-import { tabType, getTabsConfig, indexTabsConfig, getClassName } from './getTabsConfig';
+import { indexTabsConfig, tabConfigType } from '../../../../../lib/Types';
+import { getClassName, getTabsConfig } from './getTabsConfig';
 
 export default function AdminTabs() {
   const {
@@ -23,7 +24,7 @@ export default function AdminTabs() {
 
   return (
     <AdminTabStyled className="TabsAdmin"> 
-      { tabs.map((tab: tabType) =>
+      { tabs.map((tab: tabConfigType) =>
         <Tab 
           key= {tab.index}
           label= {tab.label}
@@ -41,6 +42,8 @@ const AdminTabStyled = styled.div`
   display: flex;
   width: fit-content;
   gap: 1px;
+  position: relative;
+    left: 52px;
  
   .active {
       background-color: ${ theme.colors.background_dark };

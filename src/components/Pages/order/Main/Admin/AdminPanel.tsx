@@ -11,7 +11,7 @@ export default function AdminPanel() {
   const tabSelectedGetted = getTabSelected(tabs, tabSelected )
   return (
     <AdminPanelStyled>
-      <div>{tabSelectedGetted?.label}</div>
+      {tabSelectedGetted?.Content && <tabSelectedGetted.Content/> }
     </AdminPanelStyled>
   )
 }
@@ -21,7 +21,8 @@ const AdminPanelStyled = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 31px;
+  padding: 31px 20px 49px 52px;
+
 
   background: ${theme.colors.white};
   border-top: 1px solid ${theme.colors.greyLight};
