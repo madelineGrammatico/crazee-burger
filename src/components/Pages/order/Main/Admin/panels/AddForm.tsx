@@ -1,19 +1,17 @@
 import styled from "styled-components"
 import TextInput from '../../../../../reusables-ui/TextInput';
-import { FaHamburger } from 'react-icons/fa';
-import { BsFillCameraFill } from 'react-icons/bs';
-import { MdOutlineEuro } from 'react-icons/md';
+
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import Button from "../../../../../reusables-ui/Button";
 import { EMPTY_PRODUCT } from "../../../../../../lib/constants";
 import ImagePreview from "./ImagePreview";
 import SuccessMessage from "./SuccessMessage";
+import { getInputTextsConfig } from "./inputTextConfig";
 
 
 export default function AddForm() {
   const { menu, handleAdd, newProduct , setNewProduct } = useContext(OrderContext)
-  
   const [isSubmited, setIsSubmited] = useState(false)
 
   const buildId = () => {
@@ -50,37 +48,23 @@ export default function AddForm() {
     name === "price" ? parseFloat(value) : value 
     setNewProduct({...newProduct, [name]: value})
   }
+
+  const inputTexts = getInputTextsConfig(newProduct)
+
   return (
     <AddFormStyled onSubmit={handleSubmit}>
       <ImagePreview 
         imageSource={newProduct.imageSource} 
         title={newProduct.title}/>
       <div className="input-fields">
-        <TextInput
-          name="title"
-          placeholder="Nom du produit (ex: Super Burger)"
-          value={newProduct.title}
-          onChange={handleChange}
-          Icon={FaHamburger}
-          version="slim"
-        /> 
-        <TextInput
-          name="imageSource"
-          placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-          value={newProduct.imageSource}
-          onChange={handleChange}
-          Icon={BsFillCameraFill}
-          version="slim"
-        /> 
-        <TextInput
-          name="price"
-          placeholder="Prix"
-          value={newProduct.price ? newProduct.price.toString() : ""}
-          onChange={handleChange}
-          Icon={MdOutlineEuro}
-          version="slim"
-        /> 
-      </div>
+        {inputTexts.map((input) => 
+          <TextInput
+            {...input}
+            onChange={handleChange}
+            version="slim"
+          />
+        )}
+        </div>
       <div className="submitButton">
           <Button 
           label="Ajouter un nouveau produit au menu"
