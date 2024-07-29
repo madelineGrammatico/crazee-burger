@@ -1,44 +1,6 @@
 import { createContext } from "react"
+import { OrderContextType } from "../lib/Types";
 
-export type ProductsType = {
-  id: number,
-  imageSource: string,
-  title: string,
-  price: number,
-  quantity: number,
-  isAvailable: boolean,
-  isAdvertised: boolean,
-}[]
-type ProductType = {
-  id: number,
-  imageSource: string,
-  title: string,
-  price: number,
-  quantity: number,
-  isAvailable: boolean,
-  isAdvertised: boolean,
-}
-type NewProductType = {
-  title:string,
-  imageSource:string,
-  price: number
-}
-
-type OrderContextType = {
-    isAdmin: boolean;
-    setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
-    isCollapsed: boolean;
-    setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-    tabSelected: "add" | "edit";
-    setTabSelected: React.Dispatch<React.SetStateAction<"add" | "edit">>
-    menu: ProductsType | [],
-    newProduct: NewProductType, 
-    setNewProduct: React.Dispatch<React.SetStateAction<NewProductType>>
-    resetMenu: () => void
-    handleAdd: (newProduct: ProductType) => void,
-    handleDelete: (productId: number) => void,
-    
-  }
 
 const OrderContext = createContext<OrderContextType>({
     isAdmin: false,

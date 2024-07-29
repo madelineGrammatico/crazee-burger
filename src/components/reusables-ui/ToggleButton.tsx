@@ -1,12 +1,8 @@
 import styled from "styled-components"
 import { theme } from "../../theme"
+import { ToggleButtonType } from "../../lib/Types"
 
-type ToggleButtonType = {
-  isChecked: boolean,
-  onToggle: ()=> void,
-  labelIfChecked: string |"Fermer",
-  labelIfUnchecked: string | "Ouvrir",
-}
+
 
 export default function ToggleButton({
   isChecked,

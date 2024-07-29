@@ -1,19 +1,9 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
-import { ComponentPropsWithoutRef } from "react";
-import { IconType } from "react-icons";
+import { PropsTextInput } from "../../lib/Types";
+import { TextInputStyledProps } from "../../lib/interfaces";
 
-type PropsTextInput = {
-  value?: string,
-  onChange : (e: React.ChangeEvent<HTMLInputElement>) => void,
-  Icon?: IconType | React.ComponentType<React.SVGProps<SVGSVGElement>>, 
-  className?: string,
-  version?: "normal" | "slim",
-} & ComponentPropsWithoutRef<"input">
 
-interface TextInputStyledProps {
-  version: "normal" | "slim";
-}
 
 export default function TextInput({value, onChange, Icon, className, version="normal", ...restProps}: PropsTextInput) {
   return (

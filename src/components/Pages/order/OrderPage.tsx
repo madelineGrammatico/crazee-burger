@@ -6,17 +6,10 @@ import { useState } from "react"
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { useNavigate } from "react-router-dom";
-import { EMPTY_PRODUCT } from "./Main/Admin/panels/AddForm"
+import { EMPTY_PRODUCT } from "../../../lib/constants"
+import { ProductType } from "../../../lib/Types"
 
-type ProductType = {
-  id: number,
-  imageSource: string,
-  title: string,
-  price: number,
-  quantity: number,
-  isAvailable: boolean,
-  isAdvertised: boolean,
-}
+
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE

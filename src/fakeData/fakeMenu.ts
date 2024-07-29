@@ -1,4 +1,4 @@
-import { ProductsType } from "../context/OrderContext"
+import { ProductsType } from "../lib/Types"
 
 const EMPTY : ProductsType = []
 

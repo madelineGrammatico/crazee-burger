@@ -1,20 +1,8 @@
 import styled, { css } from 'styled-components'
 import { theme } from '../../theme'
-import { IconType } from 'react-icons'
-import { ComponentPropsWithoutRef } from "react";
+import { ButtonType } from '../../lib/Types'
+import { ButtonStyledType } from '../../lib/interfaces'
 
-type ButtonType = {
-  label: string,
-  Icon?: IconType,
-  version?: "primary" | "success",
-  size?: "big" | "normal" | "slim"
-  // Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
-} & ComponentPropsWithoutRef<"button">
-
-interface ButtonStyledType {
-  version: "primary" | "success",
-  size: "big" | "normal" | "slim"
-}
 export default function Button({ label, Icon,version="primary", size="normal", ...restProps} : ButtonType ) {
   return (
     <ButtonStyled version={version} size={size} {...restProps}>

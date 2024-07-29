@@ -1,15 +1,7 @@
 // import React from 'react'
 import styled from "styled-components"
 import { theme } from "../../theme";
-import { ComponentPropsWithoutRef } from "react";
-import { IconType } from "react-icons";
-
-type TabType = {
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void, 
-    label?: string, 
-    value?: string,
-    Icon?: IconType
-} & ComponentPropsWithoutRef<"button">
+import { TabType } from "../../lib/Types";
 
 export default function Tab({onClick, label, value, Icon, ...extraProps}: TabType) {
   return (

@@ -8,13 +8,8 @@ import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import { FiCheckCircle } from "react-icons/fi";
 import Button from "../../../../../reusables-ui/Button";
+import { EMPTY_PRODUCT } from "../../../../../../lib/constants";
 
-
-export const EMPTY_PRODUCT= {
-  title:"",
-  imageSource:"",
-  price: 0
-}
 
 export default function AddForm() {
   const { menu, handleAdd, newProduct , setNewProduct } = useContext(OrderContext)

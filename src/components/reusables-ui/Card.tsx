@@ -2,19 +2,11 @@ import styled from "styled-components"
 import { theme } from "../../theme";
 import Button from "./Button";
 import { TiDelete } from "react-icons/ti";
-import comingSoon from "../../../public/images/coming-soon.png"
+import { DEFAULT_IMAGE } from "../../lib/constants";
+import { CardType } from "../../lib/Types";
 
 
-type ProduitType = {
-    imageSource: string,
-    title: string,
-    leftDescription: number | string,
-    isButtonDelete: boolean,
-    onDelete: () => void
-}
-const DEFAULT_IMAGE = comingSoon
-
-export default function Card({ title, imageSource, leftDescription, isButtonDelete, onDelete} : ProduitType) {
+export default function Card({ title, imageSource, leftDescription, isButtonDelete, onDelete} : CardType) {
   const image = imageSource ? imageSource : DEFAULT_IMAGE
 
   return (
