@@ -13,7 +13,7 @@ export default function PrimaryButton({ label, Icon, ...restProps} : PrimaryButt
   return (
     <PrimaryButtonStyled {...restProps}>
       <span>{label }</span>
-      {Icon && <Icon />}
+      {Icon &&  <div className="icon"><Icon /></div>}
       
     </PrimaryButtonStyled>
   )
@@ -28,6 +28,7 @@ const PrimaryButtonStyled = styled.button`
   text-decoration: none;
   line-height: 1;
   width: 100%;
+  gap: 13px;
 
   padding: 18px 24px;
   border-radius: ${ theme.borderRadius.round };
@@ -51,5 +52,10 @@ const PrimaryButtonStyled = styled.button`
   &:disabled{
     opacity: 0.6;
     cursor: not-allowed;
+  }
+  .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
