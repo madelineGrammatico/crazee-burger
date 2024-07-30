@@ -17,6 +17,8 @@ export default function AdminPanel() {
 }
 const AdminPanelStyled = styled.div`
   flex: 1;
+  height:250px;
+  box-sizing: border-box;
 
   display: flex;
   flex-direction: row;
