@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css, RuleSet } from 'styled-components'
 import { theme } from '../../theme'
 import { ButtonType } from '../../lib/Types'
 import { ButtonStyledType } from '../../lib/interfaces'
@@ -12,7 +12,7 @@ export default function Button({ label, Icon, version="primary", size="regular",
     </ButtonStyled>
   )
 }
-const extraPrimaryStyle = css`
+const getExtraPrimary = () => css`
  
   background-color: ${ theme.colors.primary };
   border: 1px solid ${ theme.colors.primary };
@@ -28,7 +28,7 @@ const extraPrimaryStyle = css`
   }
 
 `
-const extraSuccessStyle = css`
+const getExtraSuccess  = () => css`
   background-color: ${ theme.colors.success };
   border: 1px solid ${ theme.colors.success };
 
@@ -42,40 +42,44 @@ const extraSuccessStyle = css`
   }
 
 `
-const sizeLarge = css`
+const ExtraSizeLarge  = () =>  css`
   height: 53px;
   padding:  0 26px;
   font-size: ${ theme.fonts.size.SM};
 `
 
-const sizeRegular = css`
+const ExtraSizeRegular  = () =>  css`
   height: 34px;
   padding: 0 26px;
   font-size: ${ theme.fonts.size.XS};
 `
 
-const sizeSlim = css`
+const ExtraSizeSlim  = () => css`
   height: 34px;
   padding:  0 29px;
   font-size: ${ theme.fonts.size.XS};
 `
 
-const extraStyle = {
-  primary: extraPrimaryStyle,
-  success: extraSuccessStyle,
+const EXTRA_STYLE = {
+  primary: getExtraPrimary,
+  success: getExtraSuccess,
 }
-const sizes = {
-  large: sizeLarge,
-  regular: sizeRegular,
-  slim: sizeSlim
+const SIZESOPTIONS = {
+  large: ExtraSizeLarge,
+  regular: ExtraSizeRegular,
+  slim: ExtraSizeSlim
 }
-const ButtonStyled = styled.button<ButtonStyledType>`
-  ${({version}) => extraStyle[version]}
-  ${({size}) => sizes[size]}
 
+const getButtonStyle: (version: "primary" | "success", size: "large" | "regular" | "slim") => (() => RuleSet<object>) | (() => RuleSet<object>) | (() => RuleSet<object>) = (version, size) => {
+  return EXTRA_STYLE[version] && SIZESOPTIONS[size]
+}
+
+
+
+const getBaseStyle =() => css`
+  
   width: fit-content;
   position: relative;
-
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -105,4 +109,8 @@ const ButtonStyled = styled.button<ButtonStyledType>`
     justify-content: center;
     align-items: center;
   }
+`
+const ButtonStyled = styled.button<ButtonStyledType>`
+ ${({version, size}) => getButtonStyle(version, size)};
+ ${ getBaseStyle()};
 `
