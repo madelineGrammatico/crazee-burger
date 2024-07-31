@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css, RuleSet } from 'styled-components'
 import { theme } from '../../theme'
 import { ButtonType } from '../../lib/Types'
 import { ButtonStyledType } from '../../lib/interfaces'
@@ -12,7 +12,7 @@ export default function Button({ label, Icon, version="primary", size="regular",
     </ButtonStyled>
   )
 }
-const extraPrimaryStyle = css`
+const getExtraPrimary = () => css`
  
   background-color: ${ theme.colors.primary };
   border: 1px solid ${ theme.colors.primary };
@@ -28,7 +28,7 @@ const extraPrimaryStyle = css`
   }
 
 `
-const extraSuccessStyle = css`
+const getExtraSuccess  = () => css`
   background-color: ${ theme.colors.success };
   border: 1px solid ${ theme.colors.success };
 
@@ -42,40 +42,56 @@ const extraSuccessStyle = css`
   }
 
 `
-const sizeLarge = css`
-  height: 53px;
-  padding:  0 26px;
-  font-size: ${ theme.fonts.size.SM};
-`
+// const ExtraSizeLarge  = () =>  css`
+//   height: 53px;
+//   padding:  0 26px;
+//   font-size: ${ theme.fonts.size.SM};
+// `
 
-const sizeRegular = css`
-  height: 34px;
-  padding: 0 26px;
-  font-size: ${ theme.fonts.size.XS};
-`
+// const ExtraSizeRegular  = () =>  css`
+//   height: 34px;
+//   padding: 0 26px;
+//   font-size: ${ theme.fonts.size.XS};
+// `
 
-const sizeSlim = css`
-  height: 34px;
-  padding:  0 29px;
-  font-size: ${ theme.fonts.size.XS};
-`
-
-const extraStyle = {
-  primary: extraPrimaryStyle,
-  success: extraSuccessStyle,
+// const ExtraSizeSlim  = () => css`
+ 
+// `
+const HEIGHT = {
+  large:"53px",
+  regular:"34px",
+  slim:"34px"
 }
-const sizes = {
-  large: sizeLarge,
-  regular: sizeRegular,
-  slim: sizeSlim
+const PADDING = {
+  large:"0 26px",
+  regular:"0 26px",
+  slim:"0 29px"
 }
-const ButtonStyled = styled.button<ButtonStyledType>`
-  ${({version}) => extraStyle[version]}
-  ${({size}) => sizes[size]}
+const FONT_SIZE = {
+  large: theme.fonts.size.SM,
+  regular: theme.fonts.size.XS,
+  slim: theme.fonts.size.XS
+}
+const EXTRA_STYLE = {
+  primary: getExtraPrimary,
+  success: getExtraSuccess,
+}
+/* const SIZESOPTIONS = {
+  large: ExtraSizeLarge,
+  regular: ExtraSizeRegular,
+  slim: ExtraSizeSlim
+} */
 
+const getEtraButtonStyle: (version: "primary" | "success") => () => RuleSet<object> = (version) => {
+  return EXTRA_STYLE[version]
+}
+
+const getBaseStyle =(size: "large" | "regular" | "slim") => css`
+   height: ${HEIGHT[size]};
+  padding: ${PADDING[size]};
+  font-size: ${FONT_SIZE[size]};
   width: fit-content;
   position: relative;
-
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -105,4 +121,9 @@ const ButtonStyled = styled.button<ButtonStyledType>`
     justify-content: center;
     align-items: center;
   }
+`
+const ButtonStyled = styled.button<ButtonStyledType>`
+${({size}) => getBaseStyle(size)};
+ ${({version}) => getEtraButtonStyle(version)};
+ 
 `
