@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef } from "react";
 
 //produit
 export type ProductType = {
-    id: number,
+    id: string,
     imageSource: string,
     title: string,
     price: number,
@@ -11,15 +11,7 @@ export type ProductType = {
     isAvailable: boolean,
     isAdvertised: boolean,
 }
-export type ProductsType = {
-    id: number,
-    imageSource: string,
-    title: string,
-    price: number,
-    quantity: number,
-    isAvailable: boolean,
-    isAdvertised: boolean,
-  }[]
+export type ProductsType = ProductType[]
   export type NewProductType = {
     title:string,
     imageSource:string,
@@ -66,7 +58,8 @@ export type ButtonType = {
     title: string,
     leftDescription: number | string,
     isButtonDelete: boolean,
-    onDelete: () => void
+    onDelete: () => void,
+    onClick: (e: React.MouseEventHandler<HTMLElement>) => void,
 }
 
 export type PropsTextInput = {
@@ -106,6 +99,6 @@ export type PropsImagePreviewType= {
       setNewProduct: React.Dispatch<React.SetStateAction<NewProductType>>
       resetMenu: () => void
       handleAdd: (newProduct: ProductType) => void,
-      handleDelete: (productId: number) => void,
+      handleDelete: (productId: string) => void,
       
     }

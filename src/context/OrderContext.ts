@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import { OrderContextType } from "../lib/Types";
+import { OrderContextType } from "../lib/types";
 
 
 const OrderContext = createContext<OrderContextType>({
@@ -10,7 +10,7 @@ const OrderContext = createContext<OrderContextType>({
     tabSelected: "add",
     setTabSelected: ()=> {},
     menu: [{
-      id: 9,
+      id: "9",
       imageSource: "/images/wedges1.png",
       title: "Crispy Potatoes",
       price: 3.7,

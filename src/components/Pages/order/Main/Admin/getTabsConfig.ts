@@ -4,7 +4,7 @@ import { MdModeEditOutline } from 'react-icons/md';
 
 import AddForm  from './AdminPanel/AddForm.tsx'
 import EditPanel from './AdminPanel/EditPanel.tsx';
-import { getTabsConfigType, getTabsType, tabSelectedType, tabConfigType } from '../../../../../lib/Types.ts';
+import { getTabsConfigType, getTabsType, tabSelectedType, tabConfigType } from '../../../../../lib/types.ts';
 
 
 export const getTabsConfig : getTabsConfigType = (isCollapsed) => [

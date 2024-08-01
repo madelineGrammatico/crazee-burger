@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
-import { PropsTextInput } from "../../lib/Types";
+import { PropsTextInput } from "../../lib/types";
 import { TextInputStyledProps } from "../../lib/interfaces";
 
 

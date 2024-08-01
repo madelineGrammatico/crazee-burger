@@ -16,7 +16,7 @@ const HintMessageStyled = styled.div`
 
     display:flex;
     align-items: center;
-    gap:10px
+    gap:10px;
 
     font-family: ${theme.fonts.family.stylish};
     font-size: ${theme.fonts.size.P3};

@@ -13,6 +13,9 @@ export default function Menu() {
     if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
     if(menu.length === 0) return <EmptyMenuAdmin/> 
 
+    const handleClick = (e: React.MouseEventHandler<HTMLElement>) => {
+        console.log(e)
+    }
   return (
     <MenuStyled>
         { menu.map(({ imageSource, title, price, id}) => { 
@@ -23,6 +26,7 @@ export default function Menu() {
                 leftDescription={formatPrice(price)}
                 isButtonDelete={isAdmin}
                 onDelete={()=> handleDelete(id)}
+                onClick={handleClick}
             />
         })}
     </MenuStyled>

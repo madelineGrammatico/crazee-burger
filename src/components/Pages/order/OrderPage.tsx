@@ -7,7 +7,7 @@ import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { useNavigate } from "react-router-dom";
 import { EMPTY_PRODUCT } from "../../../lib/constants"
-import { ProductType } from "../../../lib/Types"
+import { ProductType } from "../../../lib/types"
 
 
 
@@ -29,7 +29,7 @@ export default function OrderPage() {
     setMenu(menuUpdated)
   }
 
-  const handleDelete =(productId: number) => {
+  const handleDelete =(productId: string) => {
     !isAdmin ? navigate("/*") : null
     const menuCopy = [...menu]
     setMenu(menuCopy.filter((product) => product.id !== productId))

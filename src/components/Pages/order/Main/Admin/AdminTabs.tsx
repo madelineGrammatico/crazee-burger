@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { theme } from "../../../../../theme";
 import Tab from '../../../../reusables-ui/Tab';
 import OrderContext from '../../../../../context/OrderContext';
-import { indexTabsConfig, tabConfigType } from '../../../../../lib/Types';
+import { indexTabsConfig, tabConfigType } from '../../../../../lib/types';
 import { getClassName, getTabsConfig } from './getTabsConfig';
 
 export default function AdminTabs() {

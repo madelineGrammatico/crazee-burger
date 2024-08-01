@@ -3,14 +3,14 @@ import { theme } from "../../theme";
 import Button from "./Button";
 import { TiDelete } from "react-icons/ti";
 import { DEFAULT_IMAGE } from "../../lib/constants";
-import { CardType } from "../../lib/Types";
+import { CardType } from "../../lib/types";
 
 
-export default function Card({ title, imageSource, leftDescription, isButtonDelete, onDelete} : CardType) {
+export default function Card({ title, imageSource, leftDescription, isButtonDelete, onDelete, onClick} : CardType) {
   const image = imageSource ? imageSource : DEFAULT_IMAGE
 
   return (
-    <CardStyled className="produit">
+    <CardStyled className="produit" onClick={onClick}>
       {isButtonDelete && <button className="close" onClick={onDelete} aria-label="delete-button"><TiDelete/></button>}
       <div className="image">
         <img src={image} alt={title} />

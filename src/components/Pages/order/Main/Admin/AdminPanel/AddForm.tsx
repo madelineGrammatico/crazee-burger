@@ -11,13 +11,8 @@ import { getInputTextsConfig } from "./inputTextConfig";
 
 
 export default function AddForm() {
-  const { menu, handleAdd, newProduct , setNewProduct } = useContext(OrderContext)
+  const { handleAdd, newProduct , setNewProduct } = useContext(OrderContext)
   const [isSubmited, setIsSubmited] = useState(false)
-
-  const buildId = () => {
-   return menu.map((produit) => produit.id)
-    .reduce((acc, cur)=> cur > acc ? cur : acc) +1
-  }
 
   const displaySuccesMessage = () => {
     setIsSubmited(true)
@@ -27,7 +22,7 @@ export default function AddForm() {
   }
   const buildProduct = () => {
     return {
-      id: buildId(),
+      id: crypto.randomUUID(),
       ...newProduct,
       price: newProduct.price ? newProduct.price : 0,
       quantity: 1,
