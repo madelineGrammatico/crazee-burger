@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import OrderContext from '../../../../../context/OrderContext'
+import OrderContext from '../../../../../../context/OrderContext'
 import styled from "styled-components"
-import { theme } from "../../../../../theme";
-import { getTabsConfig, getTabSelected } from './getTabsConfig';
+import { theme } from "../../../../../../theme";
+import { getTabsConfig, getTabSelected } from '../getTabsConfig';
 
 export default function AdminPanel() {
   const { isCollapsed, tabSelected} = useContext(OrderContext)

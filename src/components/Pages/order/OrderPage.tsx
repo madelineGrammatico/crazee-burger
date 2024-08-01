@@ -15,9 +15,9 @@ export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
   const navigate = useNavigate()
 
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(true)
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const [tabSelected, setTabSelected] = useState<"add" | "edit">("add")
+  const [tabSelected, setTabSelected] = useState<"add" | "edit">("edit")
   const [menu, setMenu] = useState( menuSelected)
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT)
     

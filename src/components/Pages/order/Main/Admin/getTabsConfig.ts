@@ -2,10 +2,9 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MdModeEditOutline } from 'react-icons/md';
 
-import AddForm  from './panels/AddForm.tsx'
-import EditPanel from './panels/EditPanel.tsx';
+import AddForm  from './AdminPanel/AddForm.tsx'
+import EditPanel from './AdminPanel/EditPanel.tsx';
 import { getTabsConfigType, getTabsType, tabSelectedType, tabConfigType } from '../../../../../lib/Types.ts';
-
 
 
 export const getTabsConfig : getTabsConfigType = (isCollapsed) => [
