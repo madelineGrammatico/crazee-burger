@@ -27,6 +27,12 @@ const OrderContext = createContext<OrderContextType>({
     resetMenu: () => {},
     handleAdd: () => {},
     handleDelete: () => {},
+    productSelected: {
+      title:"",
+      imageSource:"",
+      price: 0
+    },
+     setProductSelected: () => {},
     
 })
 

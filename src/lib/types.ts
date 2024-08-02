@@ -12,7 +12,7 @@ export type ProductType = {
     isAdvertised: boolean,
 }
 export type ProductsType = ProductType[]
-  export type NewProductType = {
+  export type ProductSelectedType = {
     title:string,
     imageSource:string,
     price: number
@@ -59,7 +59,7 @@ export type ButtonType = {
     leftDescription: number | string,
     isButtonDelete: boolean,
     onDelete: () => void,
-    onClick: (e: React.MouseEventHandler<HTMLElement>) => void,
+    onClick: (id: string) => void,
 }
 
 export type PropsTextInput = {
@@ -95,10 +95,11 @@ export type PropsImagePreviewType= {
       tabSelected: "add" | "edit";
       setTabSelected: React.Dispatch<React.SetStateAction<"add" | "edit">>
       menu: ProductsType | [],
-      newProduct: NewProductType, 
-      setNewProduct: React.Dispatch<React.SetStateAction<NewProductType>>
+      newProduct: ProductSelectedType , 
+      setNewProduct: React.Dispatch<React.SetStateAction<ProductSelectedType >>
       resetMenu: () => void
       handleAdd: (newProduct: ProductType) => void,
       handleDelete: (productId: string) => void,
-      
+      productSelected: ProductSelectedType , 
+      setProductSelected:React.Dispatch<React.SetStateAction<ProductSelectedType >>,
     }

@@ -8,13 +8,16 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin.tsx";
 import EmptyMenuClient from "./EmptyMenuClient.tsx";
 
 export default function Menu() {
-    const { menu, isAdmin, handleDelete } = useContext(OrderContext)
+    const { menu, isAdmin, handleDelete, productSelected, setProductSelected} = useContext(OrderContext)
     
     if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
     if(menu.length === 0) return <EmptyMenuAdmin/> 
 
-    const handleClick = (e: React.MouseEventHandler<HTMLElement>) => {
-        console.log(e)
+    const handleClick = (idCardClicked: string) => {
+        
+        const productClicked = menu .find((product) => product.id === idCardClicked)
+        console.log(productSelected)
+        productClicked && setProductSelected(productClicked)
     }
   return (
     <MenuStyled>
@@ -26,7 +29,7 @@ export default function Menu() {
                 leftDescription={formatPrice(price)}
                 isButtonDelete={isAdmin}
                 onDelete={()=> handleDelete(id)}
-                onClick={handleClick}
+                onClick={() => handleClick(id)}
             />
         })}
     </MenuStyled>

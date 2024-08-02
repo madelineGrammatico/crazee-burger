@@ -20,6 +20,7 @@ export default function OrderPage() {
   const [tabSelected, setTabSelected] = useState<"add" | "edit">("edit")
   const [menu, setMenu] = useState( menuSelected)
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT)
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
     
   const resetMenu = () => {
     setMenu(menuSelected)
@@ -40,6 +41,7 @@ export default function OrderPage() {
     isCollapsed, setIsCollapsed,
     tabSelected, setTabSelected,
     newProduct , setNewProduct,
+    productSelected, setProductSelected,
     menu,
     resetMenu,
     handleAdd,
