@@ -59,7 +59,7 @@ export type ButtonType = {
     leftDescription: number | string,
     isButtonDelete: boolean,
     onDelete: () => void,
-    onClick: (id: string) => void,
+    onClick: (e: React.MouseEvent<HTMLDivElement>) => void,
 }
 
 export type PropsTextInput = {
