@@ -1,10 +1,9 @@
 import styled from "styled-components"
 import TextInput from '../../../../../reusables-ui/TextInput';
-
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import Button from "../../../../../reusables-ui/Button";
-import { EMPTY_PRODUCT } from "../../../../../../lib/constants";
+import { EMPTY_PRODUCT_DATA } from "../../../../../../lib/constants";
 import ImagePreview from "./ImagePreview";
 import SuccessMessage from "./SuccessMessage";
 import { getInputTextsConfig } from "./inputTextConfig";
@@ -34,7 +33,7 @@ export default function AddForm() {
     e.preventDefault()
     const newProductToAdd = buildProduct()
     handleAdd(newProductToAdd)
-    setNewProduct(EMPTY_PRODUCT)
+    setNewProduct(EMPTY_PRODUCT_DATA)
     displaySuccesMessage()
   }
   

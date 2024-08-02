@@ -6,7 +6,7 @@ import { useState } from "react"
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { useNavigate } from "react-router-dom";
-import { EMPTY_PRODUCT } from "../../../lib/constants"
+import { EMPTY_PRODUCT, EMPTY_PRODUCT_DATA } from "../../../lib/constants"
 import { ProductType } from "../../../lib/types"
 
 
@@ -19,21 +19,31 @@ export default function OrderPage() {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [tabSelected, setTabSelected] = useState<"add" | "edit">("edit")
   const [menu, setMenu] = useState( menuSelected)
-  const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT)
+  const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
     
   const resetMenu = () => {
     setMenu(menuSelected)
   }
   const handleAdd = (newProduct: ProductType) => {
-    const menuUpdated = [ newProduct,...menu, ]
+    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuUpdated = [ newProduct,...menuCopy]
     setMenu(menuUpdated)
   }
+  const handleEdit = (productBeingUdated: ProductType) => { 
+    
+    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const indexOfPoductToEdit = menu.findIndex((product) => product.id === productBeingUdated.id)
+    console.log(indexOfPoductToEdit)
+    const menuUpdated = [...menuCopy]
+    menuUpdated[indexOfPoductToEdit] = productBeingUdated
+    setMenu(menuUpdated)
+   }
 
   const handleDelete =(productId: string) => {
     !isAdmin ? navigate("/*") : null
-    const menuCopy = [...menu]
-    setMenu(menuCopy.filter((product) => product.id !== productId))
+    const menuCopy = JSON.parse(JSON.stringify(menu))
+    setMenu(menuCopy.filter((product: ProductType) => product.id !== productId))
   }
 
   const orderContextValue = {
@@ -45,6 +55,7 @@ export default function OrderPage() {
     menu,
     resetMenu,
     handleAdd,
+    handleEdit,
     handleDelete
   }
 

@@ -28,12 +28,16 @@ const OrderContext = createContext<OrderContextType>({
     handleAdd: () => {},
     handleDelete: () => {},
     productSelected: {
+      id: "9",
       title:"",
       imageSource:"",
-      price: 0
+      price: 0,
+      quantity: 0,
+      isAvailable: true,
+      isAdvertised: false,
     },
      setProductSelected: () => {},
-    
+     handleEdit: () => {},
 })
 
 export default OrderContext;
