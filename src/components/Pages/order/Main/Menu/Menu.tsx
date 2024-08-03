@@ -30,6 +30,7 @@ export default function Menu() {
                 isButtonDelete={isAdmin}
                 onDelete={()=> handleDelete(id)}
                 onClick={() => handleClick(id)}
+                isHoverAble= {isAdmin}
             />
         })}
     </MenuStyled>
