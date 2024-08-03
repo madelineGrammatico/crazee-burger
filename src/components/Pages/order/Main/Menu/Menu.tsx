@@ -6,6 +6,7 @@ import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext.ts";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.tsx";
 import EmptyMenuClient from "./EmptyMenuClient.tsx";
+import { CheckIsProductClicked } from "./helper.ts";
 
 export default function Menu() {
     const { menu, isAdmin, handleDelete, productSelected, setProductSelected} = useContext(OrderContext)
@@ -14,9 +15,6 @@ export default function Menu() {
         
         const productClicked = menu .find((product) => product.id === idCardClicked)
         productClicked && setProductSelected(productClicked)
-    }
-    const CheckIsProductClicked = (idproductClicked: string, idProductSelected: string) => {
-        return idproductClicked === idProductSelected
     }
 
     if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
