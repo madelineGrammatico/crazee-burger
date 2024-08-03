@@ -8,6 +8,7 @@ import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { useNavigate } from "react-router-dom";
 import { EMPTY_PRODUCT, EMPTY_PRODUCT_DATA } from "../../../lib/constants"
 import { ProductType } from "../../../lib/types"
+import { deepClone } from "../../../utils/array"
 
 
 
@@ -26,15 +27,14 @@ export default function OrderPage() {
     setMenu(menuSelected)
   }
   const handleAdd = (newProduct: ProductType) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
     const menuUpdated = [ newProduct,...menuCopy]
     setMenu(menuUpdated)
   }
   const handleEdit = (productBeingUdated: ProductType) => { 
     
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
     const indexOfPoductToEdit = menu.findIndex((product) => product.id === productBeingUdated.id)
-    console.log(indexOfPoductToEdit)
     const menuUpdated = [...menuCopy]
     menuUpdated[indexOfPoductToEdit] = productBeingUdated
     setMenu(menuUpdated)
@@ -42,7 +42,7 @@ export default function OrderPage() {
 
   const handleDelete =(productId: string) => {
     !isAdmin ? navigate("/*") : null
-    const menuCopy = JSON.parse(JSON.stringify(menu))
+    const menuCopy = deepClone(menu)
     setMenu(menuCopy.filter((product: ProductType) => product.id !== productId))
   }
 
