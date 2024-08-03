@@ -42,11 +42,13 @@ export default function Card({
 const CardStyled = styled.div<CardStyledProps>`
   ${({isHoverAble})=> isHoverAble && hoverAbleStyle};
   border-radius: ${theme.borderRadius.extraRound};
-
+  width: 240px;
+  height: 330px;
   .card {
+    box-sizing: border-box;
     background: ${theme.colors.white};
-    width: 200px;
-    height: 300px;
+    width: 240px;
+    height: 330px;
     display: grid;
     grid-template-rows: 30px 50% 1fr;
     padding: 15px;
