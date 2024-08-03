@@ -14,13 +14,14 @@ export default function Card({
     isButtonDelete, 
     onDelete, 
     onClick, 
-    isHoverAble
+    isHoverAble,
+    isSelected
   } : CardType) {
   const image = imageSource ? imageSource : DEFAULT_IMAGE
 
   return (
-    <CardStyled className="produit" onClick={onClick} isHoverAble={isHoverAble}>
-      <div className="card">
+    <CardStyled className="produit" onClick={onClick} isHoverAble={isHoverAble} isSelected={isSelected}>
+      <div className="card" style={isSelected ? {background: "orange"} : {}}>
         {isButtonDelete && <button className="close" onClick={onDelete} aria-label="delete-button"><TiDelete/></button>}
         <div className="image">
           <img src={image} alt={title} />
@@ -42,8 +43,8 @@ export default function Card({
 const CardStyled = styled.div<CardStyledProps>`
   ${({isHoverAble})=> isHoverAble && hoverAbleStyle};
   border-radius: ${theme.borderRadius.extraRound};
-  width: 240px;
   height: 330px;
+
   .card {
     box-sizing: border-box;
     background: ${theme.colors.white};

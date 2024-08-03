@@ -9,16 +9,19 @@ import EmptyMenuClient from "./EmptyMenuClient.tsx";
 
 export default function Menu() {
     const { menu, isAdmin, handleDelete, productSelected, setProductSelected} = useContext(OrderContext)
-    
-    if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
-    if(menu.length === 0) return <EmptyMenuAdmin/> 
 
     const handleClick = (idCardClicked: string) => {
         
         const productClicked = menu .find((product) => product.id === idCardClicked)
-        console.log(productSelected)
         productClicked && setProductSelected(productClicked)
     }
+    const CheckIsProductClicked = (idproductClicked: string, idProductSelected: string) => {
+        return idproductClicked === idProductSelected
+    }
+
+    if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
+    if(menu.length === 0) return <EmptyMenuAdmin/> 
+
   return (
     <MenuStyled>
         { menu.map(({ imageSource, title, price, id}) => { 
@@ -31,6 +34,7 @@ export default function Menu() {
                 onDelete={()=> handleDelete(id)}
                 onClick={() => handleClick(id)}
                 isHoverAble= {isAdmin}
+                isSelected={CheckIsProductClicked(id, productSelected.id)}
             />
         })}
     </MenuStyled>

@@ -61,6 +61,7 @@ export type ButtonType = {
     onDelete: () => void,
     onClick: (e: React.MouseEvent<HTMLDivElement>) => void,
     isHoverAble: boolean,
+    isSelected: boolean,
 }
 
 export type PropsTextInput = {
