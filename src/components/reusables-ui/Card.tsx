@@ -31,7 +31,7 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button label={"Ajouter"} />
+              <Button label={"Ajouter"} className="Button--add"/>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function Card({
 }
 
 const CardStyled = styled.div<CardStyledProps>`
-  ${({isHoverAble})=> isHoverAble && hoverAbleStyle};
+  
   border-radius: ${theme.borderRadius.extraRound};
   height: 330px;
 
@@ -68,11 +68,22 @@ const CardStyled = styled.div<CardStyledProps>`
         svg {
         width: 30px;
         height:30px;
-        color: ${theme.colors.primary};
-    }
-    :hover{
-        color: ${theme.colors.red};
+        color:  ${theme.colors.primary};
+        transition: all 200ms ease-out;
+        &:hover{
+          color:  ${theme.colors.red};
+          transition: all 200ms ease-out;
+        }
+        &:active{
+          color:  ${theme.colors.primary};
+        }
+        &.is-disabled {
+          opacity: 50%;
+          cursor: not-allowed;
+
+        }
       }
+    
     }
     .image {
       width: 100%;
@@ -138,6 +149,8 @@ const CardStyled = styled.div<CardStyledProps>`
       }
     }
   }
+  ${({isHoverAble,})=> isHoverAble && hoverAbleStyle};
+  ${({ isSelected})=> isSelected && selectedStyle};
 `
 const hoverAbleStyle = css`
   &:hover {
@@ -145,5 +158,42 @@ const hoverAbleStyle = css`
     transition: ease-out 0.4s;
     box-shadow:  ${theme.shadows.orangeHighlight};
     cursor: pointer;
+  }
+`
+const selectedStyle = css`
+  background-color:  ${theme.colors.primary};
+  .card {
+    .close svg{
+      color:  ${theme.colors.white};
+      :hover{
+        color:  ${theme.colors.red};
+      }
+      &::active{
+        color:  ${theme.colors.white};
+      }
+    }
+
+    .Button--add {
+      color:  ${theme.colors.primary};
+      background-color:  ${theme.colors.white};
+      border: 1px solid ${theme.colors.white};
+      transition: all 200ms ease-out;
+
+      &:hover{
+        color:  ${theme.colors.white};
+        background-color:  ${theme.colors.primary};
+        border: 1px solid ${theme.colors.white};
+        transition: all 200ms ease-out;
+      }
+      &:active{
+        color:  ${theme.colors.primary};
+        background-color:  ${theme.colors.white};
+        border:  ${theme.colors.white};
+      }
+      &.is-disabled {
+        opacity: 50%;
+        cursor: not-allowed;
+      }
+    }
   }
 `
