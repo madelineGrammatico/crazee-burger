@@ -7,6 +7,7 @@ import OrderContext from "../../../../../context/OrderContext.ts";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.tsx";
 import EmptyMenuClient from "./EmptyMenuClient.tsx";
 import { CheckIsProductClicked } from "./helper.ts";
+import { EMPTY_PRODUCT } from "../../../../../lib/constants.ts";
 
 export default function Menu() {
     const { menu,
@@ -29,6 +30,7 @@ export default function Menu() {
     const handleCardDelete = (e: React.MouseEvent<Element>, id: string) => {
         e.stopPropagation()
         handleDelete(id)
+        productSelected.id === id && setProductSelected(EMPTY_PRODUCT)
     }
 
     if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>

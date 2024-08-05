@@ -6,7 +6,7 @@ import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../reusables-ui/TextInput";
 import { getInputTextsConfig } from "./inputTextConfig";
 
-export default function EditPanel() {
+export default function EditForm() {
  
   const { 
     productSelected,
@@ -28,7 +28,7 @@ export default function EditPanel() {
 
   const inputTexts = getInputTextsConfig(productSelected)
   return (
-    <EditPanelStyled onSubmit={(e)=> e.preventDefault()}>
+    <EditFormStyled onSubmit={(e)=> e.preventDefault()}>
        <ImagePreview
         imageSource={productSelected.imageSource} 
         title={productSelected.title}/>
@@ -50,10 +50,10 @@ export default function EditPanel() {
           />
           {/* { isSubmited && <SuccessMessage/> } */}
       </div>
-    </EditPanelStyled>
+    </EditFormStyled>
   )
 }
-const EditPanelStyled = styled.form`
+const EditFormStyled = styled.form`
     width: 880px;
   display: grid;
   grid-template-columns: 215px 1fr;

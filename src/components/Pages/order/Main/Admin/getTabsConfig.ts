@@ -3,11 +3,12 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { MdModeEditOutline } from 'react-icons/md';
 
 import AddForm  from './AdminPanel/AddForm.tsx'
-import EditPanel from './AdminPanel/EditPanel.tsx';
+import EditForm from './AdminPanel/EditForm.tsx';
 import { getTabsConfigType, getTabsType, tabSelectedType, tabConfigType } from '../../../../../lib/types.ts';
+import HintMessage from './AdminPanel/HintMessage.tsx';
 
 
-export const getTabsConfig : getTabsConfigType = (isCollapsed) => [
+export const getTabsConfig : getTabsConfigType = (isCollapsed, hasClickedProduct) => [
     {
       index: "chevron",
       label: "",
@@ -25,7 +26,7 @@ export const getTabsConfig : getTabsConfigType = (isCollapsed) => [
       index: "edit",
       label: "Modifier un produit",
       Icon: MdModeEditOutline,
-      Content: EditPanel
+      Content: hasClickedProduct ? EditForm : HintMessage
     },
   ]
   

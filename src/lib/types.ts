@@ -33,7 +33,8 @@ export type tabConfigType = {
 }
 export type getTabsType = tabConfigType []
 
-export type getTabsConfigType = (isCollapsed: boolean) => getTabsType
+export type getTabsConfigType = 
+  (isCollapsed: boolean, hasClickedProduct: boolean) => getTabsType
 
 export type TabType = {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void, 
@@ -94,8 +95,8 @@ export type PropsImagePreviewType= {
       setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
       isCollapsed: boolean;
       setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-      tabSelected: "add" | "edit";
-      setTabSelected: React.Dispatch<React.SetStateAction<"add" | "edit">>
+      tabSelected: tabSelectedType;
+      setTabSelected: React.Dispatch<React.SetStateAction<tabSelectedType>>
       menu: ProductsType | [],
       newProduct: ProductSelectedType , 
       setNewProduct: React.Dispatch<React.SetStateAction<ProductSelectedType >>
