@@ -7,7 +7,14 @@ import TextInput from "../../../../../reusables-ui/TextInput";
 import { getInputTextsConfig } from "./inputTextConfig";
 
 export default function EditPanel() {
-  const { productSelected, setProductSelected, handleEdit} = useContext(OrderContext)
+ 
+  const { 
+    productSelected,
+    setProductSelected, 
+    handleEdit, 
+    titleEditRef
+  } = useContext(OrderContext)
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
     const { name, value} = event.target
@@ -31,6 +38,7 @@ export default function EditPanel() {
             {...input}
             onChange={handleChange}
             version="slim"
+            ref={input.name==="title" ? titleEditRef : null}
           />
         )}
         </div>

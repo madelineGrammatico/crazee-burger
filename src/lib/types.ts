@@ -1,5 +1,5 @@
 import { IconType } from 'react-icons';
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef, } from "react";
 
 //produit
 export type ProductType = {
@@ -105,4 +105,5 @@ export type PropsImagePreviewType= {
       productSelected: ProductType , 
       setProductSelected:React.Dispatch<React.SetStateAction<ProductType >>,
       handleEdit: (productBeingUdated: ProductType ) => void,
+      titleEditRef: React.RefObject<HTMLInputElement>
     }

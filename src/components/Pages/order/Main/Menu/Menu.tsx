@@ -14,16 +14,17 @@ export default function Menu() {
             handleDelete,
             productSelected, setProductSelected,
              setIsCollapsed,
-            setTabSelected
+            setTabSelected,
+            titleEditRef
         } = useContext(OrderContext)
 
-    const handleClick = (idCardClicked: string) => {
+    const handleClick = async (idCardClicked: string) => {
         if (!isAdmin)  return 
-        setIsCollapsed(false),
-        setTabSelected("edit")
         const productClicked = menu .find((product) => product.id === idCardClicked)
-        productClicked && setProductSelected(productClicked)
-        
+        productClicked &&  await setProductSelected(productClicked)
+        await setIsCollapsed(false)
+        await setTabSelected("edit")
+        titleEditRef.current && titleEditRef.current.focus()
     }
     const handleCardDelete = (e: React.MouseEvent<Element>, id: string) => {
         e.stopPropagation()

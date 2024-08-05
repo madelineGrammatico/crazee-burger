@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { theme } from "../../../theme"
 import NavBar from "./NavBar/NavBar"
 import Main from "./Main/Main"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ import { deepClone } from "../../../utils/array"
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
   const navigate = useNavigate()
+  const titleEditRef = useRef<HTMLInputElement>(null)
 
   const [isAdmin, setIsAdmin] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
@@ -56,7 +57,8 @@ export default function OrderPage() {
     resetMenu,
     handleAdd,
     handleEdit,
-    handleDelete
+    handleDelete,
+    titleEditRef
   }
 
   return (
