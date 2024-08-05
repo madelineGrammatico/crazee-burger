@@ -7,7 +7,7 @@ import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { useNavigate } from "react-router-dom";
 import { EMPTY_PRODUCT, EMPTY_PRODUCT_DATA } from "../../../lib/constants"
-import { ProductType } from "../../../lib/types"
+import { ProductType, tabSelectedType } from "../../../lib/types"
 import { deepClone } from "../../../utils/array"
 
 
@@ -16,9 +16,9 @@ export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
   const navigate = useNavigate()
 
-  const [isAdmin, setIsAdmin] = useState(true)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const [tabSelected, setTabSelected] = useState<"add" | "edit">("edit")
+  const [tabSelected, setTabSelected] = useState<tabSelectedType>("add")
   const [menu, setMenu] = useState( menuSelected)
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)

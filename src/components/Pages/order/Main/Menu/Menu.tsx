@@ -9,12 +9,21 @@ import EmptyMenuClient from "./EmptyMenuClient.tsx";
 import { CheckIsProductClicked } from "./helper.ts";
 
 export default function Menu() {
-    const { menu, isAdmin, handleDelete, productSelected, setProductSelected} = useContext(OrderContext)
+    const { menu,
+            isAdmin,
+            handleDelete,
+            productSelected, setProductSelected,
+             setIsCollapsed,
+            setTabSelected
+        } = useContext(OrderContext)
 
     const handleClick = (idCardClicked: string) => {
         if (!isAdmin)  return 
+        setIsCollapsed(false),
+        setTabSelected("edit")
         const productClicked = menu .find((product) => product.id === idCardClicked)
         productClicked && setProductSelected(productClicked)
+        
     }
     const handleCardDelete = (e: React.MouseEvent<Element>, id: string) => {
         e.stopPropagation()
