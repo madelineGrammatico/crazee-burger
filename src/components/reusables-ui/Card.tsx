@@ -20,7 +20,7 @@ export default function Card({
   const image = imageSource ? imageSource : DEFAULT_IMAGE
 
   return (
-    <CardStyled className="produit" onClick={onClick} isHoverAble={isHoverAble} isSelected={isSelected}>
+    <CardStyled className="produit" onClick={onClick} $isHoverAble={isHoverAble} $isSelected={isSelected}>
       <div className="card">
         {isButtonDelete && <button className="close" onClick={onDelete} aria-label="delete-button"><TiDelete/></button>}
         <div className="image">
@@ -31,7 +31,10 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button label={"Ajouter"} className="Button--add"/>
+              <Button 
+                label={"Ajouter"} 
+                className="Button--add"
+                onClick={(e) => e.stopPropagation()}/>
             </div>
           </div>
         </div>
@@ -149,8 +152,8 @@ const CardStyled = styled.div<CardStyledProps>`
       }
     }
   }
-  ${({isHoverAble,})=> isHoverAble && hoverAbleStyle};
-  ${({ isHoverAble, isSelected})=> isHoverAble && isSelected && selectedStyle};
+  ${({$isHoverAble})=> $isHoverAble && hoverAbleStyle};
+  ${({ $isHoverAble, $isSelected})=> $isHoverAble && $isSelected && selectedStyle};
 `
 const hoverAbleStyle = css`
   &:hover {
@@ -168,7 +171,7 @@ const selectedStyle = css`
       :hover{
         color:  ${theme.colors.red};
       }
-      &::active{
+      :active{
         color:  ${theme.colors.white};
       }
     }

@@ -16,6 +16,10 @@ export default function Menu() {
         const productClicked = menu .find((product) => product.id === idCardClicked)
         productClicked && setProductSelected(productClicked)
     }
+    const handleCardDelete = (e: React.MouseEvent<Element>, id: string) => {
+        e.stopPropagation()
+        handleDelete(id)
+    }
 
     if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
     if(menu.length === 0) return <EmptyMenuAdmin/> 
@@ -29,7 +33,7 @@ export default function Menu() {
                 title={title }
                 leftDescription={formatPrice(price)}
                 isButtonDelete={isAdmin}
-                onDelete={()=> handleDelete(id)}
+                onDelete={(e)=> handleCardDelete(e, id)}
                 onClick={() => handleClick(id)}
                 isHoverAble= {isAdmin}
                 isSelected={CheckIsProductClicked(id, productSelected.id)}

@@ -8,6 +8,6 @@ export interface TextInputStyledProps {
   }
 
   export interface CardStyledProps {
-    isHoverAble: boolean,
-    isSelected: boolean,
+    $isHoverAble: boolean,
+    $isSelected: boolean,
   }

@@ -58,7 +58,7 @@ export type ButtonType = {
     title: string,
     leftDescription: number | string,
     isButtonDelete: boolean,
-    onDelete: () => void,
+    onDelete: (e: React.MouseEvent<Element>) => void,
     onClick: (e: React.MouseEvent<HTMLDivElement>) => void,
     isHoverAble: boolean,
     isSelected: boolean,
