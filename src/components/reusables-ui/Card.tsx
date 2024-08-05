@@ -21,7 +21,7 @@ export default function Card({
 
   return (
     <CardStyled className="produit" onClick={onClick} isHoverAble={isHoverAble} isSelected={isSelected}>
-      <div className="card" style={isSelected ? {background: "orange"} : {}}>
+      <div className="card">
         {isButtonDelete && <button className="close" onClick={onDelete} aria-label="delete-button"><TiDelete/></button>}
         <div className="image">
           <img src={image} alt={title} />
@@ -150,7 +150,7 @@ const CardStyled = styled.div<CardStyledProps>`
     }
   }
   ${({isHoverAble,})=> isHoverAble && hoverAbleStyle};
-  ${({ isSelected})=> isSelected && selectedStyle};
+  ${({ isHoverAble, isSelected})=> isHoverAble && isSelected && selectedStyle};
 `
 const hoverAbleStyle = css`
   &:hover {
@@ -161,8 +161,8 @@ const hoverAbleStyle = css`
   }
 `
 const selectedStyle = css`
-  background-color:  ${theme.colors.primary};
   .card {
+    background-color:  ${theme.colors.primary};
     .close svg{
       color:  ${theme.colors.white};
       :hover{
@@ -170,6 +170,14 @@ const selectedStyle = css`
       }
       &::active{
         color:  ${theme.colors.white};
+      }
+    }
+
+    .text-info {
+      .description {
+        .left-description {
+            color:  ${theme.colors.white};
+        }
       }
     }
 

@@ -12,7 +12,7 @@ export default function Menu() {
     const { menu, isAdmin, handleDelete, productSelected, setProductSelected} = useContext(OrderContext)
 
     const handleClick = (idCardClicked: string) => {
-        
+        if (!isAdmin)  return 
         const productClicked = menu .find((product) => product.id === idCardClicked)
         productClicked && setProductSelected(productClicked)
     }
