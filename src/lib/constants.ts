@@ -1,4 +1,4 @@
-import comingSoon from "../../public/images/coming-soon.png"
+import comingSoon from "/images/coming-soon.png"
 
 export const EMPTY_PRODUCT= {
     id: "",
