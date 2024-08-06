@@ -1,10 +1,11 @@
 import styled from "styled-components"
 import { useContext }from "react";
 import OrderContext from "../../../../../../context/OrderContext";
-import Button from "../../../../../reusables-ui/Button";
+// import Button from "../../../../../reusables-ui/Button";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../reusables-ui/TextInput";
 import { getInputTextsConfig } from "./inputTextConfig";
+import { theme } from "../../../../../../theme";
 
 export default function EditForm() {
  
@@ -42,14 +43,10 @@ export default function EditForm() {
           />
         )}
         </div>
-      <div className="submitButton">
-          <Button 
-          label="Editer un produit du menu"
-          version="success"
-          size="slim"
-          />
-          {/* { isSubmited && <SuccessMessage/> } */}
-      </div>
+      <span className="submit">
+         <span className="sentence">Cliquer sur un produit du menu pour le modifier <span className="life-update">en temps réel</span>
+         </span>
+      </span>
     </EditFormStyled>
   )
 }
@@ -68,11 +65,19 @@ const EditFormStyled = styled.form`
     grid-area: 1/ 2 / 1 / 3;
   }
 
-  .submitButton{
+  .submit{
     grid-area: 2 / 2 / 3 / 3;
     display: flex;
     flex-flow: nowrap;
     align-items: center;
-    gap: 15px;
+    /* gap: 15px; */
+      .sentence{
+        margin-top: 15px;
+        color: ${theme.colors.primary};
+        font-size: ${theme.fonts.size.SM};
+        .life-update{
+          text-decoration: underline;
+        }
+      }
     }
 `;
