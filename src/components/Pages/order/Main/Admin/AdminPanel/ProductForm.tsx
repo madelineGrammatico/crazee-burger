@@ -33,7 +33,6 @@ const ProductForm = React.forwardRef<HTMLInputElement, PropsProductForm>(
         )}
         </div>
       <div className="submitButton">
-          
           {children}
       </div>
     </AdminFormStyled>
