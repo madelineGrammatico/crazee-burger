@@ -3,9 +3,10 @@ import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import { EMPTY_PRODUCT_DATA } from "../../../../../../lib/constants";
 // import ImagePreview from "./ImagePreview";
-// import SuccessMessage from "./SuccessMessage";
 
+// import Button from "../../../../../reusables-ui/Button";
 import ProductForm from "./ProductForm";
+import SubmitButton from "./SubmitButton";
 
 
 export default function AddForm() {
@@ -42,15 +43,15 @@ export default function AddForm() {
     setNewProduct({...newProduct, [name]: value})
   }
 
-  // const inputTexts = getInputTextsConfig(newProduct)
-
   return (
     <ProductForm
       onSubmit={handleSubmit} 
       onChange={handleChange} 
       product={newProduct}
       isSubmited={isSubmited}
-    />
+    >
+      <SubmitButton isSubmited={isSubmited}/>
+    </ProductForm>
   )
 }
 // const AddFormStyled = styled.form`
@@ -68,11 +69,11 @@ export default function AddForm() {
 //     grid-area: 1/ 2 / 1 / 3;
 //   }
 
-//   .submitButton{
-//     grid-area: 2 / 2 / 3 / 3;
-//     display: flex;
-//     flex-flow: nowrap;
-//     align-items: center;
-//     gap: 15px;
+//   .submit{
+  // grid-area: 2 / 2 / 3 / 3;
+  // display: flex;
+  // flex-flow: nowrap;
+  // align-items: center;
+  // gap: 15px;
 //     }
 // `;

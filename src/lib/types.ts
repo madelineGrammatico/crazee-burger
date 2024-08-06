@@ -73,7 +73,13 @@ export type PropsTextInput = {
     version?: "normal" | "slim",
   } & ComponentPropsWithoutRef<"input">
 
-
+export type PropsProductForm = {
+  onSubmit?:(e: React.FormEvent<HTMLFormElement>)=> void, 
+  onChange:(e: React.ChangeEvent<HTMLInputElement>) => void,
+  product: ProductType | ProductSelectedType,
+  isSubmited?: boolean, 
+  children: JSX.Element
+}
 // NavBar
 export type ToggleButtonType = {
     isChecked: boolean,
