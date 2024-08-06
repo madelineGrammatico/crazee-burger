@@ -1,12 +1,11 @@
-import styled from "styled-components"
-import TextInput from '../../../../../reusables-ui/TextInput';
+// import styled from "styled-components"
 import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
-import Button from "../../../../../reusables-ui/Button";
 import { EMPTY_PRODUCT_DATA } from "../../../../../../lib/constants";
-import ImagePreview from "./ImagePreview";
-import SuccessMessage from "./SuccessMessage";
-import { getInputTextsConfig } from "./inputTextConfig";
+// import ImagePreview from "./ImagePreview";
+// import SuccessMessage from "./SuccessMessage";
+
+import ProductForm from "./ProductForm";
 
 
 export default function AddForm() {
@@ -43,53 +42,37 @@ export default function AddForm() {
     setNewProduct({...newProduct, [name]: value})
   }
 
-  const inputTexts = getInputTextsConfig(newProduct)
+  // const inputTexts = getInputTextsConfig(newProduct)
 
   return (
-    <AddFormStyled onSubmit={handleSubmit}>
-      <ImagePreview 
-        imageSource={newProduct.imageSource} 
-        title={newProduct.title}/>
-      <div className="input-fields">
-        {inputTexts.map((input) => 
-          <TextInput
-            {...input}
-            onChange={handleChange}
-            version="slim"
-          />
-        )}
-        </div>
-      <div className="submitButton">
-          <Button 
-          label="Ajouter un nouveau produit au menu"
-          version="success"
-          size="slim"
-          />
-          { isSubmited && <SuccessMessage/> }
-      </div>
-    </AddFormStyled>
+    <ProductForm
+      onSubmit={handleSubmit} 
+      onChange={handleChange} 
+      product={newProduct}
+      isSubmited={isSubmited}
+    />
   )
 }
-const AddFormStyled = styled.form`
-  width: 880px;
-  display: grid;
-  grid-template-columns: 215px 1fr;
-  align-items: start;
-  gap: 8px 20px;
+// const AddFormStyled = styled.form`
+//   width: 880px;
+//   display: grid;
+//   grid-template-columns: 215px 1fr;
+//   align-items: start;
+//   gap: 8px 20px;
   
-  .input-fields {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 8px;
-    grid-area: 1/ 2 / 1 / 3;
-  }
+//   .input-fields {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     gap: 8px;
+//     grid-area: 1/ 2 / 1 / 3;
+//   }
 
-  .submitButton{
-    grid-area: 2 / 2 / 3 / 3;
-    display: flex;
-    flex-flow: nowrap;
-    align-items: center;
-    gap: 15px;
-    }
-`;
+//   .submitButton{
+//     grid-area: 2 / 2 / 3 / 3;
+//     display: flex;
+//     flex-flow: nowrap;
+//     align-items: center;
+//     gap: 15px;
+//     }
+// `;
