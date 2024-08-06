@@ -66,7 +66,7 @@ export type ButtonType = {
 }
 
 export type PropsTextInput = {
-    value?: string,
+    value?: string | number,
     onChange : (e: React.ChangeEvent<HTMLInputElement>) => void,
     Icon?: IconType | React.ComponentType<React.SVGProps<SVGSVGElement>>, 
     className?: string,
