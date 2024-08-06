@@ -32,7 +32,7 @@ const ProductForm = React.forwardRef<HTMLInputElement, PropsProductForm>(
           />
         )}
         </div>
-      <div className="submitButton">
+      <div className="footer">
           {children}
       </div>
     </AdminFormStyled>
@@ -55,7 +55,7 @@ const AdminFormStyled = styled.form`
     grid-area: 1/ 2 / 1 / 3;
   }
 
-  .submitButton{
+  .footer{
     grid-area: 2 / 2 / 3 / 3;
     display: flex;
     flex-flow: nowrap;
