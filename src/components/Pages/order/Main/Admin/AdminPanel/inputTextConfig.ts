@@ -1,9 +1,9 @@
 import { FaHamburger } from 'react-icons/fa';
 import { BsFillCameraFill } from 'react-icons/bs';
 import { MdOutlineEuro } from 'react-icons/md';
-import { NewProductType } from '../../../../../../lib/types';
+import { ProductSelectedType } from '../../../../../../lib/types';
 
-export  const getInputTextsConfig =( newProduct : NewProductType)=>  [
+export  const getInputTextsConfig =( newProduct : ProductSelectedType )=>  [
     {
       key:"0",
       name:"title",
