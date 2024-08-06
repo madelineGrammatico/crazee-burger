@@ -6,6 +6,7 @@ import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../reusables-ui/TextInput";
 import { getInputTextsConfig } from "./inputTextConfig";
 import { theme } from "../../../../../../theme";
+import EditInfoMessage from "./EditInfoMessage";
 
 export default function EditForm() {
  
@@ -43,10 +44,9 @@ export default function EditForm() {
           />
         )}
         </div>
-      <span className="submit">
-         <span className="sentence">Cliquer sur un produit du menu pour le modifier <span className="life-update">en temps réel</span>
-         </span>
-      </span>
+      <div className="submit">
+          <EditInfoMessage/>
+      </div>
     </EditFormStyled>
   )
 }
@@ -70,14 +70,6 @@ const EditFormStyled = styled.form`
     display: flex;
     flex-flow: nowrap;
     align-items: center;
-    /* gap: 15px; */
-      .sentence{
-        margin-top: 15px;
-        color: ${theme.colors.primary};
-        font-size: ${theme.fonts.size.SM};
-        .life-update{
-          text-decoration: underline;
-        }
-      }
+    
     }
 `;
