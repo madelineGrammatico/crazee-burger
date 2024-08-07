@@ -64,4 +64,5 @@ const MenuStyled = styled.section`
     padding: 50px 50px 150px;
     justify-items: center;
     overflow-y: scroll;
+    scrollbar-width: none;
 `;

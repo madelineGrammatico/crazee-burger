@@ -14,9 +14,7 @@ export default function Basket() {
 const BasketStyled = styled.div`
   display: flex;
   flex-direction: column;
-  /* overflow: hidden; */
-
-
+  box-shadow: ${theme.shadows.insetMedium};
 
   .head {
     background-color: ${theme.colors.background_dark};
@@ -26,10 +24,12 @@ const BasketStyled = styled.div`
   }
   .body {
     flex: 1;
-    background-color: ${theme.colors.background_white};
+    
     overflow-y: scroll;
-    /* scrollbar-width: none; */
+    scrollbar-width: none;
     height: 5070px;
+    
+
   }
   .footer {
     background-color: ${theme.colors.background_dark};
