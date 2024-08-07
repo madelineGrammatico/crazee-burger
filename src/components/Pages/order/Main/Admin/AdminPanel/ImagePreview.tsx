@@ -1,4 +1,4 @@
-import { PropsImagePreviewType } from "../../../../../../lib/Types";
+import { PropsImagePreviewType } from "../../../../../../lib/types";
 import { theme } from "../../../../../../theme";
 import styled from "styled-components"
 

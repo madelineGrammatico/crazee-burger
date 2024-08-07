@@ -1,9 +1,9 @@
 import { IconType } from 'react-icons';
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef, } from "react";
 
 //produit
 export type ProductType = {
-    id: number,
+    id: string,
     imageSource: string,
     title: string,
     price: number,
@@ -11,16 +11,8 @@ export type ProductType = {
     isAvailable: boolean,
     isAdvertised: boolean,
 }
-export type ProductsType = {
-    id: number,
-    imageSource: string,
-    title: string,
-    price: number,
-    quantity: number,
-    isAvailable: boolean,
-    isAdvertised: boolean,
-  }[]
-  export type NewProductType = {
+export type ProductsType = ProductType[]
+  export type ProductSelectedType = {
     title:string,
     imageSource:string,
     price: number
@@ -41,7 +33,8 @@ export type tabConfigType = {
 }
 export type getTabsType = tabConfigType []
 
-export type getTabsConfigType = (isCollapsed: boolean) => getTabsType
+export type getTabsConfigType = 
+  (isCollapsed: boolean, hasClickedProduct?: boolean) => getTabsType
 
 export type TabType = {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void, 
@@ -66,18 +59,26 @@ export type ButtonType = {
     title: string,
     leftDescription: number | string,
     isButtonDelete: boolean,
-    onDelete: () => void
+    onDelete: (e: React.MouseEvent<Element>) => void,
+    onClick: (e: React.MouseEvent<HTMLDivElement>) => void,
+    isHoverAble: boolean,
+    isSelected: boolean,
 }
 
 export type PropsTextInput = {
-    value?: string,
+    value?: string | number,
     onChange : (e: React.ChangeEvent<HTMLInputElement>) => void,
     Icon?: IconType | React.ComponentType<React.SVGProps<SVGSVGElement>>, 
     className?: string,
     version?: "normal" | "slim",
   } & ComponentPropsWithoutRef<"input">
 
-
+export type PropsProductForm = {
+  onSubmit?:(e: React.FormEvent<HTMLFormElement>)=> void, 
+  onChange:(e: React.ChangeEvent<HTMLInputElement>) => void,
+  product: ProductType | ProductSelectedType,
+  children: JSX.Element
+}
 // NavBar
 export type ToggleButtonType = {
     isChecked: boolean,
@@ -99,13 +100,16 @@ export type PropsImagePreviewType= {
       setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
       isCollapsed: boolean;
       setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-      tabSelected: "add" | "edit";
-      setTabSelected: React.Dispatch<React.SetStateAction<"add" | "edit">>
+      tabSelected: tabSelectedType;
+      setTabSelected: React.Dispatch<React.SetStateAction<tabSelectedType>>
       menu: ProductsType | [],
-      newProduct: NewProductType, 
-      setNewProduct: React.Dispatch<React.SetStateAction<NewProductType>>
+      newProduct: ProductSelectedType , 
+      setNewProduct: React.Dispatch<React.SetStateAction<ProductSelectedType >>
       resetMenu: () => void
       handleAdd: (newProduct: ProductType) => void,
-      handleDelete: (productId: number) => void,
-      
+      handleDelete: (productId: string) => void,
+      productSelected: ProductType , 
+      setProductSelected:React.Dispatch<React.SetStateAction<ProductType >>,
+      handleEdit: (productBeingUdated: ProductType ) => void,
+      titleEditRef: React.RefObject<HTMLInputElement>
     }

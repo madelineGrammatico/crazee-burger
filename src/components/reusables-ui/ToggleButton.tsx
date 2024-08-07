@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { theme } from "../../theme"
-import { ToggleButtonType } from "../../lib/Types"
+import { ToggleButtonType } from "../../lib/types"
 
 
 

@@ -1,11 +1,19 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
-import { PropsTextInput } from "../../lib/Types";
+import { PropsTextInput } from "../../lib/types";
 import { TextInputStyledProps } from "../../lib/interfaces";
+import React from "react";
 
 
 
-export default function TextInput({value, onChange, Icon, className, version="normal", ...restProps}: PropsTextInput) {
+const TextInput = React.forwardRef<HTMLInputElement, PropsTextInput>(({
+    value, 
+    onChange, 
+    Icon, 
+    className, 
+    version="normal", 
+    ...restProps
+  }: PropsTextInput, ref) => {
   return (
     <TextInputStyled version={version}>
       {Icon && <div className="icon"><Icon /></div>}
@@ -14,13 +22,14 @@ export default function TextInput({value, onChange, Icon, className, version="no
         onChange= { onChange }
         className={className}
         type= "text"
+        ref={ ref }
         {...restProps}
       />
     </TextInputStyled>
   )
+})
 
-}
-
+export default TextInput
 const extraNormalWhiteStyle = css`
   margin: 18px 0;
   padding: 18px 24px;

@@ -6,10 +6,33 @@ import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext.ts";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.tsx";
 import EmptyMenuClient from "./EmptyMenuClient.tsx";
+import { CheckIsProductClicked } from "./helper.ts";
+import { EMPTY_PRODUCT } from "../../../../../lib/constants.ts";
 
 export default function Menu() {
-    const { menu, isAdmin, handleDelete } = useContext(OrderContext)
-    
+    const { menu,
+            isAdmin,
+            handleDelete,
+            productSelected, setProductSelected,
+             setIsCollapsed,
+            setTabSelected,
+            titleEditRef
+        } = useContext(OrderContext)
+
+    const handleClick = async (idCardClicked: string) => {
+        if (!isAdmin)  return 
+        const productClicked = menu .find((product) => product.id === idCardClicked)
+        productClicked &&  await setProductSelected(productClicked)
+        await setIsCollapsed(false)
+        await setTabSelected("edit")
+        titleEditRef.current && titleEditRef.current.focus()
+    }
+    const handleCardDelete = (e: React.MouseEvent<Element>, id: string) => {
+        e.stopPropagation()
+        handleDelete(id)
+        productSelected.id === id && setProductSelected(EMPTY_PRODUCT)
+    }
+
     if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
     if(menu.length === 0) return <EmptyMenuAdmin/> 
 
@@ -22,7 +45,10 @@ export default function Menu() {
                 title={title }
                 leftDescription={formatPrice(price)}
                 isButtonDelete={isAdmin}
-                onDelete={()=> handleDelete(id)}
+                onDelete={(e)=> handleCardDelete(e, id)}
+                onClick={() => handleClick(id)}
+                isHoverAble= {isAdmin}
+                isSelected={CheckIsProductClicked(id, productSelected.id)}
             />
         })}
     </MenuStyled>

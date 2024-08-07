@@ -1,9 +1,9 @@
 import { FaHamburger } from 'react-icons/fa';
 import { BsFillCameraFill } from 'react-icons/bs';
 import { MdOutlineEuro } from 'react-icons/md';
-import { NewProductType } from '../../../../../../lib/Types';
+import { ProductSelectedType } from '../../../../../../lib/types';
 
-export  const getInputTextsConfig =( newProduct : NewProductType)=>  [
+export  const getInputTextsConfig =( newProduct : ProductSelectedType )=>  [
     {
       key:"0",
       name:"title",
@@ -22,7 +22,7 @@ export  const getInputTextsConfig =( newProduct : NewProductType)=>  [
       key: "2",
       name: "price",
       placeholder: "Prix",
-      value: newProduct.price ? newProduct.price.toString() : "",
+      value: newProduct.price ? newProduct.price : "",
       Icon: MdOutlineEuro,
     }
   ]

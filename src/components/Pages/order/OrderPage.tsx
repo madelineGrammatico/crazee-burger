@@ -2,37 +2,49 @@ import styled from "styled-components"
 import { theme } from "../../../theme"
 import NavBar from "./NavBar/NavBar"
 import Main from "./Main/Main"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { useNavigate } from "react-router-dom";
-import { EMPTY_PRODUCT } from "../../../lib/constants"
-import { ProductType } from "../../../lib/Types"
+import { EMPTY_PRODUCT, EMPTY_PRODUCT_DATA } from "../../../lib/constants"
+import { ProductType, tabSelectedType } from "../../../lib/types"
+import { deepClone } from "../../../utils/array"
 
 
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
   const navigate = useNavigate()
+  const titleEditRef = useRef<HTMLInputElement>(null)
 
   const [isAdmin, setIsAdmin] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const [tabSelected, setTabSelected] = useState<"add" | "edit">("add")
+  const [tabSelected, setTabSelected] = useState<tabSelectedType>("add")
   const [menu, setMenu] = useState( menuSelected)
-  const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT)
+  const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
     
   const resetMenu = () => {
     setMenu(menuSelected)
   }
   const handleAdd = (newProduct: ProductType) => {
-    const menuUpdated = [ newProduct,...menu, ]
+    const menuCopy = deepClone(menu)
+    const menuUpdated = [ newProduct,...menuCopy]
     setMenu(menuUpdated)
   }
+  const handleEdit = (productBeingUdated: ProductType) => { 
+    
+    const menuCopy = deepClone(menu)
+    const indexOfPoductToEdit = menu.findIndex((product) => product.id === productBeingUdated.id)
+    const menuUpdated = [...menuCopy]
+    menuUpdated[indexOfPoductToEdit] = productBeingUdated
+    setMenu(menuUpdated)
+   }
 
-  const handleDelete =(productId: number) => {
+  const handleDelete =(productId: string) => {
     !isAdmin ? navigate("/*") : null
-    const menuCopy = [...menu]
-    setMenu(menuCopy.filter((product) => product.id !== productId))
+    const menuCopy = deepClone(menu)
+    setMenu(menuCopy.filter((product: ProductType) => product.id !== productId))
   }
 
   const orderContextValue = {
@@ -40,10 +52,13 @@ export default function OrderPage() {
     isCollapsed, setIsCollapsed,
     tabSelected, setTabSelected,
     newProduct , setNewProduct,
+    productSelected, setProductSelected,
     menu,
     resetMenu,
     handleAdd,
-    handleDelete
+    handleEdit,
+    handleDelete,
+    titleEditRef
   }
 
   return (

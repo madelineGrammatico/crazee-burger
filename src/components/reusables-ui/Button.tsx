@@ -1,6 +1,6 @@
 import styled, { css, RuleSet } from 'styled-components'
 import { theme } from '../../theme'
-import { ButtonType } from '../../lib/Types'
+import { ButtonType } from '../../lib/types'
 import { ButtonStyledType } from '../../lib/interfaces'
 
 export default function Button({ label, Icon, version="primary", size="regular", ...restProps} : ButtonType ) {
