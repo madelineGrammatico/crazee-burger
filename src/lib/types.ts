@@ -34,7 +34,7 @@ export type tabConfigType = {
 export type getTabsType = tabConfigType []
 
 export type getTabsConfigType = 
-  (isCollapsed: boolean, hasClickedProduct: boolean) => getTabsType
+  (isCollapsed: boolean, hasClickedProduct?: boolean) => getTabsType
 
 export type TabType = {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void, 
