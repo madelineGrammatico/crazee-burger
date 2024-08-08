@@ -19,7 +19,7 @@ export default function Admin() {
 const AdminStyled = styled.section`
   position: absolute;
   width: 100%;
-  height: 294px;
+  height: 284px;
   left:0;
   bottom: 0%;
   right:0;
