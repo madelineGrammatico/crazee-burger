@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { theme } from '../../../../../theme';
+import Total from './Total';
+import { formatPrice } from '../../../../../utils/maths';
 
 export default function Basket() {
   return (
     <BasketStyled>
-        <div className="head">head</div>
+        <Total amountToPay={formatPrice(0)}/>
         <div className="body">body</div>
         <div className="footer">footer</div>
     </BasketStyled>
@@ -16,12 +18,7 @@ const BasketStyled = styled.div`
   flex-direction: column;
   box-shadow: ${theme.shadows.insetMedium};
 
-  .head {
-    background-color: ${theme.colors.background_dark};
-    color: ${theme.colors.primary};
-    height: 70px;
 
-  }
   .body {
     flex: 1;
     
