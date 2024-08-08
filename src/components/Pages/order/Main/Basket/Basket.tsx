@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { theme } from '../../../../../theme';
 import Total from './Total';
 import { formatPrice } from '../../../../../utils/maths';
+import Footer from './Footer';
 
 export default function Basket() {
   return (
     <BasketStyled>
         <Total amountToPay={formatPrice(0)}/>
         <div className="body">body</div>
-        <div className="footer">footer</div>
+        <Footer/>
     </BasketStyled>
   )
 }
@@ -29,8 +30,6 @@ const BasketStyled = styled.div`
 
   }
   .footer {
-    background-color: ${theme.colors.background_dark};
-    color: ${theme.colors.white}; 
-    height: 70px;
+    
   }
 `;

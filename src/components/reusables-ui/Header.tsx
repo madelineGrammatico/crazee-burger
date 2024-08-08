@@ -6,7 +6,7 @@ export default function Header({children}: {children: JSX.Element | string}) {
     <HeaderStyled>{children}</HeaderStyled>
   )
 }
-const HeaderStyled = styled.header`
+const HeaderStyled = styled.div`
   height: 70px;
   padding: 0 16px;
   background-color: ${theme.colors.background_dark};
