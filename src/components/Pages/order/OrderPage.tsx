@@ -5,48 +5,21 @@ import Main from "./Main/Main"
 import { useRef, useState } from "react"
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
-import { useNavigate } from "react-router-dom";
 import { EMPTY_PRODUCT, EMPTY_PRODUCT_DATA } from "../../../lib/constants"
-import { ProductType, tabSelectedType } from "../../../lib/types"
-import { deepClone } from "../../../utils/array"
-
-
+import { tabSelectedType } from "../../../lib/types"
+import { useMenu } from "../../../hooks/useMenu"
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
-  const navigate = useNavigate()
+  
   const titleEditRef = useRef<HTMLInputElement>(null)
-
   const [isAdmin, setIsAdmin] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [tabSelected, setTabSelected] = useState<tabSelectedType>("add")
-  const [menu, setMenu] = useState( menuSelected)
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
-    
-  const resetMenu = () => {
-    setMenu(menuSelected)
-  }
-  const handleAdd = (newProduct: ProductType) => {
-    const menuCopy = deepClone(menu)
-    const menuUpdated = [ newProduct,...menuCopy]
-    setMenu(menuUpdated)
-  }
-  const handleEdit = (productBeingUdated: ProductType) => { 
-    
-    const menuCopy = deepClone(menu)
-    const indexOfPoductToEdit = menu.findIndex((product) => product.id === productBeingUdated.id)
-    const menuUpdated = [...menuCopy]
-    menuUpdated[indexOfPoductToEdit] = productBeingUdated
-    setMenu(menuUpdated)
-   }
-
-  const handleDelete =(productId: string) => {
-    !isAdmin ? navigate("/*") : null
-    const menuCopy = deepClone(menu)
-    setMenu(menuCopy.filter((product: ProductType) => product.id !== productId))
-  }
-
+  const {menu, resetMenu, handleAdd, handleDelete, handleEdit} =  useMenu(menuSelected )
+  
   const orderContextValue = {
     isAdmin, setIsAdmin,
     isCollapsed, setIsCollapsed,

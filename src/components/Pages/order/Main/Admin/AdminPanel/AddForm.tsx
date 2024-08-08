@@ -1,20 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import { EMPTY_PRODUCT_DATA } from "../../../../../../lib/constants";
 import ProductForm from "./ProductForm";
 import SubmitButton from "./SubmitButton";
+import { useSuccesMessage } from "../../../../../../hooks/useSuccessMessage";
 
 
 export default function AddForm() {
   const { handleAdd, newProduct , setNewProduct } = useContext(OrderContext)
-  const [isSubmited, setIsSubmited] = useState(false)
-
-  const displaySuccesMessage = () => {
-    setIsSubmited(true)
-    setTimeout(()=>{
-      setIsSubmited(false)
-    }, 2000)
-  }
+  const {isSubmited, displaySuccesMessage } = useSuccesMessage(2000)
+  
   const buildProduct = () => {
     return {
       id: crypto.randomUUID(),
