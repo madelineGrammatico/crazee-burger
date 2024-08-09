@@ -16,7 +16,7 @@ export default function Menu() {
             productSelected, setProductSelected,
              setIsCollapsed,
             setTabSelected,
-            titleEditRef
+            titleEditRef, handleAddTobasket
         } = useContext(OrderContext)
 
     const handleClick = async (idCardClicked: string) => {
@@ -31,6 +31,11 @@ export default function Menu() {
         e.stopPropagation()
         handleDelete(id)
         productSelected.id === id && setProductSelected(EMPTY_PRODUCT)
+    }
+    const handleClickButton = (e: React.MouseEvent<Element>, idCardClicked: string) => {
+        e.stopPropagation()
+        const productClicked = menu .find((product) => product.id === idCardClicked)
+        productClicked && handleAddTobasket(productClicked)
     }
 
     if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
@@ -47,6 +52,7 @@ export default function Menu() {
                 isButtonDelete={isAdmin}
                 onDelete={(e)=> handleCardDelete(e, id)}
                 onClick={() => handleClick(id)}
+                onClickButton={(e) => handleClickButton(e, id)}
                 isHoverAble= {isAdmin}
                 isSelected={CheckIsProductClicked(id, productSelected.id)}
             />
