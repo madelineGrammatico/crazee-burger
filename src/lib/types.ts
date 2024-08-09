@@ -63,6 +63,7 @@ export type ButtonType = {
     onClick: (e: React.MouseEvent<HTMLDivElement>) => void,
     isHoverAble: boolean,
     isSelected: boolean,
+    onClickButton: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export type PropsTextInput = {
@@ -102,7 +103,7 @@ export type PropsImagePreviewType= {
       setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
       tabSelected: tabSelectedType;
       setTabSelected: React.Dispatch<React.SetStateAction<tabSelectedType>>
-      menu: ProductsType | [],
+      menu: ProductsType,
       newProduct: ProductSelectedType , 
       setNewProduct: React.Dispatch<React.SetStateAction<ProductSelectedType >>
       resetMenu: () => void
@@ -111,5 +112,8 @@ export type PropsImagePreviewType= {
       productSelected: ProductType , 
       setProductSelected:React.Dispatch<React.SetStateAction<ProductType >>,
       handleEdit: (productBeingUdated: ProductType ) => void,
-      titleEditRef: React.RefObject<HTMLInputElement>
+      titleEditRef: React.RefObject<HTMLInputElement>,
+      basket: ProductsType, 
+      handleAddTobasket:(newProduct: ProductType) => void, 
+      handleDeleteInBasket: (productId: string) => void,
     }
