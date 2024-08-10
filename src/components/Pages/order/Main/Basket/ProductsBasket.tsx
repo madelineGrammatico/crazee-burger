@@ -3,7 +3,7 @@ import { ProductType } from '../../../../../lib/types';
 import EmptyBasket from './EmptyBasket';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
-import CardVertical from './CardVertical';
+import HorizontalCard from './HorizontalCard';
 
 export default function ProductsBasket() {
   const { basket, handleDeleteInBasket } = useContext(OrderContext)
@@ -17,7 +17,7 @@ export default function ProductsBasket() {
   return (
     <ProductBasketStyled>
       { basket.map((product: ProductType)=> 
-        <CardVertical 
+        <HorizontalCard 
         product={product}
         onDelete={(e)=>handleDelete(e, product.id)}
         key={product.id}

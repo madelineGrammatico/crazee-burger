@@ -6,12 +6,12 @@ import { DEFAULT_IMAGE } from '../../../../../lib/constants';
 import Button from '../../../../reusables-ui/Button';
 import { IoTrashBin } from 'react-icons/io5';
 
-export default function CardVertical({product, onDelete}: {
+export default function HorizontalCard({product, onDelete}: {
     product: ProductType,
     onDelete: (e: React.MouseEvent<HTMLButtonElement>)=> void
 }) {
   return (
-    <CardVerticalStyled className='card--horizontal' key={product.id}>
+    <HorizontalCardStyled className='card--horizontal' key={product.id}>
           <img src={product.imageSource? product.imageSource : DEFAULT_IMAGE }/>
           <span className='title'>{product.title}</span>
           <span className="price">{product.price}</span>
@@ -25,10 +25,10 @@ export default function CardVertical({product, onDelete}: {
               onClick={onDelete}
             />
           </span>
-     </CardVerticalStyled>
+     </HorizontalCardStyled>
   )
 }
-const CardVerticalStyled = styled.div`
+const HorizontalCardStyled = styled.div`
   
   background-color: ${theme.colors.white};
     position: relative;
