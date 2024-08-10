@@ -33,9 +33,4 @@ const ProductBasketStyled = styled.div`
     gap: 20px;
     overflow-y: scroll;
     padding: 16px;
-
-
-    .card--horizontal {
-    }
-    
 `;

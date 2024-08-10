@@ -6,9 +6,8 @@ import { ButtonStyledType } from '../../lib/interfaces'
 export default function Button({ label, Icon, version="primary", size="regular", ...restProps} : ButtonType ) {
   return (
     <ButtonStyled version={version} size={size} {...restProps}>
-      <span>{label }</span>
+      {label && <span>{label }</span>}
       {Icon &&  <div className="icon"><Icon /></div>}
-      
     </ButtonStyled>
   )
 }
@@ -19,7 +18,7 @@ const getExtraPrimary = () => css`
   font-size: ${ theme.fonts.size.SM};
 
   &:hover:not(:disabled) {
-    color: ${ theme.colors.primary };
+    color: ${ theme.colors.primary};
     border: 1px solid ${ theme.colors.primary };
   }
   &:active{
@@ -42,6 +41,27 @@ const getExtraSuccess  = () => css`
   }
 
 `
+const getExtraWarning  = () => css`
+  background-color: ${ theme.colors.red };
+  border: 1px solid ${ theme.colors.red };
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 57px;
+  border-radius: inherit;
+  
+  &:hover:not(:disabled) {
+    color: ${ theme.colors.white };
+    background-color: ${ theme.colors.red };
+    border: 1px solid ${ theme.colors.red };
+  }
+  &:active{
+    background-color: ${ theme.colors.red };
+    border: 1px solid ${ theme.colors.red };
+  }
+
+`
 // const ExtraSizeLarge  = () =>  css`
 //   height: 53px;
 //   padding:  0 26px;
@@ -60,21 +80,26 @@ const getExtraSuccess  = () => css`
 const HEIGHT = {
   large:"53px",
   regular:"34px",
-  slim:"34px"
+  slim:"34px",
+  full: "100%",
 }
+
 const PADDING = {
   large:"0 26px",
   regular:"0 26px",
-  slim:"0 29px"
+  slim:"0 29px",
+  full: "0"
 }
 const FONT_SIZE = {
   large: theme.fonts.size.SM,
   regular: theme.fonts.size.XS,
-  slim: theme.fonts.size.XS
+  slim: theme.fonts.size.XS,
+  full: theme.fonts.size.SM,
 }
 const EXTRA_STYLE = {
   primary: getExtraPrimary,
   success: getExtraSuccess,
+  warning: getExtraWarning
 }
 /* const SIZESOPTIONS = {
   large: ExtraSizeLarge,
@@ -82,15 +107,15 @@ const EXTRA_STYLE = {
   slim: ExtraSizeSlim
 } */
 
-const getEtraButtonStyle: (version: "primary" | "success") => () => RuleSet<object> = (version) => {
+const getEtraButtonStyle: (version: "primary" | "success" | "warning") => () => RuleSet<object> = (version) => {
   return EXTRA_STYLE[version]
 }
 
-const getBaseStyle =(size: "large" | "regular" | "slim") => css`
+const getBaseStyle =(size: "large" | "regular" | "slim" | "full") => css`
    height: ${HEIGHT[size]};
   padding: ${PADDING[size]};
   font-size: ${FONT_SIZE[size]};
-  width: fit-content;
+  width: "fit-content";
   position: relative;
   display: inline-flex;
   justify-content: center;

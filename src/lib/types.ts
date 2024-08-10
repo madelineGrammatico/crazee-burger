@@ -47,10 +47,10 @@ export type TabType = {
 
 // reusable-ui
 export type ButtonType = {
-    label: string,
+    label?: string,
     Icon?: IconType,
-    version?: "primary" | "success",
-    size?: "large" | "regular" | "slim"
+    version?: "primary" | "success" | "warning",
+    size?: "large" | "regular" | "slim" | "full"
     // Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
   } & ComponentPropsWithoutRef<"button">
   

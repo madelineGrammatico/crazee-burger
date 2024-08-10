@@ -16,7 +16,6 @@ const FooterStyled = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: sticky;
   background-color: ${theme.colors.background_dark};
   
   span {

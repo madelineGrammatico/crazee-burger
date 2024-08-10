@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { theme } from '../../../../../theme';
 import { ProductType } from '../../../../../lib/types';
 import { DEFAULT_IMAGE } from '../../../../../lib/constants';
+import Button from '../../../../reusables-ui/Button';
+import { IoTrashBin } from 'react-icons/io5';
 
 export default function CardVertical({product, onDelete}: {
     product: ProductType,
@@ -15,7 +17,13 @@ export default function CardVertical({product, onDelete}: {
           <span className="price">{product.price}</span>
           <span className="quantity-field">
             <span className="quantity">x {product.quantity}</span>
-            <button className="delete" onClick={onDelete}>sup</button>
+            <Button 
+              Icon={IoTrashBin}
+              version="warning"
+              size="full"
+              className="delete" 
+              onClick={onDelete}
+            />
           </span>
      </CardVerticalStyled>
   )
@@ -23,13 +31,15 @@ export default function CardVertical({product, onDelete}: {
 const CardVerticalStyled = styled.div`
   
   background-color: ${theme.colors.white};
+    position: relative;
       padding: 15px;
       display: grid;
-      grid-template-columns: auto 2fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: auto 3fr 1fr;
+      grid-template-rows: auto auto;
       gap: 10px;
       border-radius: ${theme.borderRadius.round};
       box-sizing: border-box;
+      overflow: hidden;
       img {
         height: 70px;
         width: 86px;
@@ -52,7 +62,7 @@ const CardVerticalStyled = styled.div`
         font-size: ${theme.fonts.size.SM};
         font-weight: ${theme.fonts.weights.regular};
       }
-      .quantity {
+      .quantity-field {
         grid-area: 1 / 3 / 3 / 4;
         display: flex;
         justify-content: center;
@@ -60,5 +70,26 @@ const CardVerticalStyled = styled.div`
         color: ${theme.colors.primary};
         font-size: ${theme.fonts.size.SM};
         font-weight: ${theme.fonts.weights.regular};
+        width: 100%;
+        height: 100%;
+
+        .quantity {
+            margin:0;
+            padding:0;
+          }
+        .delete {
+          display: none;
+          
+          
+        }
+
+        &:hover{
+          .quantity {
+            display: none;
+          }
+          .delete {
+          display: inherit;
+        }
+        }
       }
 `;
