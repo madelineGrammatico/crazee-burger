@@ -5,6 +5,7 @@ import { ProductType } from '../../../../../lib/types';
 import { DEFAULT_IMAGE } from '../../../../../lib/constants';
 import Button from '../../../../reusables-ui/Button';
 import { IoTrashBin } from 'react-icons/io5';
+import { formatPrice } from '../../../../../utils/maths';
 
 export default function HorizontalCard({product, onDelete}: {
     product: ProductType,
@@ -12,20 +13,20 @@ export default function HorizontalCard({product, onDelete}: {
 }) {
   return (
     <HorizontalCardStyled className='card--horizontal' key={product.id}>
-          <img src={product.imageSource? product.imageSource : DEFAULT_IMAGE }/>
-          <span className='title'>{product.title}</span>
-          <span className="price">{product.price}</span>
-          <span className="quantity-field">
-            <span className="quantity">x {product.quantity}</span>
-            <Button 
-              Icon={IoTrashBin}
-              version="warning"
-              size="full"
-              className="delete" 
-              onClick={onDelete}
-            />
-          </span>
-     </HorizontalCardStyled>
+      <img src={product.imageSource? product.imageSource : DEFAULT_IMAGE }/>
+      <span className='title'>{product.title}</span>
+      <span className="price">{formatPrice(product.price)}</span>
+      <span className="quantity-field">
+        <span className="quantity">x {product.quantity}</span>
+        <Button 
+          Icon={IoTrashBin}
+          version="warning"
+          size="full"
+          className="delete" 
+          onClick={onDelete}
+        />
+      </span>
+    </HorizontalCardStyled>
   )
 }
 const HorizontalCardStyled = styled.div`
