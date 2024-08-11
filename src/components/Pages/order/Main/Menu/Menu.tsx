@@ -16,7 +16,8 @@ export default function Menu() {
             productSelected, setProductSelected,
              setIsCollapsed,
             setTabSelected,
-            titleEditRef, handleAddTobasket
+            titleEditRef, handleAddTobasket,
+            handleDeleteInBasket
         } = useContext(OrderContext)
 
     const handleClick = async (idCardClicked: string) => {
@@ -31,6 +32,7 @@ export default function Menu() {
         e.stopPropagation()
         handleDelete(id)
         productSelected.id === id && setProductSelected(EMPTY_PRODUCT)
+        handleDeleteInBasket(id)
     }
     const handleClickButton = (e: React.MouseEvent<Element>, idCardClicked: string) => {
         e.stopPropagation()
