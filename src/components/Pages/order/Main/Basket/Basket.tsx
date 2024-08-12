@@ -24,5 +24,5 @@ const BasketStyled = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: ${theme.shadows.insetMedium};
-
+  overflow: hidden;
 `;

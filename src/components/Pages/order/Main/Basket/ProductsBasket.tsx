@@ -4,6 +4,7 @@ import EmptyBasket from './EmptyBasket';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import HorizontalCard from './HorizontalCard';
+import { formatPrice } from '../../../../../utils/maths';
 
 export default function ProductsBasket() {
   const { basket, handleDeleteInBasket } = useContext(OrderContext)
@@ -18,7 +19,8 @@ export default function ProductsBasket() {
     <ProductBasketStyled>
       { basket.map((product: ProductType)=> 
         <HorizontalCard 
-        product={product}
+        {...product}
+        price={formatPrice(product.price)}
         onDelete={(e)=>handleDelete(e, product.id)}
         key={product.id}
       />
@@ -30,7 +32,8 @@ const ProductBasketStyled = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column; 
+    overflow-y: auto;
     gap: 20px;
-    overflow-y: scroll;
+    
     padding: 16px;
 `;

@@ -22,4 +22,6 @@ const TotalStyled = styled.div`
   font-size: ${theme.fonts.size.P4};
   font-weight: ${theme.fonts.weights.bold};
   letter-spacing: 2px;
+  position: sticky;
+  top: 0;
 `;
