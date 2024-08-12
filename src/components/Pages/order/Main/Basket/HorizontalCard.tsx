@@ -51,6 +51,8 @@ const HorizontalCardStyled = styled.div`
   gap: 0 10px;
   border-radius: ${theme.borderRadius.round};
   box-sizing: border-box;
+  box-shadow: ${theme.shadows.light};
+
   img {
     height: 70px;
     width: 86px;
