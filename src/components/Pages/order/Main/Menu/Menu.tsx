@@ -54,7 +54,7 @@ export default function Menu() {
                 isButtonDelete={isAdmin}
                 onDelete={(e)=> handleCardDelete(e, id)}
                 onClick={() => handleClick(id)}
-                onClickButton={(e) => handleClickButton(e, id)}
+                onAdd={(e) => handleClickButton(e, id)}
                 isHoverAble= {isAdmin}
                 isSelected={CheckIsProductClicked(id, productSelected.id)}
             />

@@ -63,7 +63,7 @@ export type ButtonType = {
     onClick: (e: React.MouseEvent<HTMLDivElement>) => void,
     isHoverAble: boolean,
     isSelected: boolean,
-    onClickButton: (e: React.MouseEvent<HTMLButtonElement>) => void
+    onAdd: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export type PropsTextInput = {

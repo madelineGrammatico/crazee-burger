@@ -16,7 +16,7 @@ export default function Card({
     onClick, 
     isHoverAble,
     isSelected,
-    onClickButton
+    onAdd
   } : CardType) {
   const image = imageSource ? imageSource : DEFAULT_IMAGE
 
@@ -35,7 +35,7 @@ export default function Card({
               <Button 
                 label={"Ajouter"} 
                 className="Button--add"
-                onClick={onClickButton}/>
+                onClick={onAdd}/>
             </div>
           </div>
         </div>
