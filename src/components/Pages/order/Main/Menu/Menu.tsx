@@ -8,6 +8,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin.tsx";
 import EmptyMenuClient from "./EmptyMenuClient.tsx";
 import { CheckIsProductClicked } from "./helper.ts";
 import { EMPTY_PRODUCT } from "../../../../../lib/constants.ts";
+import { findProductIn } from "../../../../../utils/array.ts";
 
 export default function Menu() {
     const { menu,
@@ -22,7 +23,7 @@ export default function Menu() {
 
     const handleClick = async (idCardClicked: string) => {
         if (!isAdmin)  return 
-        const productClicked = menu .find((product) => product.id === idCardClicked)
+        const productClicked = findProductIn(menu, idCardClicked)
         productClicked &&  await setProductSelected(productClicked)
         await setIsCollapsed(false)
         await setTabSelected("edit")
@@ -36,7 +37,7 @@ export default function Menu() {
     }
     const handleClickButton = (e: React.MouseEvent<Element>, idCardClicked: string) => {
         e.stopPropagation()
-        const productClicked = menu .find((product) => product.id === idCardClicked)
+        const productClicked = findProductIn(menu, idCardClicked)
         productClicked && handleAddTobasket(productClicked)
     }
 
