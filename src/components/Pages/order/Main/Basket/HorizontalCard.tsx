@@ -48,7 +48,7 @@ const HorizontalCardStyled = styled.div`
   display: grid;
   grid-template-columns: auto 3fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 0 10px;
+  gap: 0 21px;
   border-radius: ${theme.borderRadius.round};
   box-sizing: border-box;
   box-shadow: ${theme.shadows.light};
