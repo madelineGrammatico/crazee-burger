@@ -20,12 +20,11 @@ const getExtraPrimary = () => css`
   &:hover:not(:disabled) {
     color: ${ theme.colors.primary};
     border: 1px solid ${ theme.colors.primary };
+    &:active{
+      background-color: ${ theme.colors.primary };
+      border: 1px solid ${ theme.colors.primary };
+    }
   }
-  &:active{
-    background-color: ${ theme.colors.primary };
-    border: 1px solid ${ theme.colors.primary };
-  }
-
 `
 const getExtraSuccess  = () => css`
   background-color: ${ theme.colors.success };
@@ -34,12 +33,11 @@ const getExtraSuccess  = () => css`
   &:hover:not(:disabled) {
     color: ${ theme.colors.success };
     border: 1px solid ${ theme.colors.success };
+    &:active{
+      background-color: ${ theme.colors.success };
+      border: 1px solid ${ theme.colors.success };
+    }
   }
-  &:active{
-    background-color: ${ theme.colors.success };
-    border: 1px solid ${ theme.colors.success };
-  }
-
 `
 const getExtraWarning  = () => css`
   background-color: ${ theme.colors.red };
@@ -48,19 +46,19 @@ const getExtraWarning  = () => css`
   top: 0;
   right: 0;
   bottom: 0;
-  width: 57px;
+  width: 76px;
   border-radius: inherit;
   
-  &:hover:not(:disabled) {
-    color: ${ theme.colors.white };
+  &:hover:not(:disabled){
+    color: ${ theme.colors.dark };
     background-color: ${ theme.colors.red };
     border: 1px solid ${ theme.colors.red };
+    &:active{
+      color: ${ theme.colors.white };
+      background-color: ${ theme.colors.red };
+      border: 1px solid ${ theme.colors.red };
+    }
   }
-  &:active{
-    background-color: ${ theme.colors.red };
-    border: 1px solid ${ theme.colors.red };
-  }
-
 `
 // const ExtraSizeLarge  = () =>  css`
 //   height: 53px;
@@ -130,7 +128,7 @@ const getBaseStyle =(size: "large" | "regular" | "slim" | "full") => css`
   text-decoration: none;
   line-height: 1;
   
-  &:hover:not(:disabled) {
+  &:hover{
     background-color: ${ theme.colors.white };
     transition: all 200ms ease-out;
   }

@@ -64,6 +64,7 @@ const HorizontalCardStyled = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    user-select: none;
     font-family: ${theme.fonts.family.stylish};
     color: ${theme.colors.dark};
     font-size: ${theme.fonts.size.P3};
@@ -82,6 +83,7 @@ const HorizontalCardStyled = styled.div`
     font-size: ${theme.fonts.size.SM};
     font-weight: ${theme.fonts.weights.regular};
     line-height:20px;
+    user-select: none;
   }
   .quantity-field {
     grid-area: 1 / 3 / 3 / 4;
@@ -91,12 +93,14 @@ const HorizontalCardStyled = styled.div`
     color: ${theme.colors.primary};
     font-size: ${theme.fonts.size.SM};
     font-weight: ${theme.fonts.weights.regular};
+    user-select: none;
     width: 100%;
     height: 100%;
 
     .quantity {
         margin:0;
         padding:0;
+        user-select: none;
       }
     .delete {
       display: none;
@@ -104,8 +108,8 @@ const HorizontalCardStyled = styled.div`
                     ${theme.borderRadius.round} 0;
       
     }
-
-    &:hover{
+  }
+  &:hover{
       .quantity {
         display: none;
       }
@@ -113,5 +117,4 @@ const HorizontalCardStyled = styled.div`
       display: inherit;
     }
     }
-  }
 `;
