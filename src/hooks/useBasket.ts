@@ -9,13 +9,13 @@ export const useBasket = () => {
     const handleAddTobasket = async(newProduct: ProductType) => {
         const basketCopy = deepClone(basket)
         let basketUpdated 
-        const productInBasket = findProductIn(basketCopy, newProduct.id)
-        if (productInBasket) {
-            productInBasket.quantity +=1
+        const isProductInBasket = findProductIn(basketCopy, newProduct.id)
+        if (isProductInBasket) {
+            isProductInBasket.quantity +=1
             basketUpdated = [ ...basketCopy]
         } else {
             const productToAdd = deepClone(newProduct) 
-            productToAdd.quantity += 1
+            productToAdd.quantity = 1
             basketUpdated = [ productToAdd, ...basketCopy]
         }
         setBasket(basketUpdated)
