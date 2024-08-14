@@ -1,6 +1,6 @@
 export interface ButtonStyledType {
-    version: "primary" | "success",
-    size: "large" | "regular" | "slim"
+    version: "primary" | "success" | "warning",
+    size: "large" | "regular" | "slim" | "full"
   }
 
 export interface TextInputStyledProps {

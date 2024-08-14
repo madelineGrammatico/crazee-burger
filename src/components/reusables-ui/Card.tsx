@@ -15,7 +15,8 @@ export default function Card({
     onDelete, 
     onClick, 
     isHoverAble,
-    isSelected
+    isSelected,
+    onAdd
   } : CardType) {
   const image = imageSource ? imageSource : DEFAULT_IMAGE
 
@@ -34,7 +35,7 @@ export default function Card({
               <Button 
                 label={"Ajouter"} 
                 className="Button--add"
-                onClick={(e) => e.stopPropagation()}/>
+                onClick={onAdd}/>
             </div>
           </div>
         </div>

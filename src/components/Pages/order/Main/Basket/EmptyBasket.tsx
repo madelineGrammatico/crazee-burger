@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { theme } from '../../../../../theme';
 
-export default function ProductBasket() {
+export default function EmptyBasket() {
   return (
-    <ProductBasketStyled>
+    <EmptyBasketStyled>
         <span className="emptyMessage">Votre commande est vide.</span>
-    </ProductBasketStyled>
+    </EmptyBasketStyled>
   )
 }
-const ProductBasketStyled = styled.div`
+const EmptyBasketStyled = styled.div`
     flex: 1;
     
     overflow-y: scroll;

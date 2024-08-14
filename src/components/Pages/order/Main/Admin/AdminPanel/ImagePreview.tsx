@@ -19,7 +19,7 @@ export default function ImagePreview({title, imageSource}: PropsImagePreviewType
 }
 const  ImagePreviewStyled= styled.div`
     width: 215px;
-    height: 120px;
+    height: 131.5px;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -40,8 +40,10 @@ const  ImagePreviewStyled= styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        
         color: ${theme.colors.greyLight};
         border: 1px solid ${theme.colors.greyLight};
+        border-radius: ${theme.borderRadius.round};
     }
 
 `;

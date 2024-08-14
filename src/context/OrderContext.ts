@@ -36,9 +36,20 @@ const OrderContext = createContext<OrderContextType>({
       isAvailable: true,
       isAdvertised: false,
     },
-     setProductSelected: () => {},
-     handleEdit: () => {},
-     titleEditRef: { current: null } 
+    setProductSelected: () => {},
+    handleEdit: () => {},
+    titleEditRef: { current: null } ,
+    basket: [{
+      id: "9",
+      imageSource: "/images/wedges1.png",
+      title: "Crispy Potatoes",
+      price: 3.7,
+      quantity: 0,
+      isAvailable: true,
+      isAdvertised: false,
+    }],
+    handleAddTobasket:() => {}, 
+    handleDeleteInBasket:() => {},
 })
 
 export default OrderContext;

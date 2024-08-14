@@ -19,13 +19,13 @@ export default function AdminPanel() {
 }
 const AdminPanelStyled = styled.div`
   flex: 1;
-  height:250px;
+  height:240px;
   box-sizing: border-box;
 
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 31px 20px 49px 52px;
+  padding: 31px 20px 31px 52px;
 
 
   background: ${theme.colors.white};

@@ -8,6 +8,7 @@ import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { EMPTY_PRODUCT, EMPTY_PRODUCT_DATA } from "../../../lib/constants"
 import { tabSelectedType } from "../../../lib/types"
 import { useMenu } from "../../../hooks/useMenu"
+import { useBasket } from "../../../hooks/useBasket"
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
@@ -19,6 +20,7 @@ export default function OrderPage() {
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
   const {menu, resetMenu, handleAdd, handleDelete, handleEdit} =  useMenu(menuSelected )
+  const { basket, handleAddTobasket, handleDeleteInBasket } = useBasket()
   
   const orderContextValue = {
     isAdmin, setIsAdmin,
@@ -31,7 +33,10 @@ export default function OrderPage() {
     handleAdd,
     handleEdit,
     handleDelete,
-    titleEditRef
+    titleEditRef,
+    basket, 
+    handleAddTobasket, 
+    handleDeleteInBasket
   }
 
   return (

@@ -45,14 +45,14 @@ const extraNormalWhiteStyle = css`
 `
 
 const extraSlimGreyStyle= css`
-  height: 35px;
+  height: 38.5px;
   padding: 0 16px 0 24px;
   margin:0;
   background-color: ${theme.colors.background_white};
 
   input{
     background-color: ${theme.colors.background_white};
-
+    font-size: 13px;
     &::placeholder{
       background-color: ${theme.colors.background_white};
     }
@@ -65,8 +65,6 @@ const extraStyle = {
 }
 
 const TextInputStyled  = styled.div<TextInputStyledProps>` 
-  ${({version}) => extraStyle[version]};
-
   display: flex;
   justify-content: start;
   align-items: center;
@@ -94,5 +92,6 @@ const TextInputStyled  = styled.div<TextInputStyledProps>`
       color: ${theme.colors.greyMedium};
     }
   }
-  
+
+  ${({version}) => extraStyle[version]};
 `
