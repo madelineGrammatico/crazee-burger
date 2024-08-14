@@ -4,14 +4,14 @@ import { deepClone, findProductIn } from "../utils/array"
 import { ProductType } from "../lib/types"
 
 export const useBasket = () => { 
-    const [basket, setBasket] = useState(fakeBasket.EMPTY)
+    const [basket, setBasket] = useState(fakeBasket.LARGE_WEIRD)
    
     const handleAddTobasket = async(newProduct: ProductType) => {
         const basketCopy = deepClone(basket)
         let basketUpdated 
-        const isProductInBasket = findProductIn(basketCopy, newProduct.id)
-        if (isProductInBasket) {
-            isProductInBasket.quantity +=1
+        const productInBasket = findProductIn(basketCopy, newProduct.id)
+        if (productInBasket) {
+            productInBasket.quantity +=1
             basketUpdated = [ ...basketCopy]
         } else {
             const productToAdd = deepClone(newProduct) 

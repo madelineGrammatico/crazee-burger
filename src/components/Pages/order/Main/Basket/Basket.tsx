@@ -11,9 +11,13 @@ import EmptyBasket from './EmptyBasket';
 export default function Basket() {
   const { basket } = useContext(OrderContext)
   const isbasketEmpty =  basket.length === 0 
+  const amondToPaid: number = basket.reduce((total, product)=> {
+    const currentValue = product.price * product.quantity
+    return currentValue? total + currentValue : total
+  }, 0)
   return (
     <BasketStyled>
-        <Total amountToPay={formatPrice(0)}/>
+        <Total amountToPay={formatPrice(amondToPaid)}/>
         { isbasketEmpty? <EmptyBasket/> : <ProductsBasket/> }
         <Footer/>
     </BasketStyled>
