@@ -5,9 +5,10 @@ import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import HorizontalCard from './HorizontalCard';
 import { formatPrice } from '../../../../../utils/maths';
+import { CheckIsProductClicked } from '../Menu/helper';
 
 export default function ProductsBasket() {
-  const { basket, handleDeleteInBasket } = useContext(OrderContext)
+  const { basket, handleDeleteInBasket, isAdmin, productSelected} = useContext(OrderContext)
 
  const handleDelete = ( e: React.MouseEvent<HTMLButtonElement>, productToDelete: string) => {
   e.preventDefault();
@@ -22,6 +23,8 @@ export default function ProductsBasket() {
         {...product}
         price={formatPrice(product.price)}
         onDelete={(e)=>handleDelete(e, product.id)}
+        $isHoverAble={isAdmin}
+        $isSelected={CheckIsProductClicked(product.id, productSelected.id)}
         key={product.id}
       />
       )}

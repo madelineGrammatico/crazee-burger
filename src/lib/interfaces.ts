@@ -11,3 +11,7 @@ export interface TextInputStyledProps {
     $isHoverAble: boolean,
     $isSelected: boolean,
   }
+  export interface HorizontalCardStyledProps {
+    $isHoverAble: boolean,
+    $isSelected: boolean,
+  }

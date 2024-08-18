@@ -1,9 +1,10 @@
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '../../../../../theme';
 import { DEFAULT_IMAGE } from '../../../../../lib/constants';
 import Button from '../../../../reusables-ui/Button';
 import { IoTrashBin } from 'react-icons/io5';
+import { HorizontalCardStyledProps } from '../../../../../lib/interfaces';
 
 export default function HorizontalCard({ 
   onDelete, 
@@ -12,6 +13,8 @@ export default function HorizontalCard({
   title,
   price,
   quantity,
+  $isHoverAble=false,
+  $isSelected=false
  }: {
     onDelete: (e: React.MouseEvent<HTMLButtonElement>)=> void
     id: string;
@@ -21,26 +24,34 @@ export default function HorizontalCard({
     quantity: number;
     isAvailable?: boolean;
     isAdvertised?: boolean;
+    $isHoverAble: boolean,
+    $isSelected: boolean
 }) {
   return (
-    <HorizontalCardStyled className='card--horizontal' key={id}>
+    <HorizontalCardStyled 
+      className='card--horizontal' 
+      key={id} 
+      $isHoverAble={$isHoverAble}
+      $isSelected={$isSelected}
+    >
       <img src={imageSource? imageSource : DEFAULT_IMAGE }/>
       <span className='title'>{title}</span>
       <span className="price">{price}</span>
       <span className="quantity-field">
-        <span className="quantity">x {quantity}</span>
-        <Button 
-          Icon={IoTrashBin}
-          version="warning"
-          size="full"
-          className="delete" 
-          onClick={onDelete}
-        />
+      <span className="quantity">x {quantity}</span>
+      <Button 
+        Icon={IoTrashBin}
+        version="warning"
+        size="full"
+        className="delete" 
+        onClick={onDelete}
+      />
       </span>
     </HorizontalCardStyled>
   )
 }
-const HorizontalCardStyled = styled.div`
+
+const HorizontalCardStyled = styled.div<HorizontalCardStyledProps>`
   height: 86px;
   background-color: ${theme.colors.white};
   position: relative;
@@ -117,4 +128,12 @@ const HorizontalCardStyled = styled.div`
       display: inherit;
     }
     }
+    ${({ $isHoverAble, $isSelected})=> $isHoverAble && $isSelected && selectedStyle};
 `;
+
+const selectedStyle = css`
+    background-color:  ${theme.colors.primary};
+  .price, .quantity {
+    color: ${theme.colors.white};
+  }
+`
