@@ -6,6 +6,7 @@ import OrderContext from '../../../../../context/OrderContext';
 import HorizontalCard from './HorizontalCard';
 import { formatPrice } from '../../../../../utils/maths';
 import { CheckIsProductClicked } from '../Menu/helper';
+import { isEmptyArray } from '../../../../../utils/array';
 
 export default function ProductsBasket() {
   const { basket, handleDeleteInBasket, isAdmin, productSelected} = useContext(OrderContext)
@@ -15,7 +16,7 @@ export default function ProductsBasket() {
   handleDeleteInBasket(productToDelete)
  }
 
-  if(basket.length === 0) return <EmptyBasket/>
+  if(isEmptyArray(basket)) return <EmptyBasket/>
   return (
     <ProductBasketStyled>
       { basket.map((product: ProductType)=> 

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { fakeBasket } from "../fakeData/fakeBasket"
-import { deepClone, filterProduct, findProductIn } from "../utils/array"
+import { deepClone, removeProductinById, findProductById } from "../utils/array"
 import { ProductType } from "../lib/types"
 
 export const useBasket = () => { 
@@ -9,7 +9,7 @@ export const useBasket = () => {
     const handleAddTobasket = async(newProduct: ProductType) => {
         const basketCopy = deepClone(basket)
         let basketUpdated 
-        const productInBasket = findProductIn(basketCopy, newProduct.id)
+        const productInBasket = findProductById(basketCopy, newProduct.id)
         if (productInBasket) {
             productInBasket.quantity +=1
             basketUpdated = [ ...basketCopy]
@@ -23,7 +23,7 @@ export const useBasket = () => {
 
     const handleDeleteInBasket =(productId: string) => {
         const basketCopy = deepClone(basket)
-        const basketUpdated = filterProduct(basketCopy, productId)
+        const basketUpdated = removeProductinById(basketCopy, productId)
         setBasket(basketUpdated)
     }
     return { basket, handleAddTobasket, handleDeleteInBasket }

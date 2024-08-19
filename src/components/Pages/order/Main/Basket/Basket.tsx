@@ -7,10 +7,11 @@ import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
 import ProductsBasket from './ProductsBasket';
 import EmptyBasket from './EmptyBasket';
+import { isEmptyArray } from '../../../../../utils/array';
 
 export default function Basket() {
   const { basket } = useContext(OrderContext)
-  const isbasketEmpty =  basket.length === 0 
+  const isbasketEmpty =  isEmptyArray(basket)
   const amondToPaid: number = basket.reduce((total, product)=> {
     const currentValue = product.price * product.quantity
     return currentValue? total + currentValue : total
