@@ -24,7 +24,7 @@ export default function ProductsBasket() {
         {...product}
         price={formatPrice(product.price)}
         onDelete={(e)=>handleDelete(e, product.id)}
-        $isHoverAble={isAdmin}
+        $isClickable={isAdmin}
         $isSelected={CheckIsProductClicked(product.id, productSelected.id)}
         key={product.id}
       />

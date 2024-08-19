@@ -13,8 +13,8 @@ export default function HorizontalCard({
   title,
   price,
   quantity,
-  $isHoverAble=false,
-  $isSelected=false
+  $isClickable,
+  $isSelected 
  }: {
     onDelete: (e: React.MouseEvent<HTMLButtonElement>)=> void
     id: string;
@@ -24,14 +24,14 @@ export default function HorizontalCard({
     quantity: number;
     isAvailable?: boolean;
     isAdvertised?: boolean;
-    $isHoverAble: boolean,
+    $isClickable: boolean,
     $isSelected: boolean
 }) {
   return (
     <HorizontalCardStyled 
       className='card--horizontal' 
       key={id} 
-      $isHoverAble={$isHoverAble}
+      $isClickable={$isClickable}
       $isSelected={$isSelected}
     >
       <img src={imageSource? imageSource : DEFAULT_IMAGE }/>
@@ -63,7 +63,8 @@ const HorizontalCardStyled = styled.div<HorizontalCardStyledProps>`
   border-radius: ${theme.borderRadius.round};
   box-sizing: border-box;
   box-shadow: ${theme.shadows.light};
-
+  cursor: ${({ $isClickable}) => $isClickable? "pointer" : "auto"};
+  
   img {
     height: 70px;
     width: 86px;
@@ -128,11 +129,12 @@ const HorizontalCardStyled = styled.div<HorizontalCardStyledProps>`
       display: inherit;
     }
     }
-    ${({ $isHoverAble, $isSelected})=> $isHoverAble && $isSelected && selectedStyle};
+    ${({ $isClickable, $isSelected})=> $isClickable && $isSelected && selectedStyle};
 `;
 
 const selectedStyle = css`
     background-color:  ${theme.colors.primary};
+    cursor: pointer;
   .price, .quantity {
     color: ${theme.colors.white};
   }
