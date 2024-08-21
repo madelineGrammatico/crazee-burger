@@ -1,6 +1,6 @@
-import { ProductsType } from "../lib/types"
+import { BasketType } from "../lib/types"
 
-export const EMPTY: ProductsType = []
+export const EMPTY: BasketType = []
 
 export const SMALL = [
   {

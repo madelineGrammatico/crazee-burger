@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { fakeBasket } from "../fakeData/fakeBasket"
 import { deepClone, removeProductinById, findProductById } from "../utils/array"
-import { ProductsType, ProductType } from "../lib/types"
+import { BasketType, ProductsType, ProductType } from "../lib/types"
 
 export const useBasket = () => { 
     const [basket, setBasket] = useState(fakeBasket.EMPTY)
@@ -13,9 +13,9 @@ export const useBasket = () => {
             incrementQuantityProduct(productInBasket, basketCopy)
             return
         }
-        createBasketProduct(newProduct.id, setBasket)
+        createBasketProduct(newProduct.id, basketCopy)
     }
-    function createBasketProduct(idToAdd: string, basketCopy: ProductsType) {
+    function createBasketProduct(idToAdd: string, basketCopy: BasketType) {
         const productToAdd = {id: idToAdd, quantity: 1}
         const basketUpdated = [productToAdd, ...basketCopy]
         setBasket(basketUpdated)

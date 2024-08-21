@@ -43,7 +43,12 @@ export type TabType = {
     Icon?: IconType
 } & ComponentPropsWithoutRef<"button">
 
+export type ProductBasketType = {
+  id: string;
+  quantity: number
+}
 
+export type BasketType = ProductBasketType[]
 
 // reusable-ui
 export type ButtonType = {
@@ -113,7 +118,7 @@ export type PropsImagePreviewType= {
       setProductSelected:React.Dispatch<React.SetStateAction<ProductType >>,
       handleEdit: (productBeingUdated: ProductType ) => void,
       titleEditRef: React.RefObject<HTMLInputElement>,
-      basket: ProductsType, 
-      handleAddTobasket:(newProduct: ProductType) => void, 
+      basket: BasketType, 
+      handleAddTobasket:(newProduct: ProductBasketType) => void, 
       handleDeleteInBasket: (productId: string) => void,
     }
