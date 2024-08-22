@@ -5,6 +5,7 @@ import { DEFAULT_IMAGE } from '../../../../../lib/constants';
 import Button from '../../../../reusables-ui/Button';
 import { IoTrashBin } from 'react-icons/io5';
 import { HorizontalCardStyledProps } from '../../../../../lib/interfaces';
+import { formatPrice } from '../../../../../utils/maths';
 
 export default function HorizontalCard({ 
   onDelete, 
@@ -20,7 +21,7 @@ export default function HorizontalCard({
     id: string;
     imageSource: string;
     title: string;
-    price: string;
+    price: number;
     quantity: number;
     isAvailable?: boolean;
     isAdvertised?: boolean;
@@ -36,7 +37,7 @@ export default function HorizontalCard({
     >
       <img src={imageSource? imageSource : DEFAULT_IMAGE }/>
       <span className='title'>{title}</span>
-      <span className="price">{price}</span>
+      <span className="price">{formatPrice(price)}</span>
       <span className="quantity-field">
       <span className="quantity">x {quantity}</span>
       <Button 

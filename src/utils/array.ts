@@ -1,4 +1,4 @@
-import { ProductsType} from "../lib/types"
+import { BasketType, ProductsType} from "../lib/types"
 
 export const deepClone = (array: object) => JSON.parse(JSON.stringify(array))
 
@@ -8,4 +8,4 @@ export const removeProductinById = (array: ProductsType, productId: string) => a
 
 export const findProductIndexById = (array: ProductsType, id: string) => array.findIndex(item => item.id === id)
 
-export const isEmptyArray = (array: ProductsType) => array.length === 0
+export const isEmptyArray = (array: ProductsType | BasketType) => array.length === 0
