@@ -14,6 +14,7 @@ export default function HorizontalCard({
   title,
   price,
   quantity,
+  onClick,
   $isClickable,
   $isSelected 
  }: {
@@ -23,6 +24,7 @@ export default function HorizontalCard({
     title: string;
     price: number;
     quantity: number;
+    onClick: ()=> void,
     isAvailable?: boolean;
     isAdvertised?: boolean;
     $isClickable: boolean,
@@ -34,6 +36,7 @@ export default function HorizontalCard({
       key={id} 
       $isClickable={$isClickable}
       $isSelected={$isSelected}
+      onClick={$isClickable? onClick: () => {}}
     >
       <img src={imageSource? imageSource : DEFAULT_IMAGE }/>
       <span className='title'>{title}</span>

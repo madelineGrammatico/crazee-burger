@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../../../../theme';
 import Total from './Total';
-import { calculateTotal, formatPrice } from '../../../../../utils/maths';
 import Footer from './Footer';
 import { useContext } from 'react';
 import OrderContext from '../../../../../context/OrderContext';
@@ -10,13 +9,12 @@ import EmptyBasket from './EmptyBasket';
 import { isEmptyArray } from '../../../../../utils/array';
 
 export default function Basket() {
-  const { basket, menu } = useContext(OrderContext)
-  const isbasketEmpty =  isEmptyArray(basket)
-  const amondToPaid: number = calculateTotal(basket, menu)
+  const { basket} = useContext(OrderContext)
+  
   return (
     <BasketStyled>
-        <Total amountToPay={formatPrice(amondToPaid)}/>
-        { isbasketEmpty? <EmptyBasket/> : <ProductsBasket/> }
+        <Total />
+        { isEmptyArray(basket)? <EmptyBasket/> : <ProductsBasket/> }
         <Footer/>
     </BasketStyled>
   )
