@@ -36,7 +36,7 @@ export default function HorizontalCard({
       key={id} 
       $isClickable={$isClickable}
       $isSelected={$isSelected}
-      onClick={$isClickable? onClick: () => {}}
+      onClick= {onClick}
     >
       <img src={imageSource? imageSource : DEFAULT_IMAGE }/>
       <span className='title'>{title}</span>

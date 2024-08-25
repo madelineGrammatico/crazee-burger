@@ -8,27 +8,18 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin.tsx";
 import EmptyMenuClient from "./EmptyMenuClient.tsx";
 import { CheckIsProductClicked } from "./helper.ts";
 import { EMPTY_PRODUCT } from "../../../../../lib/constants.ts";
-import { findProductById, isEmptyArray } from "../../../../../utils/array.ts";
+import { isEmptyArray } from "../../../../../utils/array.ts";
 
 export default function Menu() {
     const { menu,
             isAdmin,
             handleDelete,
             productSelected, setProductSelected,
-             setIsCollapsed,
-            setTabSelected,
-            titleEditRef, handleAddTobasket,
+            handleProductSelected,
+            handleAddTobasket,
             handleDeleteInBasket
         } = useContext(OrderContext)
 
-    const handleClick = async (idCardClicked: string) => {
-        if (!isAdmin)  return 
-        const productClicked = findProductById(menu, idCardClicked)
-        productClicked &&  await setProductSelected(productClicked)
-        await setIsCollapsed(false)
-        await setTabSelected("edit")
-        titleEditRef.current && titleEditRef.current.focus()
-    }
     const handleCardDelete = (e: React.MouseEvent<Element>, id: string) => {
         e.stopPropagation()
         handleDelete(id)
@@ -37,8 +28,7 @@ export default function Menu() {
     }
     const handleClickButton = (e: React.MouseEvent<Element>, idCardClicked: string) => {
         e.stopPropagation()
-        const productClicked = findProductById(menu, idCardClicked)
-        productClicked && handleAddTobasket(productClicked)
+        handleAddTobasket(idCardClicked)
     }
 
     if(isEmptyArray(menu) && !isAdmin) return <EmptyMenuClient/>
@@ -54,7 +44,7 @@ export default function Menu() {
                 leftDescription={formatPrice(price)}
                 isButtonDelete={isAdmin}
                 onDelete={(e)=> handleCardDelete(e, id)}
-                onClick={() => handleClick(id)}
+                onClick= {isAdmin? () =>  handleProductSelected(id) : ()=> {}}
                 onAdd={(e) => handleClickButton(e, id)}
                 isHoverAble= {isAdmin}
                 isSelected={CheckIsProductClicked(id, productSelected.id)}

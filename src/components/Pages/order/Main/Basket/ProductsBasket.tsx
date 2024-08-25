@@ -12,25 +12,14 @@ export default function ProductsBasket() {
     basket, 
     handleDeleteInBasket, 
     isAdmin,
-    productSelected, 
-    setProductSelected,
-    setIsCollapsed,
-    setTabSelected, 
-    titleEditRef, 
+    productSelected,
+    handleProductSelected,
   } = useContext(OrderContext)
 
-  const handleClick = async(idCardClicked: string) => {
-    if (!isAdmin)  return
-    const productClicked = findProductById(menu, idCardClicked)
-    productClicked &&  await setProductSelected(productClicked)
-    await setIsCollapsed(false)
-    await setTabSelected("edit")
-    titleEditRef.current && titleEditRef.current.focus()
-  }
- const handleDelete = ( e: React.MouseEvent<HTMLButtonElement>, productToDelete: string) => {
-  e.preventDefault();
+ const handleDelete = ( e: React.MouseEvent<HTMLButtonElement>, idProductToDelete: string) => {
+  e.preventDefault()
   e.stopPropagation()
-  handleDeleteInBasket(productToDelete)
+  handleDeleteInBasket(idProductToDelete)
  }
 
   if(isEmptyArray(basket)) return <EmptyBasket/>
@@ -44,7 +33,7 @@ export default function ProductsBasket() {
           quantity = {basketProduct.quantity}
           onDelete={(e)=>handleDelete(e, menuProduct.id)}
           $isClickable={isAdmin}
-          onClick= {() => handleClick(basketProduct.id)}
+          onClick= {isAdmin? () =>  handleProductSelected(basketProduct.id) : ()=> {}}
           $isSelected={CheckIsProductClicked(menuProduct.id, productSelected.id)}
           key={basketProduct.id}
         />

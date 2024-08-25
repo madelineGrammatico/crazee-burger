@@ -37,6 +37,7 @@ const OrderContext = createContext<OrderContextType>({
       isAdvertised: false,
     },
     setProductSelected: () => {},
+    handleProductSelected: () => {},
     handleEdit: () => {},
     titleEditRef: { current: null } ,
     basket: [{
