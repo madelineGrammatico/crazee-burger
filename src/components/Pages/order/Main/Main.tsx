@@ -7,14 +7,14 @@ import OrderContext from "../../../../context/OrderContext";
 import Basket from "./Basket/Basket";
 
 export default function Main() {
-  const {isAdmin} =useContext(OrderContext)
+  const {isModeAdmin} =useContext(OrderContext)
   
   return (
     <MainStyled>
       <Basket/>
       <div className="menu-and-admin">
         <Menu/>
-        {isAdmin && <Admin/>}
+        {isModeAdmin && <Admin/>}
       </div>
     </MainStyled>
   )

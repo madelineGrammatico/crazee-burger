@@ -9,25 +9,38 @@ import { EMPTY_PRODUCT, EMPTY_PRODUCT_DATA } from "../../../lib/constants"
 import { tabSelectedType } from "../../../lib/types"
 import { useMenu } from "../../../hooks/useMenu"
 import { useBasket } from "../../../hooks/useBasket"
+import { findProductById } from "../../../utils/array"
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
   
   const titleEditRef = useRef<HTMLInputElement>(null)
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isModeAdmin, setisModeAdmin] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [tabSelected, setTabSelected] = useState<tabSelectedType>("add")
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
   const {menu, resetMenu, handleAdd, handleDelete, handleEdit} =  useMenu(menuSelected )
   const { basket, handleAddTobasket, handleDeleteInBasket } = useBasket()
+
+  const handleProductSelected = async(idCardClicked:  string) => {
+    console.log('handleProductSelected')
+    const productClicked = await findProductById(menu, idCardClicked)
+    console.log("productClicked : ", productClicked)
+    productClicked && await setProductSelected(productClicked)
+    console.log("productSelected : " , productSelected)
+    await setIsCollapsed(false)
+    await setTabSelected("edit")
+    titleEditRef.current && titleEditRef.current.focus()
+}
   
   const orderContextValue = {
-    isAdmin, setIsAdmin,
+    isModeAdmin, setisModeAdmin,
     isCollapsed, setIsCollapsed,
     tabSelected, setTabSelected,
     newProduct , setNewProduct,
     productSelected, setProductSelected,
+    handleProductSelected,
     menu,
     resetMenu,
     handleAdd,

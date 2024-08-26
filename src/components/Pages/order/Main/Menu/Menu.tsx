@@ -8,27 +8,18 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin.tsx";
 import EmptyMenuClient from "./EmptyMenuClient.tsx";
 import { CheckIsProductClicked } from "./helper.ts";
 import { EMPTY_PRODUCT } from "../../../../../lib/constants.ts";
-import { findProductIn } from "../../../../../utils/array.ts";
+import { isEmptyArray } from "../../../../../utils/array.ts";
 
 export default function Menu() {
     const { menu,
-            isAdmin,
+            isModeAdmin,
             handleDelete,
             productSelected, setProductSelected,
-             setIsCollapsed,
-            setTabSelected,
-            titleEditRef, handleAddTobasket,
+            handleProductSelected,
+            handleAddTobasket,
             handleDeleteInBasket
         } = useContext(OrderContext)
 
-    const handleClick = async (idCardClicked: string) => {
-        if (!isAdmin)  return 
-        const productClicked = findProductIn(menu, idCardClicked)
-        productClicked &&  await setProductSelected(productClicked)
-        await setIsCollapsed(false)
-        await setTabSelected("edit")
-        titleEditRef.current && titleEditRef.current.focus()
-    }
     const handleCardDelete = (e: React.MouseEvent<Element>, id: string) => {
         e.stopPropagation()
         handleDelete(id)
@@ -37,12 +28,11 @@ export default function Menu() {
     }
     const handleClickButton = (e: React.MouseEvent<Element>, idCardClicked: string) => {
         e.stopPropagation()
-        const productClicked = findProductIn(menu, idCardClicked)
-        productClicked && handleAddTobasket(productClicked)
+        handleAddTobasket(idCardClicked)
     }
 
-    if(menu.length === 0 && !isAdmin) return <EmptyMenuClient/>
-    if(menu.length === 0) return <EmptyMenuAdmin/> 
+    if(isEmptyArray(menu) && !isModeAdmin) return <EmptyMenuClient/>
+    if(isEmptyArray(menu)) return <EmptyMenuAdmin/> 
 
   return (
     <MenuStyled>
@@ -52,11 +42,11 @@ export default function Menu() {
                 imageSource={imageSource}
                 title={title }
                 leftDescription={formatPrice(price)}
-                isButtonDelete={isAdmin}
+                isButtonDelete={isModeAdmin}
                 onDelete={(e)=> handleCardDelete(e, id)}
-                onClick={() => handleClick(id)}
+                onClick= {isModeAdmin? () =>  handleProductSelected(id) : ()=> {}}
                 onAdd={(e) => handleClickButton(e, id)}
-                isHoverAble= {isAdmin}
+                isHoverAble= {isModeAdmin}
                 isSelected={CheckIsProductClicked(id, productSelected.id)}
             />
         })}

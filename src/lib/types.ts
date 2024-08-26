@@ -43,7 +43,12 @@ export type TabType = {
     Icon?: IconType
 } & ComponentPropsWithoutRef<"button">
 
+export type ProductBasketType = {
+  id: string;
+  quantity: number
+}
 
+export type BasketType = ProductBasketType[]
 
 // reusable-ui
 export type ButtonType = {
@@ -97,8 +102,8 @@ export type PropsImagePreviewType= {
  //context
   
   export type OrderContextType = {
-      isAdmin: boolean;
-      setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+      isModeAdmin: boolean;
+      setisModeAdmin: React.Dispatch<React.SetStateAction<boolean>>;
       isCollapsed: boolean;
       setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
       tabSelected: tabSelectedType;
@@ -111,9 +116,10 @@ export type PropsImagePreviewType= {
       handleDelete: (productId: string) => void,
       productSelected: ProductType , 
       setProductSelected:React.Dispatch<React.SetStateAction<ProductType >>,
+      handleProductSelected: (idCardClicked: string) => void,
       handleEdit: (productBeingUdated: ProductType ) => void,
       titleEditRef: React.RefObject<HTMLInputElement>,
-      basket: ProductsType, 
-      handleAddTobasket:(newProduct: ProductType) => void, 
+      basket: BasketType, 
+      handleAddTobasket:(idCardClicked: string) => void, 
       handleDeleteInBasket: (productId: string) => void,
     }

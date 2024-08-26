@@ -3,8 +3,8 @@ import { OrderContextType } from "../lib/types";
 
 
 const OrderContext = createContext<OrderContextType>({
-    isAdmin: false,
-    setIsAdmin: ()=> {},
+    isModeAdmin: false,
+    setisModeAdmin: ()=> {},
     isCollapsed: false,
     setIsCollapsed: ()=> {},
     tabSelected: "add",
@@ -37,16 +37,12 @@ const OrderContext = createContext<OrderContextType>({
       isAdvertised: false,
     },
     setProductSelected: () => {},
+    handleProductSelected: () => {},
     handleEdit: () => {},
     titleEditRef: { current: null } ,
     basket: [{
       id: "9",
-      imageSource: "/images/wedges1.png",
-      title: "Crispy Potatoes",
-      price: 3.7,
       quantity: 0,
-      isAvailable: true,
-      isAdvertised: false,
     }],
     handleAddTobasket:() => {}, 
     handleDeleteInBasket:() => {},

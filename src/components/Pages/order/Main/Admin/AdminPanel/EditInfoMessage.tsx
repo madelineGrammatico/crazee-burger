@@ -17,6 +17,7 @@ const EditInfoMessageStyled = styled.span`
     font-size: ${theme.fonts.size.SM};
         .life-update{
             text-decoration: underline;
+            padding-left: 5px;
         }
     
 `;
