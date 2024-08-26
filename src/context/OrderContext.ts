@@ -3,8 +3,8 @@ import { OrderContextType } from "../lib/types";
 
 
 const OrderContext = createContext<OrderContextType>({
-    isAdmin: false,
-    setIsAdmin: ()=> {},
+    isModeAdmin: false,
+    setisModeAdmin: ()=> {},
     isCollapsed: false,
     setIsCollapsed: ()=> {},
     tabSelected: "add",

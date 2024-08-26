@@ -11,7 +11,7 @@ export default function ProductsBasket() {
     menu,
     basket, 
     handleDeleteInBasket, 
-    isAdmin,
+    isModeAdmin,
     productSelected,
     handleProductSelected,
   } = useContext(OrderContext)
@@ -32,8 +32,8 @@ export default function ProductsBasket() {
           {...menuProduct}
           quantity = {basketProduct.quantity}
           onDelete={(e)=>handleDelete(e, menuProduct.id)}
-          $isClickable={isAdmin}
-          onClick= {isAdmin? () =>  handleProductSelected(basketProduct.id) : ()=> {}}
+          $isClickable={isModeAdmin}
+          onClick= {isModeAdmin? () =>  handleProductSelected(basketProduct.id) : ()=> {}}
           $isSelected={CheckIsProductClicked(menuProduct.id, productSelected.id)}
           key={basketProduct.id}
         />

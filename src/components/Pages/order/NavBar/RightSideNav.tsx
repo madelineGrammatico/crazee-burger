@@ -9,10 +9,10 @@ import ToastAdmin from './ToastAdmin';
 import OrderContext from '../../../../context/OrderContext';
 
 export default function RightSideNav() {
-    const {isAdmin, setIsAdmin} =useContext(OrderContext)
+    const {isModeAdmin, setisModeAdmin} =useContext(OrderContext)
 
     const notify = () => {
-      !isAdmin ? toast.info("Mode admin activé", {
+      !isModeAdmin ? toast.info("Mode admin activé", {
         icon: <IoMdInformationCircle size={30} />,
         theme: "dark",
         position: "bottom-right",
@@ -23,12 +23,12 @@ export default function RightSideNav() {
         draggable: true,
         progress: undefined,
       }): null
-      setIsAdmin(!isAdmin)
+      setisModeAdmin(!isModeAdmin)
     }
     return (
     <RightSideNavStyled>
       <ToggleButton 
-            isChecked={isAdmin} 
+            isChecked={isModeAdmin} 
             onToggle={notify}
             labelIfChecked = "DEACTIVER LE MODE ADMIN"
             labelIfUnchecked = "ACTIVER LE MODE ADMIN"

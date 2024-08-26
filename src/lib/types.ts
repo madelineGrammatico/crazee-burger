@@ -102,8 +102,8 @@ export type PropsImagePreviewType= {
  //context
   
   export type OrderContextType = {
-      isAdmin: boolean;
-      setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+      isModeAdmin: boolean;
+      setisModeAdmin: React.Dispatch<React.SetStateAction<boolean>>;
       isCollapsed: boolean;
       setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
       tabSelected: tabSelectedType;

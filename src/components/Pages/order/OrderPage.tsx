@@ -15,7 +15,7 @@ export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
   
   const titleEditRef = useRef<HTMLInputElement>(null)
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isModeAdmin, setisModeAdmin] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [tabSelected, setTabSelected] = useState<tabSelectedType>("add")
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
@@ -35,7 +35,7 @@ export default function OrderPage() {
 }
   
   const orderContextValue = {
-    isAdmin, setIsAdmin,
+    isModeAdmin, setisModeAdmin,
     isCollapsed, setIsCollapsed,
     tabSelected, setTabSelected,
     newProduct , setNewProduct,

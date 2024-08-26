@@ -12,7 +12,7 @@ import { isEmptyArray } from "../../../../../utils/array.ts";
 
 export default function Menu() {
     const { menu,
-            isAdmin,
+            isModeAdmin,
             handleDelete,
             productSelected, setProductSelected,
             handleProductSelected,
@@ -31,7 +31,7 @@ export default function Menu() {
         handleAddTobasket(idCardClicked)
     }
 
-    if(isEmptyArray(menu) && !isAdmin) return <EmptyMenuClient/>
+    if(isEmptyArray(menu) && !isModeAdmin) return <EmptyMenuClient/>
     if(isEmptyArray(menu)) return <EmptyMenuAdmin/> 
 
   return (
@@ -42,11 +42,11 @@ export default function Menu() {
                 imageSource={imageSource}
                 title={title }
                 leftDescription={formatPrice(price)}
-                isButtonDelete={isAdmin}
+                isButtonDelete={isModeAdmin}
                 onDelete={(e)=> handleCardDelete(e, id)}
-                onClick= {isAdmin? () =>  handleProductSelected(id) : ()=> {}}
+                onClick= {isModeAdmin? () =>  handleProductSelected(id) : ()=> {}}
                 onAdd={(e) => handleClickButton(e, id)}
-                isHoverAble= {isAdmin}
+                isHoverAble= {isModeAdmin}
                 isSelected={CheckIsProductClicked(id, productSelected.id)}
             />
         })}
