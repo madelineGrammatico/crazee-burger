@@ -10,6 +10,7 @@ import { tabSelectedType } from "../../../lib/types"
 import { useMenu } from "../../../hooks/useMenu"
 import { useBasket } from "../../../hooks/useBasket"
 import { findProductById } from "../../../utils/array"
+import { getUser } from "../../../api/user"
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
@@ -51,6 +52,8 @@ export default function OrderPage() {
     handleAddTobasket, 
     handleDeleteInBasket
   }
+
+  getUser("BFcusnqGV2IK2kDcqlky")
 
   return (
     <OrderContext.Provider value={orderContextValue}>

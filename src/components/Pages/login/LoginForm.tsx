@@ -7,6 +7,8 @@ import Button from '../../reusables-ui/Button'
 import { theme } from '../../../theme'
 import { BsPersonCircle } from 'react-icons/bs'
 import { IoChevronForward } from 'react-icons/io5'
+import { createUser } from '../../../api/user'
+
 
 export default function LoginForm() {
     const navigate = useNavigate()
@@ -14,6 +16,7 @@ export default function LoginForm() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        createUser(inputValue)
         setInputValue('')
         navigate(`/order/${inputValue}`)
         
