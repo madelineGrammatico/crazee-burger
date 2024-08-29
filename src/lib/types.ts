@@ -102,24 +102,25 @@ export type PropsImagePreviewType= {
  //context
   
   export type OrderContextType = {
-      isModeAdmin: boolean;
-      setisModeAdmin: React.Dispatch<React.SetStateAction<boolean>>;
-      isCollapsed: boolean;
-      setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-      tabSelected: tabSelectedType;
-      setTabSelected: React.Dispatch<React.SetStateAction<tabSelectedType>>
-      menu: ProductsType,
-      newProduct: ProductSelectedType , 
-      setNewProduct: React.Dispatch<React.SetStateAction<ProductSelectedType >>
-      resetMenu: () => void
-      handleAdd: (newProduct: ProductType) => void,
-      handleDelete: (productId: string) => void,
-      productSelected: ProductType , 
-      setProductSelected:React.Dispatch<React.SetStateAction<ProductType >>,
-      handleProductSelected: (idCardClicked: string) => void,
-      handleEdit: (productBeingUdated: ProductType ) => void,
-      titleEditRef: React.RefObject<HTMLInputElement>,
-      basket: BasketType, 
-      handleAddTobasket:(idCardClicked: string) => void, 
-      handleDeleteInBasket: (productId: string) => void,
-    }
+    username: string | undefined
+    isModeAdmin: boolean;
+    setisModeAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+    isCollapsed: boolean;
+    setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
+    tabSelected: tabSelectedType;
+    setTabSelected: React.Dispatch<React.SetStateAction<tabSelectedType>>
+    menu: ProductsType,
+    newProduct: ProductSelectedType , 
+    setNewProduct: React.Dispatch<React.SetStateAction<ProductSelectedType >>
+    resetMenu: () => void
+    handleAdd: (newProduct: ProductType, username: string | undefined) => void,
+    handleDelete: (productId: string,  username: string | undefined) => void,
+    productSelected: ProductType , 
+    setProductSelected:React.Dispatch<React.SetStateAction<ProductType >>,
+    handleProductSelected: (idCardClicked: string) => void,
+    handleEdit: (productBeingUdated: ProductType ) => void,
+    titleEditRef: React.RefObject<HTMLInputElement>,
+    basket: BasketType, 
+    handleAddTobasket:(idCardClicked: string) => void, 
+    handleDeleteInBasket: (productId: string) => void,
+  }

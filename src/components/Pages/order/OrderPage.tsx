@@ -11,6 +11,7 @@ import { useMenu } from "../../../hooks/useMenu"
 import { useBasket } from "../../../hooks/useBasket"
 import { findProductById } from "../../../utils/array"
 import { getUser } from "../../../api/user"
+import { useNavigate, useParams } from "react-router-dom"
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
@@ -23,6 +24,9 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
   const {menu, resetMenu, handleAdd, handleDelete, handleEdit} =  useMenu(menuSelected )
   const { basket, handleAddTobasket, handleDeleteInBasket } = useBasket()
+  const {username} = useParams()
+  const navigate = useNavigate()
+  if (!username) {navigate("/*")}
 
   const handleProductSelected = async(idCardClicked:  string) => {
     console.log('handleProductSelected')
@@ -36,6 +40,7 @@ export default function OrderPage() {
 }
   
   const orderContextValue = {
+    username,
     isModeAdmin, setisModeAdmin,
     isCollapsed, setIsCollapsed,
     tabSelected, setTabSelected,

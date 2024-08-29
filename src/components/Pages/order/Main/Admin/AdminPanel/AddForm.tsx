@@ -7,7 +7,7 @@ import { useSuccesMessage } from "../../../../../../hooks/useSuccessMessage";
 
 
 export default function AddForm() {
-  const { handleAdd, newProduct , setNewProduct } = useContext(OrderContext)
+  const { handleAdd, username, newProduct , setNewProduct } = useContext(OrderContext)
   const {isSubmited, displaySuccesMessage } = useSuccesMessage(2000)
   
   const buildProduct = () => {
@@ -23,7 +23,7 @@ export default function AddForm() {
   const handleSubmit= (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const newProductToAdd = buildProduct()
-    handleAdd(newProductToAdd)
+    handleAdd(newProductToAdd, username)
     setNewProduct(EMPTY_PRODUCT_DATA)
     displaySuccesMessage()
   }

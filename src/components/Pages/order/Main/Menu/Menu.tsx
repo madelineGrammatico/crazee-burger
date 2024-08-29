@@ -11,21 +11,24 @@ import { EMPTY_PRODUCT } from "../../../../../lib/constants.ts";
 import { isEmptyArray } from "../../../../../utils/array.ts";
 
 export default function Menu() {
-    const { menu,
-            isModeAdmin,
-            handleDelete,
-            productSelected, setProductSelected,
-            handleProductSelected,
-            handleAddTobasket,
-            handleDeleteInBasket
-        } = useContext(OrderContext)
+    const { 
+        username,
+        menu,
+        isModeAdmin,
+        handleDelete,
+        productSelected, setProductSelected,
+        handleProductSelected,
+        handleAddTobasket,
+        handleDeleteInBasket
+    } = useContext(OrderContext)
 
     const handleCardDelete = (e: React.MouseEvent<Element>, id: string) => {
         e.stopPropagation()
-        handleDelete(id)
+        handleDelete(id, username)
         productSelected.id === id && setProductSelected(EMPTY_PRODUCT)
         handleDeleteInBasket(id)
     }
+
     const handleClickButton = (e: React.MouseEvent<Element>, idCardClicked: string) => {
         e.stopPropagation()
         handleAddTobasket(idCardClicked)
@@ -34,23 +37,23 @@ export default function Menu() {
     if(isEmptyArray(menu) && !isModeAdmin) return <EmptyMenuClient/>
     if(isEmptyArray(menu)) return <EmptyMenuAdmin/> 
 
-  return (
-    <MenuStyled>
-        { menu.map(({ imageSource, title, price, id}) => { 
-            return <Card 
-                key={id}
-                imageSource={imageSource}
-                title={title }
-                leftDescription={formatPrice(price)}
-                isButtonDelete={isModeAdmin}
-                onDelete={(e)=> handleCardDelete(e, id)}
-                onClick= {isModeAdmin? () =>  handleProductSelected(id) : ()=> {}}
-                onAdd={(e) => handleClickButton(e, id)}
-                isHoverAble= {isModeAdmin}
-                isSelected={CheckIsProductClicked(id, productSelected.id)}
-            />
-        })}
-    </MenuStyled>
+    return (
+        <MenuStyled>
+            { menu.map(({ imageSource, title, price, id}) => { 
+                return <Card 
+                    key={id}
+                    imageSource={imageSource}
+                    title={title }
+                    leftDescription={formatPrice(price)}
+                    isButtonDelete={isModeAdmin}
+                    onDelete={(e)=> handleCardDelete(e, id)}
+                    onClick= {isModeAdmin? () =>  handleProductSelected(id) : ()=> {}}
+                    onAdd={(e) => handleClickButton(e, id)}
+                    isHoverAble= {isModeAdmin}
+                    isSelected={CheckIsProductClicked(id, productSelected.id)}
+                />
+            })}
+        </MenuStyled>
   )
 }
 

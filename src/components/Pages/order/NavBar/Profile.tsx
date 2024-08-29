@@ -4,13 +4,13 @@ import styled from "styled-components"
 import { theme } from "../../../../theme"
 
 export default function Profile() {
-  const { userName } = useParams()
+  const { username } = useParams()
   
   return (
     <ProfileStyled>
       <div className="info">
         <p>
-          Hey, <b>{userName}</b>
+          Hey, <b>{username}</b>
         </p>
         <Link to="/">
           <div className="description">

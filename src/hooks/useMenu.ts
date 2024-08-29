@@ -9,10 +9,11 @@ export const useMenu = (menuSelected: ProductsType) => {
     const resetMenu = () => {
         setMenu(menuSelected)
     }
-    const handleAdd = (newProduct: ProductType, username: string) => {
+    const handleAdd = async (newProduct: ProductType, username: string | undefined) => {
         const menuCopy = deepClone(menu)
         const menuUpdated = [ newProduct,...menuCopy]
         setMenu(menuUpdated)
+        if(!username) return
         syncBothMenus(username, menuUpdated)
     }
     const handleEdit = (productBeingUdated: ProductType) => { 
@@ -23,9 +24,12 @@ export const useMenu = (menuSelected: ProductsType) => {
         setMenu(menuUpdated)
     }
 
-    const handleDelete =(productId: string) => {
+    const handleDelete =(productId: string, username: string | undefined) => {
         const menuCopy = deepClone(menu)
-        setMenu(menuCopy.filter((product: ProductType) => product.id !== productId))
+        const menuUpdated = menuCopy.filter((product: ProductType) => product.id !== productId)
+        setMenu( menuUpdated )
+        if(!username) return
+        syncBothMenus(username, menuUpdated)
     }
 
     return {menu, resetMenu, handleAdd, handleDelete, handleEdit}
