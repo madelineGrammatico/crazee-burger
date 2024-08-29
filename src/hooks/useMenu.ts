@@ -1,20 +1,21 @@
 import { useState } from "react"
 import { deepClone } from "../utils/array"
-import { ProductType } from "../lib/types"
+import { ProductsType, ProductType } from "../lib/types"
+import { syncBothMenus } from "../api/products"
 
-export const useMenu = (menuSelected: ProductType[]) => { 
+export const useMenu = (menuSelected: ProductsType) => { 
     const [menu, setMenu] = useState(menuSelected)
 
     const resetMenu = () => {
         setMenu(menuSelected)
     }
-    const handleAdd = (newProduct: ProductType) => {
+    const handleAdd = (newProduct: ProductType, username: string) => {
         const menuCopy = deepClone(menu)
         const menuUpdated = [ newProduct,...menuCopy]
         setMenu(menuUpdated)
+        syncBothMenus(username, menuUpdated)
     }
     const handleEdit = (productBeingUdated: ProductType) => { 
-        
         const menuCopy = deepClone(menu)
         const indexOfPoductToEdit = menu.findIndex((product) => product.id === productBeingUdated.id)
         const menuUpdated = [...menuCopy]
