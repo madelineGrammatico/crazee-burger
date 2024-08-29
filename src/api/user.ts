@@ -7,16 +7,20 @@ export const getUser = async (userId: string) => {
     const docSnapshot = await getDoc(docRef)
     if (docSnapshot.exists()){ 
         const userReceived = docSnapshot.data()
-        console.log("userReceived: ", userReceived)
         return userReceived
     }
 }
 
-export const createUser =(username: string) => {
+export const createUser = async (username: string) => {
     const docRef = doc(db, "users", username)
     const newUser = {
         username: username,
-        menu: fakeMenu.LARGE
+        menu: fakeMenu.SMALL
     }
-    setDoc(docRef, newUser)
+    await setDoc(docRef, newUser)
+}
+
+export const authenticateUser = async (userId: string) => {
+    const existingUser = await getUser(userId)
+    if (!existingUser) await createUser(userId)
 }

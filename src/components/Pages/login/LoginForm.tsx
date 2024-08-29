@@ -7,22 +7,21 @@ import Button from '../../reusables-ui/Button'
 import { theme } from '../../../theme'
 import { BsPersonCircle } from 'react-icons/bs'
 import { IoChevronForward } from 'react-icons/io5'
-import { createUser } from '../../../api/user'
+import { authenticateUser} from '../../../api/user'
 
 
 export default function LoginForm() {
     const navigate = useNavigate()
-    const [inputValue, setInputValue] = useState("")
+    const [username, setUsername] = useState("")
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        createUser(inputValue)
-        setInputValue('')
-        navigate(`/order/${inputValue}`)
-        
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+        await authenticateUser(username)
+        setUsername('')
+        navigate(`/order/${username}`)
     }
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value)
+        setUsername(e.target.value)
     }
     
     return (
@@ -31,7 +30,7 @@ export default function LoginForm() {
         <hr/>
         <h2>Connectez vous</h2>
         <TextInput
-          value={inputValue} 
+          value={username} 
           onChange={handleChange} 
           placeholder="Entrez votre prénom"
           Icon={BsPersonCircle}
