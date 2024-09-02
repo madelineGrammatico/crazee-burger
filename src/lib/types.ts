@@ -12,11 +12,12 @@ export type ProductType = {
     isAdvertised: boolean,
 }
 export type ProductsType = ProductType[]
-  export type ProductSelectedType = {
-    title:string,
-    imageSource:string,
-    price: number
-  }
+
+export type ProductSelectedType = {
+  title:string,
+  imageSource:string,
+  price: number
+}
 
 //tab
 export type tabSelectedType = "add" | "edit"

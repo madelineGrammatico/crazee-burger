@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { theme } from "../../../theme"
 import NavBar from "./NavBar/NavBar"
 import Main from "./Main/Main"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import OrderContext from "../../../context/OrderContext"
 import { fakeMenu } from "../../../fakeData/fakeMenu"
 import { EMPTY_PRODUCT, EMPTY_PRODUCT_DATA } from "../../../lib/constants"
@@ -12,6 +12,7 @@ import { useBasket } from "../../../hooks/useBasket"
 import { findProductById } from "../../../utils/array"
 import { getUser } from "../../../api/user"
 import { useNavigate, useParams } from "react-router-dom"
+import { getMenu } from "../../../api/products"
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
@@ -22,11 +23,10 @@ export default function OrderPage() {
   const [tabSelected, setTabSelected] = useState<tabSelectedType>("add")
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
-  const {menu, resetMenu, handleAdd, handleDelete, handleEdit} =  useMenu(menuSelected )
+  const {menu, setMenu, resetMenu, handleAdd, handleDelete, handleEdit} =  useMenu(menuSelected )
   const { basket, handleAddTobasket, handleDeleteInBasket } = useBasket()
   const {username} = useParams()
   const navigate = useNavigate()
-  if (!username) {navigate("/*")}
 
   const handleProductSelected = async(idCardClicked:  string) => {
     console.log('handleProductSelected')
@@ -37,7 +37,16 @@ export default function OrderPage() {
     await setIsCollapsed(false)
     await setTabSelected("edit")
     titleEditRef.current && titleEditRef.current.focus()
-}
+  }
+  const initialiseMenu = async () => {
+    if (!username) { return navigate("/*")}
+    const menuReceived = await getMenu(username)
+    console.log("menuReceived : ", menuReceived)
+    if (menuReceived) setMenu(menuReceived)
+  }
+  useEffect(() => {
+    initialiseMenu()
+  }, [])
   
   const orderContextValue = {
     username,

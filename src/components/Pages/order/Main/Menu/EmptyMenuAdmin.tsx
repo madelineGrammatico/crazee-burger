@@ -1,17 +1,14 @@
-import { useContext } from 'react'
-import OrderContext from '../../../../../context/OrderContext'
 import Button from '../../../../reusables-ui/Button'
 import styled from 'styled-components'
 import { theme } from '../../../../../theme'
 
-export default function EmptyMenuAdmin() {
-    const {  resetMenu} = useContext(OrderContext)
+export default function EmptyMenuAdmin({onReset}: {onReset: ()=> void}) {
     return (
         <EmptyMenuAdminStyled>
             <h1>Le menu est vide ?</h1>
             <h2>Cliquez ci-dessous pour le réinitialiser</h2>
             <Button 
-                onClick={resetMenu}
+                onClick={()=> onReset}
                 label="Générer de nouveaux produits"
                 size="large"
             />

@@ -4,7 +4,7 @@ import { ProductsType, ProductType } from "../lib/types"
 import { syncBothMenus } from "../api/products"
 
 export const useMenu = (menuSelected: ProductsType) => { 
-    const [menu, setMenu] = useState(menuSelected)
+    const [menu, setMenu] = useState<ProductsType>([])
 
     const resetMenu = () => {
         setMenu(menuSelected)
@@ -32,6 +32,6 @@ export const useMenu = (menuSelected: ProductsType) => {
         syncBothMenus(username, menuUpdated)
     }
 
-    return {menu, resetMenu, handleAdd, handleDelete, handleEdit}
+    return {menu, setMenu, resetMenu, handleAdd, handleDelete, handleEdit}
 }
 
