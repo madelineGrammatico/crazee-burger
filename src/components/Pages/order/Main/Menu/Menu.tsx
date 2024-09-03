@@ -9,11 +9,14 @@ import EmptyMenuClient from "./EmptyMenuClient.tsx";
 import { CheckIsProductClicked } from "./helper.ts";
 import { EMPTY_PRODUCT } from "../../../../../lib/constants.ts";
 import { isEmptyArray } from "../../../../../utils/array.ts";
+import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
+    const navigate = useNavigate()
     const { 
         username,
         menu,
+        resetMenu,
         isModeAdmin,
         handleDelete,
         productSelected, setProductSelected,
@@ -21,7 +24,7 @@ export default function Menu() {
         handleAddTobasket,
         handleDeleteInBasket
     } = useContext(OrderContext)
-
+    
     const handleCardDelete = (e: React.MouseEvent<Element>, id: string) => {
         e.stopPropagation()
         handleDelete(id, username)
@@ -34,8 +37,14 @@ export default function Menu() {
         handleAddTobasket(idCardClicked)
     }
 
-    if(isEmptyArray(menu) && !isModeAdmin) return <EmptyMenuClient/>
-    if(isEmptyArray(menu)) return <EmptyMenuAdmin/> 
+    try {
+        if(!username) throw("any username")
+        if(isEmptyArray(menu) && !isModeAdmin) return <EmptyMenuClient/>
+        if(isEmptyArray(menu)) return <EmptyMenuAdmin onReset={() => resetMenu(username)}/> 
+    } catch(e) {
+        navigate("/*")
+        console.error(e)
+    }
 
     return (
         <MenuStyled>

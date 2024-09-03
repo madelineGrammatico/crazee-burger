@@ -113,7 +113,7 @@ export type PropsImagePreviewType= {
     menu: ProductsType,
     newProduct: ProductSelectedType , 
     setNewProduct: React.Dispatch<React.SetStateAction<ProductSelectedType >>
-    resetMenu: () => void
+    resetMenu: (username:  string) => void
     handleAdd: (newProduct: ProductType, username: string | undefined) => void,
     handleDelete: (productId: string,  username: string | undefined) => void,
     productSelected: ProductType , 
