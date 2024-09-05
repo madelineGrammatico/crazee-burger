@@ -83,6 +83,8 @@ export type PropsTextInput = {
 export type PropsProductForm = {
   onSubmit?:(e: React.FormEvent<HTMLFormElement>)=> void, 
   onChange:(e: React.ChangeEvent<HTMLInputElement>) => void,
+  onFocus?:(e: React.FocusEvent<HTMLInputElement>) => void,
+  onBlur?: (e:React.FocusEvent<HTMLInputElement>) => void,
   product: ProductType | ProductSelectedType,
   children: JSX.Element
 }

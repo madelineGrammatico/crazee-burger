@@ -1,13 +1,17 @@
-import { useContext }from "react";
+import { useContext, useState }from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import EditInfoMessage from "./EditInfoMessage";
 import ProductForm from "./ProductForm";
 import { useNavigate } from "react-router-dom";
+import SavingMessage from "./SavingMessage";
+import { useSuccesMessage } from "../../../../../../hooks/useSuccessMessage";
 
 export default function EditForm() {
   const {username} = useContext(OrderContext)
   const navigate = useNavigate()
+  const {isSubmited : isSaved,  displaySuccesMessage} = useSuccesMessage()
 
+  const [valueOnFocus, setValueOnFocus] = useState("")
   const { 
     productSelected,
     setProductSelected, 
@@ -32,13 +36,26 @@ export default function EditForm() {
     }
   }
 
+  const handleOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    const inputValueOnFocus = event.target.value
+    setValueOnFocus(inputValueOnFocus)
+  }
+  const handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const valueOnBlur = event.target.value
+    if(valueOnFocus === valueOnBlur) {
+      displaySuccesMessage()
+    }
+  }
+
   return (
     <ProductForm
       onChange={handleChange} 
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
       product={productSelected}
       ref={titleEditRef}
     >
-      <EditInfoMessage/>
+      { isSaved ? <EditInfoMessage/> : <SavingMessage/> }
     </ProductForm>
   )
 }
