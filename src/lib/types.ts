@@ -124,6 +124,6 @@ export type PropsImagePreviewType= {
     handleEdit: (productBeingUdated: ProductType, username:  string) => void,
     titleEditRef: React.RefObject<HTMLInputElement>,
     basket: BasketType, 
-    handleAddTobasket:(idCardClicked: string) => void, 
+    handleAddTobasket:(idCardClicked: string, username: string | undefined) => void, 
     handleDeleteInBasket: (productId: string) => void,
   }
