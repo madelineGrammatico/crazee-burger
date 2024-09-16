@@ -34,5 +34,5 @@ export const useBasket = () => {
         const basketUpdated = removeProductinById(basket, productId)
         setBasket(basketUpdated)
     }
-    return { basket, handleAddTobasket, handleDeleteInBasket }
+    return { basket, setBasket, handleAddTobasket, handleDeleteInBasket }
 }

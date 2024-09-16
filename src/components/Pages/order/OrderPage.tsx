@@ -13,6 +13,7 @@ import { findProductById } from "../../../utils/array"
 import { getUser } from "../../../api/user"
 import { useNavigate, useParams } from "react-router-dom"
 import { getMenu } from "../../../api/products"
+import { getLocalStorage } from "../../../utils/windows"
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
@@ -24,7 +25,7 @@ export default function OrderPage() {
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
   const {menu, setMenu, resetMenu, handleAdd, handleDelete, handleEdit} =  useMenu(menuSelected )
-  const { basket, handleAddTobasket, handleDeleteInBasket } = useBasket()
+  const { basket, setBasket, handleAddTobasket, handleDeleteInBasket } = useBasket()
   const {username} = useParams()
   const navigate = useNavigate()
 
@@ -47,7 +48,16 @@ export default function OrderPage() {
   useEffect(() => {
     initialiseMenu()
   }, [])
-  
+
+  const initialiseBasket = () => {
+    if (!username) { return navigate("/*")}
+    const BasketReceived = getLocalStorage(username)
+    console.log("BasketReceived : ", BasketReceived)
+    if (BasketReceived) setBasket(BasketReceived)
+  }
+  useEffect(() => {
+    initialiseBasket()
+  }, [])
   const orderContextValue = {
     username,
     isModeAdmin, setisModeAdmin,
