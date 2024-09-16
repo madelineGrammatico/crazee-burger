@@ -9,6 +9,7 @@ import { findProductById, isEmptyArray } from '../../../../../utils/array';
 export default function ProductsBasket() {
   const { 
     menu,
+    username,
     basket, 
     handleDeleteInBasket, 
     isModeAdmin,
@@ -19,7 +20,7 @@ export default function ProductsBasket() {
  const handleDelete = ( e: React.MouseEvent<HTMLButtonElement>, idProductToDelete: string) => {
   e.preventDefault()
   e.stopPropagation()
-  handleDeleteInBasket(idProductToDelete)
+  handleDeleteInBasket(idProductToDelete, username)
  }
 
   if(isEmptyArray(basket)) return <EmptyBasket/>

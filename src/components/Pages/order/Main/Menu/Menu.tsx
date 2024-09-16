@@ -29,12 +29,12 @@ export default function Menu() {
         e.stopPropagation()
         handleDelete(id, username)
         productSelected.id === id && setProductSelected(EMPTY_PRODUCT)
-        handleDeleteInBasket(id)
+        handleDeleteInBasket(id, username)
     }
 
     const handleClickButton = (e: React.MouseEvent<Element>, idCardClicked: string) => {
         e.stopPropagation()
-        handleAddTobasket(idCardClicked)
+        handleAddTobasket(idCardClicked, username)
     }
 
     try {

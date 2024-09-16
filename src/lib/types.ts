@@ -126,5 +126,5 @@ export type PropsImagePreviewType= {
     titleEditRef: React.RefObject<HTMLInputElement>,
     basket: BasketType, 
     handleAddTobasket:(idCardClicked: string, username: string | undefined) => void, 
-    handleDeleteInBasket: (productId: string) => void,
+    handleDeleteInBasket: (productId: string, username:  string | undefined) => void,
   }
