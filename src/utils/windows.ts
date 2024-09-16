@@ -8,5 +8,5 @@ export const setLocalStorage = (key: string, value: BasketType) => {
 
 export const getLocalStorage= (key: string) : BasketType =>{ 
     const value = localStorage.getItem(key)
-    return value? JSON.parse(value) : [] 
+    return value? JSON.parse(value) : null
 }

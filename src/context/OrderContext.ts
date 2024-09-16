@@ -8,6 +8,7 @@ const OrderContext = createContext<OrderContextType>({
   setisModeAdmin: ()=> {},
   isCollapsed: false,
   setIsCollapsed: ()=> {},
+  isLoading: false,
   tabSelected: "add",
   setTabSelected: ()=> {},
   menu: [{

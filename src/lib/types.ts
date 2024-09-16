@@ -110,6 +110,7 @@ export type PropsImagePreviewType= {
     setisModeAdmin: React.Dispatch<React.SetStateAction<boolean>>;
     isCollapsed: boolean;
     setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
+    isLoading: boolean
     tabSelected: tabSelectedType;
     setTabSelected: React.Dispatch<React.SetStateAction<tabSelectedType>>
     menu: ProductsType,

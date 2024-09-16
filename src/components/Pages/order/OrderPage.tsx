@@ -21,6 +21,7 @@ export default function OrderPage() {
   const titleEditRef = useRef<HTMLInputElement>(null)
   const [isModeAdmin, setisModeAdmin] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [tabSelected, setTabSelected] = useState<tabSelectedType>("add")
   const [newProduct , setNewProduct] = useState(EMPTY_PRODUCT_DATA)
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT)
@@ -41,9 +42,11 @@ export default function OrderPage() {
   }
   const initialiseMenu = async () => {
     if (!username) { return navigate("/*")}
+    setIsLoading(true)
     const menuReceived = await getMenu(username)
     console.log("menuReceived : ", menuReceived)
     if (menuReceived) setMenu(menuReceived)
+    setIsLoading(false)
   }
   useEffect(() => {
     initialiseMenu()
@@ -53,6 +56,7 @@ export default function OrderPage() {
     if (!username) { return navigate("/*")}
     const BasketReceived = getLocalStorage(username)
     console.log("BasketReceived : ", BasketReceived)
+
     if (BasketReceived) setBasket(BasketReceived)
   }
   useEffect(() => {
@@ -62,6 +66,7 @@ export default function OrderPage() {
     username,
     isModeAdmin, setisModeAdmin,
     isCollapsed, setIsCollapsed,
+    isLoading,
     tabSelected, setTabSelected,
     newProduct , setNewProduct,
     productSelected, setProductSelected,

@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 import { theme } from '../../../../../theme';
+import OrderContext from '../../../../../context/OrderContext';
+import { useContext } from 'react';
 
 export default function EmptyBasket() {
+  const {isLoading} = useContext(OrderContext)
+  const basketEmptyMessage= "Votre commande est vide."
+  const basketLoadingMessage = "Chargement..."
   return (
     <EmptyBasketStyled>
-        <span className="emptyMessage">Votre commande est vide.</span>
+        <span className="emptyMessage">{isLoading? basketLoadingMessage: basketEmptyMessage}</span>
     </EmptyBasketStyled>
   )
 }
