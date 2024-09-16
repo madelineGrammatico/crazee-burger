@@ -15,3 +15,8 @@ export const EMPTY_PRODUCT= {
     price: 0
   }
 export const DEFAULT_IMAGE = comingSoon
+
+export const BASKET_MESSAGE = {
+  EMPTY: "Votre commande est vide.",
+  LOADING: "Chargement en cours"
+}
