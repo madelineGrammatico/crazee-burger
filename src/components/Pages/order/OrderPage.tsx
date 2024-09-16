@@ -48,10 +48,7 @@ export default function OrderPage() {
     if (menuReceived) setMenu(menuReceived)
     setIsLoading(false)
   }
-  useEffect(() => {
-    initialiseMenu()
-  }, [])
-
+  
   const initialiseBasket = () => {
     if (!username) { return navigate("/*")}
     const BasketReceived = getLocalStorage(username)
@@ -59,9 +56,16 @@ export default function OrderPage() {
 
     if (BasketReceived) setBasket(BasketReceived)
   }
-  useEffect(() => {
+
+  const initialiseUserSession = async () => {
+    await initialiseMenu()
     initialiseBasket()
+  }
+
+  useEffect(() => {
+    initialiseUserSession ()
   }, [])
+  
   const orderContextValue = {
     username,
     isModeAdmin, setisModeAdmin,
