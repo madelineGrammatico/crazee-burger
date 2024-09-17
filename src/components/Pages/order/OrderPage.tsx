@@ -12,8 +12,7 @@ import { useBasket } from "../../../hooks/useBasket"
 import { findProductById } from "../../../utils/array"
 import { getUser } from "../../../api/user"
 import { useNavigate, useParams } from "react-router-dom"
-import { getMenu } from "../../../api/products"
-import { getLocalStorage } from "../../../utils/windows"
+import { initialiseUserSession } from "./helpers/initialiseUserSession"
 
 export default function OrderPage() {
   const menuSelected = fakeMenu.LARGE
@@ -40,30 +39,10 @@ export default function OrderPage() {
     await setTabSelected("edit")
     titleEditRef.current && titleEditRef.current.focus()
   }
-  const initialiseMenu = async () => {
-    if (!username) { return navigate("/*")}
-    setIsLoading(true)
-    const menuReceived = await getMenu(username)
-    console.log("menuReceived : ", menuReceived)
-    if (menuReceived) setMenu(menuReceived)
-    setIsLoading(false)
-  }
-  
-  const initialiseBasket = () => {
-    if (!username) { return navigate("/*")}
-    const BasketReceived = getLocalStorage(username)
-    console.log("BasketReceived : ", BasketReceived)
-
-    if (BasketReceived) setBasket(BasketReceived)
-  }
-
-  const initialiseUserSession = async () => {
-    await initialiseMenu()
-    initialiseBasket()
-  }
 
   useEffect(() => {
-    initialiseUserSession ()
+    if (!username) { return navigate("/*")}
+    initialiseUserSession(username, setMenu, setBasket, setIsLoading)
   }, [])
   
   const orderContextValue = {
