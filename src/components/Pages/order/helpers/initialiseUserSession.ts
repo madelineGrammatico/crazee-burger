@@ -9,7 +9,6 @@ const initialiseMenu = async (
     ) => {
     setIsLoading(true)
     const menuReceived = await getMenu(username)
-    console.log("menuReceived : ", menuReceived)
     if (menuReceived) setMenu(menuReceived)
     setIsLoading(false)
 }
@@ -19,7 +18,6 @@ const initialiseBasket = (
         setBasket: React.Dispatch<React.SetStateAction<BasketType>>,
     ) => {
     const BasketReceived = getLocalStorage(username)
-    console.log("BasketReceived : ", BasketReceived)
     if (BasketReceived) setBasket(BasketReceived)
 }
 

@@ -30,11 +30,8 @@ export default function OrderPage() {
   const navigate = useNavigate()
 
   const handleProductSelected = async(idCardClicked:  string) => {
-    console.log('handleProductSelected')
     const productClicked = await findProductById(menu, idCardClicked)
-    console.log("productClicked : ", productClicked)
     productClicked && await setProductSelected(productClicked)
-    console.log("productSelected : " , productSelected)
     await setIsCollapsed(false)
     await setTabSelected("edit")
     titleEditRef.current && titleEditRef.current.focus()
