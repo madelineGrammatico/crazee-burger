@@ -7,14 +7,16 @@ import OrderContext from "../../../../../context/OrderContext";
 import { calculateTotal } from "./helper";
 
 export default function Total() {
-  const { basket, menu } = useContext(OrderContext)
+  const { basket, menu, isLoading} = useContext(OrderContext)
   const amondToPaid: number = calculateTotal(basket, menu)
 
   return (
     <Header>
       <TotalStyled>
           <span className="total">Total</span>
-          <span className="amount">{formatPrice(amondToPaid)}</span>
+          <span className="amount">
+            {isLoading ? "" : formatPrice(amondToPaid)}
+          </span>
       </TotalStyled>
     </Header>
   )

@@ -11,6 +11,8 @@ const ProductForm = React.forwardRef<HTMLInputElement, PropsProductForm>(
   ({
       onSubmit, 
       onChange,
+      onFocus,
+      onBlur,
       product,
       children }: PropsProductForm,
     ref
@@ -27,6 +29,8 @@ const ProductForm = React.forwardRef<HTMLInputElement, PropsProductForm>(
           <TextInput
             {...input}
             onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
             version="slim"
             ref={ref && input.name ==="title" ? ref : undefined}
           />

@@ -12,11 +12,12 @@ export type ProductType = {
     isAdvertised: boolean,
 }
 export type ProductsType = ProductType[]
-  export type ProductSelectedType = {
-    title:string,
-    imageSource:string,
-    price: number
-  }
+
+export type ProductSelectedType = {
+  title:string,
+  imageSource:string,
+  price: number
+}
 
 //tab
 export type tabSelectedType = "add" | "edit"
@@ -82,6 +83,8 @@ export type PropsTextInput = {
 export type PropsProductForm = {
   onSubmit?:(e: React.FormEvent<HTMLFormElement>)=> void, 
   onChange:(e: React.ChangeEvent<HTMLInputElement>) => void,
+  onFocus?:(e: React.FocusEvent<HTMLInputElement>) => void,
+  onBlur?: (e:React.FocusEvent<HTMLInputElement>) => void,
   product: ProductType | ProductSelectedType,
   children: JSX.Element
 }
@@ -102,24 +105,26 @@ export type PropsImagePreviewType= {
  //context
   
   export type OrderContextType = {
-      isModeAdmin: boolean;
-      setisModeAdmin: React.Dispatch<React.SetStateAction<boolean>>;
-      isCollapsed: boolean;
-      setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
-      tabSelected: tabSelectedType;
-      setTabSelected: React.Dispatch<React.SetStateAction<tabSelectedType>>
-      menu: ProductsType,
-      newProduct: ProductSelectedType , 
-      setNewProduct: React.Dispatch<React.SetStateAction<ProductSelectedType >>
-      resetMenu: () => void
-      handleAdd: (newProduct: ProductType) => void,
-      handleDelete: (productId: string) => void,
-      productSelected: ProductType , 
-      setProductSelected:React.Dispatch<React.SetStateAction<ProductType >>,
-      handleProductSelected: (idCardClicked: string) => void,
-      handleEdit: (productBeingUdated: ProductType ) => void,
-      titleEditRef: React.RefObject<HTMLInputElement>,
-      basket: BasketType, 
-      handleAddTobasket:(idCardClicked: string) => void, 
-      handleDeleteInBasket: (productId: string) => void,
-    }
+    username: string | undefined
+    isModeAdmin: boolean;
+    setisModeAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+    isCollapsed: boolean;
+    setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
+    isLoading: boolean
+    tabSelected: tabSelectedType;
+    setTabSelected: React.Dispatch<React.SetStateAction<tabSelectedType>>
+    menu: ProductsType,
+    newProduct: ProductSelectedType , 
+    setNewProduct: React.Dispatch<React.SetStateAction<ProductSelectedType >>
+    resetMenu: (username:  string) => void
+    handleAdd: (newProduct: ProductType, username: string | undefined) => void,
+    handleDelete: (productId: string,  username: string | undefined) => void,
+    productSelected: ProductType , 
+    setProductSelected:React.Dispatch<React.SetStateAction<ProductType >>,
+    handleProductSelected: (idCardClicked: string) => void,
+    handleEdit: (productBeingUdated: ProductType, username:  string) => void,
+    titleEditRef: React.RefObject<HTMLInputElement>,
+    basket: BasketType, 
+    handleAddTobasket:(idCardClicked: string, username: string | undefined) => void, 
+    handleDeleteInBasket: (productId: string, username:  string | undefined) => void,
+  }
