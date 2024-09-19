@@ -42,7 +42,7 @@ export default function EditForm() {
   }
   const handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const valueOnBlur = event.target.value
-    if(valueOnFocus === valueOnBlur) {
+    if(valueOnFocus !== valueOnBlur) {
       displaySuccesMessage()
     }
   }
@@ -55,7 +55,7 @@ export default function EditForm() {
       product={productSelected}
       ref={titleEditRef}
     >
-      { isSaved ? <EditInfoMessage/> : <SavingMessage/> }
+      { isSaved ? <SavingMessage/> : <EditInfoMessage/> }
     </ProductForm>
   )
 }

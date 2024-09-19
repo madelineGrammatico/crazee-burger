@@ -10,11 +10,13 @@ import { CheckIsProductClicked } from "./helper.ts";
 import { EMPTY_PRODUCT } from "../../../../../lib/constants.ts";
 import { isEmptyArray } from "../../../../../utils/array.ts";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../../../reusables-ui/Loader.tsx";
 
 export default function Menu() {
     const navigate = useNavigate()
     const { 
         username,
+        isLoading,
         menu,
         resetMenu,
         isModeAdmin,
@@ -39,6 +41,7 @@ export default function Menu() {
 
     try {
         if(!username) throw("any username")
+        if(isLoading) return <Loader/>
         if(isEmptyArray(menu) && !isModeAdmin) return <EmptyMenuClient/>
         if(isEmptyArray(menu)) return <EmptyMenuAdmin onReset={() => resetMenu(username)}/> 
     } catch(e) {

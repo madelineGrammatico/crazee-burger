@@ -18,5 +18,6 @@ export const DEFAULT_IMAGE = comingSoon
 
 export const BASKET_MESSAGE = {
   EMPTY: "Votre commande est vide.",
-  LOADING: "Chargement en cours"
+ 
 }
+export const LOADER_MESSAGE = "Chargement en cours"
