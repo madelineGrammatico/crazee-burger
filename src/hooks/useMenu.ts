@@ -8,8 +8,7 @@ export const useMenu = (menuSelected: ProductsType) => {
 
     const resetMenu = (username: string) => {
         setMenu(menuSelected)
-        const menuUpdated = menu
-        syncBothMenus(username, menuUpdated)
+        syncBothMenus(username, menuSelected)
     }
     const handleAdd = async (newProduct: ProductType, username: string | undefined) => {
         const menuCopy = deepClone(menu)

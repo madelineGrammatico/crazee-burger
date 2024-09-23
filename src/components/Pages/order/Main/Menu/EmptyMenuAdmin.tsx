@@ -8,7 +8,7 @@ export default function EmptyMenuAdmin({onReset}: {onReset: ()=> void}) {
             <h1>Le menu est vide ?</h1>
             <h2>Cliquez ci-dessous pour le réinitialiser</h2>
             <Button 
-                onClick={()=> onReset}
+                onClick={()=> onReset()}
                 label="Générer de nouveaux produits"
                 size="large"
             />
