@@ -15,7 +15,7 @@ export const createUser = async (username: string) => {
     const docRef = doc(db, "users", username)
     const newUser = {
         username: username,
-        menu: fakeMenu.SMALL
+        menu: fakeMenu.LARGE
     }
     await setDoc(docRef, newUser)
 }
